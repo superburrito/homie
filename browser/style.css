@@ -1,0 +1,16 @@
+#mainToolbar {
+  padding-left: 10px; }
+
+#toolbar {
+  height: 60px;
+  min-height: 60px; }
+  #toolbar h3 {
+    margin-top: 17px;
+    margin-bottom: 20px; }
+  #toolbar #menuButton {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+
+#sidenav {
+  width: 120px;
+  min-width: 120px; }

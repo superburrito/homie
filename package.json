@@ -1,0 +1,31 @@
+{
+  "name": "homie",
+  "version": "1.0.0",
+  "description": "Yale-NUS College Capstone Project",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "nodemon --watch browser -e html,js,css server/server.js"
+  },
+  "author": "Yao Hui Chua",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "angular-ui-router": "^1.0.0-beta.2",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "pg": "^6.1.0",
+    "pg-native": "^1.10.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
+    "nodemon": "^1.10.2"
+  }
+}
