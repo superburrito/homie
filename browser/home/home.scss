@@ -1,0 +1,43 @@
+.home {
+	&__container {
+		position: relative;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: $main-vh;
+	}
+
+	&__translucence {
+		top: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		height: $main-vh;
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+
+	&__content {
+		position: relative;
+		z-index: 5;
+		color: white;
+		height: 100%;
+		width: $main-vh;
+
+		&--title {
+			line-height: 1.5;
+			margin: 0;
+			font-weight: bold;
+			font-size: 1.5em;
+		}
+
+		&--subtitle {
+			line-height: 1.5;
+			margin: 0;
+			font-weight: normal;
+			font-size: 1em;
+		}
+
+
+	}
+
+
+}

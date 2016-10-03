@@ -9,7 +9,7 @@ router.use('/node_modules', express.static(__dirname + '/../node_modules'));
 router.use('/bower_components', express.static(__dirname + '/../bower_components'));
 
 // Serve browser pages
-router.use('/browser', express.static(__dirname + '/../browser'));
+router.use('/public', express.static(__dirname + '/../public'));
 
 
 module.exports = router;

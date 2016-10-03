@@ -1,0 +1,16 @@
+.toolbar {
+	height: $toolbar-vh;
+	min-height: $toolbar-vh;
+
+	.toolbar__button {
+		margin-left: 2vh;
+		margin-right: 2vh;
+	}
+
+	.toolbar__text {
+		margin-right: 2vh;
+		margin-top: 2vh;
+		margin-bottom: 2vh;
+	}
+}
+

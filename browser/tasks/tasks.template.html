@@ -1,0 +1,80 @@
+<div layout="column" class="task">
+
+	<!-- Tasks Navbar -->
+	<md-nav-bar md-theme="altTheme0" class="tnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="tnavbar">
+	  <md-nav-item class="tnavbar__button" md-nav-click="setTaskType('Cleaning')" layout="column">
+	  	<md-icon md-font-set="material-icons">local_laundry_service</md-icon>
+	  </md-nav-item>
+	  <md-nav-item class="tnavbar__button" md-nav-click="setTaskType('Cooking')" layout="column">
+	  	<md-icon md-font-set="material-icons">restaurant</md-icon>
+	  </md-nav-item>
+	  <md-nav-item class="tnavbar__button" md-nav-click="setTaskType('Caring')" layout="column">
+	    <md-icon md-font-set="material-icons">people</md-icon>
+	  </md-nav-item>
+	</md-nav-bar>
+	<!-- End of Tasks Navbar -->
+
+
+	<!-- Cleaning Tasklist-->
+	<div ng-show="taskType == 'Cleaning'">
+		<div layout="row" layout-align="center">
+			<h2>Cleaning</h2>
+		</div>
+		<md-list md-theme="default" class="tasklist" layout="column" layout-align="center">
+			<md-list-item class="tasklist__item md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="task in tasks.cleaning" layout="row">
+				<h3 class="tasklist__item--text" flex>{{task.name}}</h3>
+				<md-button class="md-icon-button" aria-label="Delete" ng-click="deleteTask(task)">
+					<md-icon md-font-set="material-icons">delete_forever</md-icon>
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</div>
+	<!-- End -->
+
+
+	<!-- Cooking Tasklist -->
+	<div ng-show="taskType == 'Cooking'">
+		<div layout="row" layout-align="center">
+			<h2>Cooking</h2>
+		</div>
+		<md-list md-theme="altTheme1" class="tasklist" layout="column" layout-align="center">
+			<md-list-item class="tasklist__item md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="task in tasks.cooking" layout="row">
+				<h3 class="tasklist__item--text" flex>{{task.name}}</h3>
+				<md-button class="md-icon-button" aria-label="Delete" ng-click="deleteTask(task)">
+					<md-icon md-font-set="material-icons">delete_forever</md-icon>
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</div>
+	<!-- End -->
+
+
+	<!-- Caring Tasklist -->
+	<div ng-show="taskType == 'Caring'">
+		<div layout="row" layout-align="center">
+			<h2>Caring</h2>
+		</div>
+		<md-list md-theme="altTheme2" class="tasklist" layout="column" layout-align="center">
+			<md-list-item class="tasklist__item md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="task in tasks.caring" layout="row">
+				<h3 class="tasklist__item--text" flex>{{task.name}}</h3>
+				<md-button class="md-icon-button" aria-label="Delete" ng-click="deleteTask(task)">
+					<md-icon md-font-set="material-icons">delete_forever</md-icon>
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</div>
+	<!-- End -->
+
+	<div>
+		<form name="taskForm" class="taskform md-inline-form" ng-submit="addTask({name: newTaskName})" layout="column">
+			<md-input-container>
+			  <label>Add a {{taskType}} Task (5-30 Characters)</label>
+			  <input ng-model="newTaskName" ng-maxlength="30" required>
+			</md-input-container>
+			<div class="taskform__footer">
+				<md-button class="md-raised md-primary" type="submit" ng-disabled="taskForm.$invalid">Add</md-button>
+			</div>
+		</form>
+	</div>
+
+</div>

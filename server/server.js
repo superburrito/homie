@@ -12,7 +12,7 @@ app.use(require('./static.middleware.js'));
 
 // Serve landing page
 app.get('/', function(req,res, next){
-	res.sendFile(path.join(__dirname, './../browser/index.html'));
+	res.sendFile(path.join(__dirname, './../public/index.html'));
 });
 
 

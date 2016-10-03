@@ -1,0 +1,56 @@
+.task {
+
+	.tnavbar {
+
+		width: 100%;
+
+		/* angular-material nav-bar bugfix */
+		ul {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			max-width: 100%;
+			margin: auto;
+		}
+
+		li {
+			margin-left: 0px !important;
+			width: 50%;
+			button {
+				width: 100%;
+			}
+			.md-unselected .material-icons {
+				color: rgba(0,0,0,0.54);
+			}
+		}
+	}
+
+
+	.tasklist {
+
+		&__item {
+			border: 1px solid white;
+		
+			&--text {
+				padding-left: 10px;
+			}
+
+		}
+		
+	}
+
+	.taskform {
+	
+		.md-input-container {
+			margin-top: 3px;
+			margin-bottom: 3px;
+		}
+			
+		&__footer {
+			text-align: center;
+		}
+	}
+
+}
+
+

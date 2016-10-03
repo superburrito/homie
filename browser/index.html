@@ -2,39 +2,34 @@
 <html lang="en">
 <head>
 	<title>Homie</title>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- External depedencies -->
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <script src="/node_modules/angular/angular.js"></script>
   <script src="/node_modules/angular-animate/angular-animate.js"></script>
   <script src="/node_modules/angular-aria/angular-aria.js"></script>
   <script src="/node_modules/angular-material/angular-material.js"></script>
   <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-
-  <link href="/node_modules/angular-material/angular-material.css" rel="stylesheet">
+	<link href="/node_modules/angular-material/angular-material.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
 	<!-- Internal dependencies -->
-	<script src="/browser/main.js"></script>
-	
-	<link href="/browser/style.css" rel="stylesheet">
+	<script src="/public/main.js"></script>
+	<link href="/public/style.css" rel="stylesheet">
 
 </head>
-<body ng-app="homieApp" layout="column">
+<body ng-app="homieApp" ng-controller="MainCtrl" layout="column">
 	
-	<md-toolbar ng-controller="ToolbarCtrl" class="md-whiteframe-z2" id="toolbar" layout="row">
-		<md-button class="md-icon-button" ng-click="toggleSideNav()">
-			<md-icon md-font-set="material-icons" id="menuButton">menu</md-icon>
-		</md-button>
-		<h3>Homie</h3>
-	</md-toolbar>
-
-	<div id="underToolbar" layout="row" flex>
+	<sidenav></sidenav>
+	<toolbar></toolbar>
+	
+	<div class="main" layout="column" flex>
 		<navbar></navbar>
 		<ui-view flex></ui-view>
 	</div>
+
 </body>
 
 </html>
