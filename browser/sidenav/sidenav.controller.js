@@ -7,9 +7,9 @@ app.controller('SidenavCtrl', function ($scope, $mdSidenav, $state) {
 		$state.go('home');
 	} 
 
-	$scope.goToRights = function () {
+	$scope.goToTasks = function () {
 		$mdSidenav('left').toggle();
-		$state.go('rights');
+		$state.go('tasks');
 	} 
 
 	$scope.goToSettings = function () {
