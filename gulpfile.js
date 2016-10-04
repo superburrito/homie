@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
-var connect = require('gulp-connect');
 
 gulp.task('buildJS', function () {
 	// Grabs all JS files in browser
@@ -22,9 +21,14 @@ gulp.task('buildCSS', function () {
 });
 
 
-gulp.task('transferHTML', function() {
+gulp.task('transferHTML', function () {
 	return gulp.src('./browser/**/*.html')
 				 .pipe(gulp.dest('./public/'));
+})
+
+gulp.task('transferMedia', function () {
+	return gulp.src('./browser/media/*.*')
+					.pipe(gulp.dest('./public/media'));
 })
 
 
@@ -32,7 +36,8 @@ gulp.task('watch', function () {
 	gulp.watch('./browser/**/*.js', ['buildJS']);
 	gulp.watch('./browser/**/*.scss', ['buildCSS']);
 	gulp.watch('./browser/**/*.html', ['transferHTML']);
+	gulp.watch('./browser/media/*.*', ['transferMedia']);
 });
 
 
-gulp.task('default', ['buildJS','buildCSS','transferHTML','watch']);
+gulp.task('default', ['buildJS','buildCSS','transferHTML','transferMedia','watch']);

@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('LocalStorageFactory', function(){
-	var LocalStorageFactory = {}
+	var LocalStorageFactory = {};
 
 	/* Tasks is an obj containing three arrays of (objects), i.e
 		{
@@ -12,7 +12,6 @@ app.factory('LocalStorageFactory', function(){
 
 	*/
 
-	// Tasks Services
 	LocalStorageFactory.saveTasks = function (tasks) {
 		localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
@@ -44,26 +43,43 @@ app.factory('LocalStorageFactory', function(){
 	}
 
 
+
+
+
+	/* Profile is an object containing:
+		{
+			userId: ...,
+			firstName: ...,
+			lastName: ...,
+			bgId: ...,
+			bgVersion: ...
+		}
+	*/
+
 	// Profile Services
 	LocalStorageFactory.saveProfile = function (profileObj) {
 		localStorage.setItem('profile', JSON.stringify(profileObj));
 	}
 
 	LocalStorageFactory.getProfile = function () {
+		if(!localStorage.getItem('profile')){
+			LocalStorageFactory.saveProfile({
+				userId: 1,
+				firstName: 'Edita',
+				lastName: 'Medel',
+				bgUrl: ''
+			});
+			return LocalStorageFactory.getProfile();
+		}
 		return JSON.parse(localStorage.getItem('profile'));
 	}
 
-
-	// Diary Services
-	LocalStorageFactory.saveDiary = function (array) {
-		localStorage.setItem('diary', JSON.stringify(array));
+	LocalStorageFactory.updateBgUrl = function (secureUrl) {
+		var profile = LocalStorageFactory.getProfile();
+		profile.bgUrl = secureUrl;
+		LocalStorageFactory.saveProfile(profile);
 	}
-
-	LocalStorageFactory.getDiary= function () {
-		return JSON.parse(localStorage.getItem('diary'));
-	}
-
 
 	return LocalStorageFactory;
 
-})
+});

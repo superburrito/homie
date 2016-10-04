@@ -1,19 +1,40 @@
-<div class="settings__container" layout="column" layout-align="center">
-	<form name="settings__form" layout="column" layout-align="center">
-		<h3>Set Your Home Background:</h3>
-		
+<div class="settings__container" layout="row" layout-align="center">
 
-		
-		
-		<md-switch ng-model="notifSwitch" aria-label="notifSwitch" layout-align="center">
-	    Push Notifications {{notifSwitch ? "On" : "Off" }}
-	  </md-switch>
-	  <div class="settings__form--footer">
-	  	<md-button class="md-raised md-primary" type="submit">
-	  	Update Settings
-	  	</md-button>
-	  </div>
-	 </form>
+	<div class="settings__main" layout="column" flex="90">
 
+		<br>
+		<!--
+		<div layout="row">
+			<md-button class="md-warn md-raised"></md-button>  
+		</div>
+		-->
+		<form name="form" class="settings__form" layout="column" layout-align="start center" ng-submit="update()">
 
+			<img class="settings__form--thumbnail" ngf-thumbnail="file || '/public/media/thumbnail.png'">
+
+			<br>
+
+			<div layout="row" layout-align="center">
+	  		<md-button class="md-primary md-raised" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100">Update my background</md-button>
+	  	</div>
+	  		
+				
+			<md-switch layout="row" ng-model="notifSwitch" aria-label="notifSwitch" layout-align="center">
+		    Push Notifications {{notifSwitch ? "On" : "Off" }}
+		  </md-switch>
+
+		  <div layout="row" layout-align="center" class="settings__form--footer">
+		  	<md-button class="md-raised md-accent" type="submit">
+		  	Update Settings
+		  	</md-button>
+		  </div>
+		  <br>
+
+		  <div layout="row" layout-align="center">
+		  	<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
+		  </div>
+
+		 </form>
+
+	</div>
 </div>

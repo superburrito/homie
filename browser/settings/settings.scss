@@ -1,9 +1,16 @@
 .settings {
 
-	&__container {
-		text-align: center;
+
+
+	&__form {
+
+		&--thumbnail {
+			img-align: middle;
+			width: 100px;
+			height: 100px;
+		}
+
+
 	}
-
-
 
 }

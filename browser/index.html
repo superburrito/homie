@@ -4,14 +4,21 @@
 	<title>Homie</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- External depedencies -->
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<!-- Angular depedencies -->
   <script src="/node_modules/angular/angular.js"></script>
   <script src="/node_modules/angular-animate/angular-animate.js"></script>
   <script src="/node_modules/angular-aria/angular-aria.js"></script>
   <script src="/node_modules/angular-material/angular-material.js"></script>
   <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 	<link href="/node_modules/angular-material/angular-material.css" rel="stylesheet">
+
+
+	<!-- Cloud dependencies -->
+	<script src="/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+	<script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+	<script src="/bower_components/angular-cloudinary/angular-cloudinary.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
@@ -20,6 +27,7 @@
 	<link href="/public/style.css" rel="stylesheet">
 
 </head>
+
 <body ng-app="homieApp" ng-controller="MainCtrl" layout="column">
 	
 	<sidenav></sidenav>
