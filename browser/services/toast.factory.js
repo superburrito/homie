@@ -1,7 +1,7 @@
 'use strict';
 
-app.factory('toastFactory', function ($mdToast) {
-	var toastFactory = {};
+app.factory('ToastFactory', function ($mdToast) {
+	var ToastFactory = {};
 
 	var offlineMsg = $mdToast.simple()
 		.textContent('You are offline!')
@@ -18,10 +18,19 @@ app.factory('toastFactory', function ($mdToast) {
 		.hideDelay(800)
 		.position('bottom');
 
-	toastFactory.userOffline = function () { $mdToast.show(offlineMsg) };
-	toastFactory.uploadSuccess = function () { $mdToast.show(uploadSuccessMsg) };
-	toastFactory.uploadFailure = function () { $mdToast.show(uploadFailureMsg) };
+	var authProblemMsg = $mdToast.simple()
+		.textContent('Oops -- log in again!')
+		.hideDelay(1000)
+		.position('bottom');
+	
 
-	return toastFactory;
+
+	ToastFactory.userOffline = function () { $mdToast.show(offlineMsg) };
+	ToastFactory.uploadSuccess = function () { $mdToast.show(uploadSuccessMsg) };
+	ToastFactory.uploadFailure = function () { $mdToast.show(uploadFailureMsg) };
+	ToastFactory.authProblem = function () { $mdToast.show(authProblemMsg) };
+
+
+	return ToastFactory;
 
 });

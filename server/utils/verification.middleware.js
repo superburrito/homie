@@ -1,0 +1,28 @@
+'use strict';
+
+var router = require('express').Router();
+var jwt = require('jsonwebtoken'); 
+var secret = require('./../config.js').secret; 
+
+// Verifies that token sent is valid, passes it on
+router.use(function (req, res, next) {
+	var token = req.headers['x-access-token'];
+	if (token) {
+		jwt.verify(token, secret, function (err, decoded) {
+			if (err) {
+				return res.send({ success: false, message: "Failed to authenticate token."});
+			} else {	
+				req.decoded = decoded;
+				next();
+			}
+		})
+	} else {
+		return res.send({ 
+			success: false, 
+			message: "No token provided." 
+		});
+	}
+})
+
+
+module.exports = router;

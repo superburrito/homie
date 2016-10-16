@@ -1,9 +1,9 @@
 'use strict'
 
-app.controller('HomeCtrl', function ($scope, $interval, LocalStorageFactory) {
+app.controller('HomeCtrl', function ($scope, $interval, StoreFactory) {
 
 	// Set up profile variables
-	var profile = LocalStorageFactory.getProfile();
+	var profile = StoreFactory.getProfile();
 	$scope.firstName = profile.firstName;
 	var bgUrl = profile.bgUrl;
 

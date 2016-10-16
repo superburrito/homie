@@ -1,17 +1,17 @@
 'use strict';
 
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
 var express = require('express')
 var router = express.Router();
 
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
-// Boilerplate for parsing requests as JSON
+// Boilerplate for parsing POST requests
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 
-// Boilerplate for logging requests
+// Boilerplate for logging client requests on the console
 router.use(morgan('dev'));
 
 

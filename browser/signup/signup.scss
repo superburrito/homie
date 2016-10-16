@@ -1,0 +1,29 @@
+.signup {
+	&__container {
+		height: 100vh;
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: 100vw;
+		color: white;
+	}
+
+	&__translucence {
+		height: 100vh;
+		width: 100vh;
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+	
+	&__input1 {
+		color: white !important;
+		margin-top: 5px;
+		margin-bottom: 0;
+		border-color: white;
+	}
+
+	&__input2 {
+		color: white !important;
+		margin-top: 3px;
+		margin-bottom: 3px;
+	}
+
+}

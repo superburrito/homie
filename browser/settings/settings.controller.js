@@ -1,9 +1,9 @@
 'use strict';
 
-app.controller('SettingsCtrl', function ($scope, $mdToast, cloudinary, LocalStorageFactory, toastFactory) {
+app.controller('SettingsCtrl', function ($scope, $mdToast, cloudinary, StoreFactory, ToastFactory, $state) {
 
 	$scope.notLoading = true;
-	var profile = LocalStorageFactory.getProfile();
+	var profile = StoreFactory.getProfile();
 	var userId = profile.userId;
 	var userIdStr = userId.toString();
 
@@ -28,18 +28,19 @@ app.controller('SettingsCtrl', function ($scope, $mdToast, cloudinary, LocalStor
     .then(function (response) {
     	// Stop Animation, Show Message
     	$scope.notLoading = true
-    	toastFactory.uploadSuccess();
+    	ToastFactory.uploadSuccess();
 
       console.log('Upload succeeded. Cloudinary Res Status: ' + response.status +
                   ', Data: ' + JSON.stringify(response.data));
       
       // Record cloudinary's API url
-      LocalStorageFactory.updateBgUrl(response.data.secure_url);
+      StoreFactory.updateBgUrl(response.data.secure_url);
+      $state.go('home');
 
     }, function (response) {
     	// Stop Animation, Show Message
     	$scope.notLoading = true
-    	toastFactory.uploadFailure();
+    	ToastFactory.uploadFailure();
 
       console.log('Upload failed. Cloudinary Res Status: ' + response.status);
     });

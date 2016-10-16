@@ -1,0 +1,27 @@
+<div class="landing__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
+	<div class="landing__translucence" layout="column" layout-align="center center">
+		<h1 class="landing__text">Homie</h1>
+		<p class="landing__text--subtitle">Keeping the House Manageable.</p>
+		<form class="landing__form" layout="column" layout-align="none center" ng-submit="login()">
+			<md-input-container class="landing__input1" md-theme="dark">
+	      <label>Email</label>
+	      <input ng-model="email">
+	    </md-input-container>
+	    <md-input-container class="landing__input2" md-theme="dark">
+	      <label>Password</label>
+	      <input type="password" ng-model="password">
+	    </md-input-container>
+			<div layout="row" layout-align="center">
+				<md-button type="submit" class="md-raised md-primary">
+					Sign-in
+				</md-button>
+				<md-button class="md-raised md-primary" ng-click="goToSignup()">
+					Sign Up
+				</md-button>
+			</div>
+			<md-button md-theme="altTheme3" class="md-raised md-accent" ng-click="fbLogin()">
+				&nbsp Access with Facebook &nbsp
+			</md-button>
+		</form>
+	</div>
+</div>

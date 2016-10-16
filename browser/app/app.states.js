@@ -20,4 +20,18 @@ app.config(function($stateProvider){
 		controller: 'SettingsCtrl'
 	})
 
+	$stateProvider.state('landing', {
+		url: '/',
+		templateUrl: '/public/landing/landing.template.html',
+		controller: 'LandingCtrl',
+		hideNavbar: true
+	})
+
+	$stateProvider.state('signup', {
+		url: '/signup',
+		templateUrl: '/public/signup/signup.template.html',
+		controller: 'SignupCtrl',
+		hideNavbar: true
+	})
+
 });
