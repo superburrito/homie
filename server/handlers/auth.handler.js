@@ -80,7 +80,7 @@ AuthHandler.facebookAuth = (req, res) => {
 	request('https://graph.facebook.com/v2.8/me?fields=name,email&access_token=' + receivedFbToken, 
 		(err, fbRes, body) => {
 			console.log("Facebook's res.body to server: " + body);
-			if (res && res.statusCode == 200) { 	
+			if (fbRes && fbRes.statusCode == 200) { 	
 				console.log("FB verified user is: " + body + ". Checking db...");
 				const fbId = JSON.parse(body).id.replace('\u0040','@');
 				const name = JSON.parse(body).name;

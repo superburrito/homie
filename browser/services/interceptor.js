@@ -7,8 +7,7 @@ app.factory('APIInterceptor', function (StoreFactory, $rootScope) {
 	APIInterceptor.request = function (config) {
 		
 		// If token exists and client calls Homie API
-		if (StoreFactory.hasToken() && 
-			  config.url.indexOf('localhost:3000/api') !== -1) {
+		if (StoreFactory.hasToken()) {
 			config.headers['x-access-token'] = StoreFactory.getToken();
 		}	
 		return config;

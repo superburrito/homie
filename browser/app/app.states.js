@@ -34,4 +34,17 @@ app.config(function($stateProvider){
 		hideNavbar: true
 	})
 
+	$stateProvider.state('translator', {
+		url: '/translator',
+		templateUrl: '/public/translator/translator.template.html',
+		controller: 'TranslatorCtrl'
+	})
+
+$stateProvider.state('phrasebook', {
+		url: '/phrasebook',
+		templateUrl: '/public/phrasebook/phrasebook.template.html',
+		controller: 'PhrasebookCtrl'
+	})
+
+
 });

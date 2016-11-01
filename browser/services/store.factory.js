@@ -35,6 +35,36 @@ app.factory('StoreFactory', function(){
 
 
 
+	/* Phrasebook is an array of objects, where each object is
+		{
+			translated: dua ayam
+			translation: two chicken
+		} 
+
+	*/
+
+	StoreFactory.addPhrase = function (phrase) {
+		var phrases = StoreFactory.getPhrasebook();
+		phrases.push(phrase);
+		localStorage.setItem('phrasebook', JSON.stringify(phrases));
+	}
+
+	StoreFactory.getPhrasebook = function () {
+		if (!localStorage.getItem('phrasebook')) {
+			localStorage.setItem('phrasebook', JSON.stringify([]));
+			StoreFactory.getPhrasebook();
+		}
+		return JSON.parse(localStorage.getItem('phrasebook'));
+	}
+
+	StoreFactory.deletePhrase = function (deletedPhrase) {
+		var phrases = StoreFactory.getPhrasebook();
+		phrases = phrases.filter(function (phrase) {
+			return phrase != deletedPhrase.translated;
+		})
+		localStorage.setItem('phrasebook', JSON.stringify(phrases));
+	}
+
 
 
 	/* Tasks is an obj containing three arrays of (objects), i.e
@@ -46,17 +76,15 @@ app.factory('StoreFactory', function(){
 
 	*/
 
-	StoreFactory.saveTasks = function (tasks) {
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-	}
-
 	StoreFactory.getTasks = function () {
 		if (!localStorage.getItem('tasks')) {
-			StoreFactory.saveTasks({
-				cooking: [],
-				cleaning: [],
-				caring: []
-			})
+			localStorage.setItem('tasks', 
+				JSON.stringify({
+					cooking: [],
+					cleaning: [],
+					caring: []
+				})
+			);
 			StoreFactory.getTasks();
 		}; 
 		return JSON.parse(localStorage.getItem('tasks'));
@@ -65,7 +93,7 @@ app.factory('StoreFactory', function(){
 	StoreFactory.addTask = function (newTask, type) {
 		var tasks = StoreFactory.getTasks();
 		tasks[type].push(newTask);
-		StoreFactory.saveTasks(tasks);
+		localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
 
 	StoreFactory.deleteTask = function (deletedTask, type) {
@@ -73,7 +101,7 @@ app.factory('StoreFactory', function(){
 		tasks[type] = tasks[type].filter(function(task){
 			return task.name != deletedTask.name;
 		});
-		StoreFactory.saveTasks(tasks);
+		localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
 
 

@@ -1,0 +1,20 @@
+.translator {
+	&__textarea {
+		width: 80%;
+	}
+
+	&__button {
+		width: 200px;
+	}
+
+	&__disclaimer {
+		text-align: center;
+		width: 250px;	
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	&__translated {
+		margin-top: 10px;
+	}
+}

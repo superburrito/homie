@@ -1,0 +1,12 @@
+<div layout="column" class="phrasebook__container">
+	<h2 class="phrasebook__header">Your Phrases:</h2>
+	<md-list md-theme="altTheme1" class="tasklist" layout="column" layout-align="center">
+		<md-list-item class="phrasebook__phrase md-whiteframe-2dp" md-colors="{background: 'primary'}" ng-repeat="phrase in phrases" layout="row">
+			<div layout="column" flex>
+				<h4 class="phrasebook__phrase--translated" flex>{{phrase.translated}}</h4>
+				<h4 class="phrasebook__phrase--translation" flex>{{phrase.translation}}</h4>
+			</div>
+			<md-button class="md-icon-button" aria-label="Delete" ng-click="deletePhrase(phrase)">
+				<md-icon md-font-set="material-icons">delete_forever</md-icon>
+			</md-button>
+</div>

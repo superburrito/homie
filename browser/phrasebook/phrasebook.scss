@@ -1,0 +1,22 @@
+.phrasebook {
+
+  &__header {
+  	padding-left: 10px;
+  }
+
+	&__phrase {
+		border: 1px solid white;
+		padding-left: 10px;
+
+		&--translated {
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+
+		&--translation {
+			margin-top: 5px !important;
+			margin-bottom: 5px;	
+		}
+	}
+
+}

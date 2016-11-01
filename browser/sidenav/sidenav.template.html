@@ -11,7 +11,7 @@
 				<p>My Tasks</p>
 			</md-list-item>
 
-			<md-list-item ng-click="goToTranslator()">
+			<md-list-item>
 				<md-icon md-font-set="material-icons">add_alert</md-icon>
 				<p>Alerts</p>
 			</md-list-item>
@@ -19,6 +19,11 @@
 			<md-list-item ng-click="goToTranslator()">
 				<md-icon md-font-set="material-icons">textsms</md-icon>
 				<p>Translator</p>
+			</md-list-item>
+
+			<md-list-item ng-click="goToPhrasebook()">
+				<md-icon md-font-set="material-icons">book</md-icon>
+				<p>Phrasebook</p>
 			</md-list-item>
 
 			<md-divider></md-divider>
@@ -52,16 +57,6 @@
 				<p>Logout</p>
 			</md-list-item>
 
-
-			<!-- DELETE -->
-			<md-divider></md-divider>
-
-			<md-list-item ng-click="test()">
-				<md-icon md-font-set="material-icons">book</md-icon>
-				<p>Test Token</p>
-			</md-list-item>
-			<!-- -->
-			
 		</md-list>
 	</md-content>
 </md-sidenav>

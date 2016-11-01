@@ -10,4 +10,8 @@ router.get('/', (req,res) => {
 
 router.use('/auth', require('./auth.js'));
 
+router.use(require('./../utils/verification.middleware.js'));
+
+router.use('/translate', require('./translate.js'));
+
 module.exports = router;

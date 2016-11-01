@@ -1,0 +1,30 @@
+<div class="translator__container" md-theme="altTheme3" flex>
+	<br>
+	<form name="translatorForm" class="translator__form" layout="column" layout-align="none center">
+		<md-input-container class="translator__textarea">
+	    <label>Text To Translate:</label>
+      <textarea ng-model="textToTranslate" md-maxlength="50" minlength="5"  rows="3"></textarea>
+	  </md-input-container>
+	  <h3>Translate into:</h3> 
+		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('tl')">
+			Tagalog (TL)
+		</md-button>
+		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('id')">
+			Bahasa Indo (ID)
+		</md-button>
+		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('en')">
+			English (EN)
+		</md-button>
+	</form>
+	<br>
+	<div layout="column" class="translator__translated" layout-align="none center">
+		<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
+		<p>{{translatedText}}</p>
+		<br>
+		<h4 class="translator__disclaimer">Disclaimer:</h4>
+		<h4 class="translator__disclaimer">Homie's Translations are powered by the Yandex.Translate API.</h4>
+		<md-button class="translator__button md-raised md-accent" ng-click="savePhrase()">Save Phrase</md-button>
+
+	</div>
+	
+</div>
