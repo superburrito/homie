@@ -60,7 +60,7 @@ app.factory('StoreFactory', function(){
 	StoreFactory.deletePhrase = function (deletedPhrase) {
 		var phrases = StoreFactory.getPhrasebook();
 		phrases = phrases.filter(function (phrase) {
-			return phrase != deletedPhrase.translated;
+			return phrase.translated != deletedPhrase.translated;
 		})
 		localStorage.setItem('phrasebook', JSON.stringify(phrases));
 	}

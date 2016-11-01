@@ -1,5 +1,6 @@
 <div layout="column" class="phrasebook__container">
 	<h2 class="phrasebook__header">Your Phrases:</h2>
+	<p class="phrasebook__emptyText" ng-show="noSavedPhrases">You have no saved phrases at the moment.</p>
 	<md-list md-theme="altTheme1" class="tasklist" layout="column" layout-align="center">
 		<md-list-item class="phrasebook__phrase md-whiteframe-2dp" md-colors="{background: 'primary'}" ng-repeat="phrase in phrases" layout="row">
 			<div layout="column" flex>
@@ -9,4 +10,6 @@
 			<md-button class="md-icon-button" aria-label="Delete" ng-click="deletePhrase(phrase)">
 				<md-icon md-font-set="material-icons">delete_forever</md-icon>
 			</md-button>
+		</md-list-item>
+	</md-list>
 </div>
