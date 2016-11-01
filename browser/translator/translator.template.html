@@ -1,11 +1,11 @@
 <div class="translator__container" md-theme="default" flex>
 	<br>
-	<form name="translatorForm" class="translator__form" layout="column" layout-align="none center">
+	<form name="translatorForm" class="translator__form" layout="column" layout-align="none center" flex>
 		<md-input-container class="translator__textarea">
 	    <label>Text To Translate:</label>
       <textarea ng-model="textToTranslate" md-maxlength="50" minlength="5"  rows="2"></textarea>
 	  </md-input-container>
-	  <h4 class="translator__convertText">Convert text into...</h4>
+	  <h3 class="translator__convertText">Convert text into...</h3>
 	  <md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('tl')">
 			Tagalog (TL)
 		</md-button>
@@ -15,11 +15,14 @@
 		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('en')">
 			English (EN)
 		</md-button>
+		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('zh')">
+			Chinese (ZH)
+		</md-button>
 	</form>
 	<br>
 	<div layout="column" class="translator__translated" layout-align="none center">
 		<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
-		<p>{{translatedText}}</p>
+		<p class="translator__translated--text">{{translatedText}}</p>
 		<h4 class="translator__disclaimer">*Homie's Translations are powered by the Yandex.Translate API.</h4>
 		<md-button class="translator__button md-raised md-accent" ng-click="savePhrase()">Save Phrase</md-button>
 

@@ -6,20 +6,22 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, StoreFactory, T
 
 	// Directly call HTTP here, no need for service
 	$scope.translate = function (type) {
-		$scope.notLoading = false;
-		$http.post('/translate', {
-			text: $scope.textToTranslate,
-			lang: type
-		})	
-		.then(function (res) { 
-			console.log("Response is: " + JSON.stringify(res.data));
-			return res.data; 
-		})
-		.then(function (data) {
-			$scope.notLoading = true;
-			$scope.translatedText = data.translatedText; 
-			$scope.direction = data.direction;
-		})
+		if ($scope.textToTranslate) {
+			$scope.notLoading = false;
+			$http.post('/translate', {
+				text: $scope.textToTranslate,
+				lang: type
+			})	
+			.then(function (res) { 
+				console.log("Response is: " + JSON.stringify(res.data));
+				return res.data; 
+			})
+			.then(function (data) {
+				$scope.notLoading = true;
+				$scope.translatedText = data.translatedText; 
+				$scope.direction = data.direction;
+			})
+		}
 	};
 
 	$scope.savePhrase = function () {
