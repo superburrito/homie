@@ -11,9 +11,7 @@ app.use(require('./utils/static.middleware.js'));
 
 
 // API routes
-app.use('/auth', require('./auth/auth.router.js'))
-app.use('/api', require('./api/api.router.js'));
-
+app.use(require('./routes/routes.js'));
 
 // Landing page route
 app.get('/', function (req,res) {

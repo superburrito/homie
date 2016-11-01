@@ -24,10 +24,6 @@ db.define('user', {
     allowNull: false,
     unique: true
   },
-  salt: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
   password: {
   	type: Sequelize.STRING,
     allowNull: true

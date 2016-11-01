@@ -18,9 +18,6 @@ app.factory('StoreFactory', function(){
 	}
 
 
-
-
-
 	// FB Token management
 	StoreFactory.saveFbToken = function (token) {
 		localStorage.setItem('fbToken', JSON.stringify(token));

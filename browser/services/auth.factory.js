@@ -20,10 +20,8 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			password: password
 		})
 		.then(function (res) {
+			authDataHandler(res.data);
 			return res.data;
-		})
-		.then(function (data){
-			authDataHandler(data);
 		})
 	};
 
@@ -34,10 +32,8 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			password: password
 		})
 		.then(function (res) {
+			authDataHandler(res.data);
 			return res.data;
-		})
-		.then(function (data) {
-			authDataHandler(data);
 		})
 	};
 
@@ -99,10 +95,8 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			} else {
 				$http.post('/auth/facebook', fbUserData)
 				.then(function (res) {
+					authDataHandler(res.data);
 					return res.data;
-				})
-				.then(function (data) {
-					authDataHandler(data);
 				})
 			}
 		})

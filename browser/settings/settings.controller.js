@@ -4,8 +4,8 @@ app.controller('SettingsCtrl', function ($scope, $mdToast, cloudinary, StoreFact
 
 	$scope.notLoading = true;
 	var profile = StoreFactory.getProfile();
-	var userId = profile.userId;
-	var userIdStr = userId.toString();
+	var id = profile.id;
+	var idStr = id.toString();
 
 	$scope.update = function () {
 		// If image is valid, upload it.
@@ -23,7 +23,7 @@ app.controller('SettingsCtrl', function ($scope, $mdToast, cloudinary, StoreFact
   	$scope.notLoading = false;
 
     cloudinary.upload(file, {
-    	public_id: userIdStr + '/' + nameWithoutExt
+    	public_id: idStr + '/' + nameWithoutExt
     })
     .then(function (response) {
     	// Stop Animation, Show Message
