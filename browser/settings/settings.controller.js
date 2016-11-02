@@ -34,22 +34,20 @@ app.controller('SettingsCtrl', function ($scope, cloudinary, StoreFactory, Toast
     })
     // Upload succeeds, stop Animation
     .then(function (response) {
-    	$scope.notLoading = true
-    	ToastFactory.uploadSuccess();
-      console.log('Upload succeeded. Cloudinary Res Status: ' + response.status +
-                  ', Data: ' + JSON.stringify(response.data));
-      // Record cloudinary's API url
-      StoreFactory.updateBgUrl(response.data.secure_url);
-      $state.go('home');
-
-    // Upload fails, show error message
-    }, function (response) {
-    	$scope.notLoading = true
-    	ToastFactory.uploadFailure();
-
-      console.log('Upload failed. Cloudinary Res Status: ' + response.status);
+      if (response && response.status == 200) {
+      	$scope.notLoading = true
+      	ToastFactory.uploadSuccess();
+        console.log('Upload succeeded. Cloudinary Res Status: ' + response.status +
+                    ', Data: ' + JSON.stringify(response.data));
+        // Record cloudinary's API url
+        StoreFactory.updateBgUrl(response.data.secure_url);
+        $state.go('home');
+      } else {
+      	$scope.notLoading = true
+      	ToastFactory.uploadFailure();
+        console.log('Upload failed. Cloudinary Res Status: ' + response.status);
+      }
     });
   };
-	
 
 })

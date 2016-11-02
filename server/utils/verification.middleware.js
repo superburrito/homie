@@ -1,8 +1,8 @@
 'use strict';
 
-var router = require('express').Router();
-var jwt = require('jsonwebtoken'); 
-var secret = require('./../config.js').secret; 
+const router = require('express').Router();
+const jwt = require('jsonwebtoken'); 
+const secret = require('./../config.js').secret; 
 
 // Verifies that token sent is valid, passes it on
 router.use(function (req, res, next) {

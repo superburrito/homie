@@ -137,9 +137,9 @@ app.factory('StoreFactory', function(){
 		return JSON.parse(localStorage.getItem('profile'));
 	}
 
-	StoreFactory.updateBgUrl = function (secureUrl) {
+	StoreFactory.updateBgUrl = function (newBgUrl) {
 		var profile = StoreFactory.getProfile();
-		profile.bgUrl = secureUrl;
+		profile.bgUrl = newBgUrl;
 		StoreFactory.saveProfile(profile);
 	}
 
