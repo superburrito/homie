@@ -1,17 +1,22 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
+const gulp = require('gulp'); // <-- "pipes" modules
+const babel = require('gulp-babel'); // <-- transpiles es6 into es5
+const concat = require('gulp-concat');
+const sass = require('gulp-sass');
 
 gulp.task('buildJS', function () {
 	// Grabs all JS files in browser
 	// Grabs app.js FIRST
  return gulp.src(['./browser/app/app.js','./browser/**/*.js'])
+ 				// convert into ES6
+ 				.pipe(babel({
+ 					// configure babel presets for transpiling
+ 					presets: ["es2015"]
+ 				}))
     		// concats everything into a main.js file
         .pipe(concat('main.js'))
         // and saves it in the public dir
         .pipe(gulp.dest('./public/'));
 });
-
 
 gulp.task('buildCSS', function () {
 	gulp.src('./browser/sass.scss')
