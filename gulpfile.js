@@ -29,12 +29,12 @@ gulp.task('buildCSS', function () {
 gulp.task('transferHTML', function () {
 	return gulp.src('./browser/**/*.html')
 				 .pipe(gulp.dest('./public/'));
-})
+});
 
 gulp.task('transferMedia', function () {
 	return gulp.src('./browser/media/*.*')
 					.pipe(gulp.dest('./public/media'));
-})
+});
 
 
 gulp.task('watch', function () {

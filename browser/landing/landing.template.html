@@ -1,7 +1,7 @@
 <div class="landing__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
 	<div class="landing__translucence" layout="column" layout-align="center center">
 		<h1 class="landing__text">Homie</h1>
-		<p class="landing__text--subtitle">Keeping the House Manageable.</p>
+		<p class="landing__text--subtitle">Keeping Your House Manageable.</p>
 		<form class="landing__form" layout="column" layout-align="none center" ng-submit="login()">
 			<md-input-container class="landing__input1" md-theme="dark">
 	      <label>Email</label>
@@ -23,5 +23,8 @@
 				&nbsp Access with Facebook &nbsp
 			</md-button>
 		</form>
+		<p class="landing__text--terms">By accessing this application,<br>
+		you are agreeing to the following<br>
+		<u ng-click="goToTerms()">Terms and Conditions</u>.</p>
 	</div>
 </div>

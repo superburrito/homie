@@ -40,11 +40,16 @@ app.config(function($stateProvider){
 		controller: 'TranslatorCtrl'
 	})
 
-$stateProvider.state('phrasebook', {
+	$stateProvider.state('phrasebook', {
 		url: '/phrasebook',
 		templateUrl: '/public/phrasebook/phrasebook.template.html',
 		controller: 'PhrasebookCtrl'
 	})
 
-
+	$stateProvider.state('terms', {
+		url: '/terms',
+		templateUrl: '/public/terms/terms.template.html',
+		controller: 'TermsCtrl',
+		hideNavbar: true
+	})
 });

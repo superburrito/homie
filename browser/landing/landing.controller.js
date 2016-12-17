@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('LandingCtrl', function ($scope, AuthFactory, StoreFactory, $state) {
+app.controller('LandingCtrl', ($scope, AuthFactory, StoreFactory, $state) => {
 	// Bring $state to scope to disable navbar
 	$scope.state = $state;
 
@@ -17,6 +17,11 @@ app.controller('LandingCtrl', function ($scope, AuthFactory, StoreFactory, $stat
 
 	$scope.goToSignup = function () {
 		$state.go('signup');
+	}
+
+
+	$scope.goToTerms = function () {
+		$state.go('terms');
 	}
 
 });

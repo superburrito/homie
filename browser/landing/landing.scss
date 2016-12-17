@@ -15,6 +15,12 @@
 
 	&__text {
 		margin: 0;
+		
+		&--terms {
+			width: 80vw;
+			text-align: center;
+		}
+
 	}
 
 	&__input1 {

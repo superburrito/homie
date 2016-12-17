@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PhrasebookCtrl', function($scope, StoreFactory, $state){
+app.controller('PhrasebookCtrl', ($scope, StoreFactory, $state) => {
 	$scope.phrases = StoreFactory.getPhrasebook();
 
 	if ($scope.phrases.length == 0) {

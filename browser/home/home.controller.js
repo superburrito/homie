@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('HomeCtrl', function ($scope, $interval, StoreFactory) {
+app.controller('HomeCtrl', ($scope, $interval, StoreFactory) => {
 
 	// Set up profile variables
 	var profile = StoreFactory.getProfile();
