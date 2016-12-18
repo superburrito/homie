@@ -52,4 +52,10 @@ app.config(function($stateProvider){
 		controller: 'TermsCtrl',
 		hideNavbar: true
 	})
+
+	$stateProvider.state('map', {
+		url: '/map',
+		templateUrl: '/public/map/map.template.html',
+		controller: 'MapCtrl'
+	})
 });

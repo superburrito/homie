@@ -22,6 +22,12 @@ app.controller('SidenavCtrl', function ($http, $scope, $mdSidenav, $state, AuthF
 		$state.go('phrasebook');
 	}
 
+	$scope.goToMap = function () {
+		$mdSidenav('left').toggle();
+		$state.go('map');
+	}
+
+
 	$scope.goToSettings = function () {
 		$mdSidenav('left').toggle();
 		$state.go('settings');
