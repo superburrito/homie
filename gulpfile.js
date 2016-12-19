@@ -3,10 +3,11 @@ const babel = require('gulp-babel'); // <-- transpiles es6 into es5
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 
+
 gulp.task('buildJS', function () {
 	// Grabs all JS files in browser
 	// Grabs app.js FIRST
- return gulp.src(['./browser/app/app.js','./browser/**/*.js'])
+	return gulp.src(['./browser/app/app.js','./browser/**/*.js'])
  				// convert into ES6
  				.pipe(babel({
  					// configure babel presets for transpiling
@@ -18,8 +19,16 @@ gulp.task('buildJS', function () {
         .pipe(gulp.dest('./public/'));
 });
 
+
+gulp.task('buildServiceWorker', function () {
+	return gulp.src('./browser/service-worker.js')
+		.pipe(babel({ presets: ["es2015"] }))
+		.pipe(gulp.dest('./public'));
+});
+
+
 gulp.task('buildCSS', function () {
-	gulp.src('./browser/sass.scss')
+	return gulp.src('./browser/sass.scss')
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('style.css'))
 	.pipe(gulp.dest('./public/'));
@@ -39,10 +48,11 @@ gulp.task('transferMedia', function () {
 
 gulp.task('watch', function () {
 	gulp.watch('./browser/**/*.js', ['buildJS']);
+	gulp.watch('./browser/service-worker.js', ['buildServiceWorker']);
 	gulp.watch('./browser/**/*.scss', ['buildCSS']);
 	gulp.watch('./browser/**/*.html', ['transferHTML']);
 	gulp.watch('./browser/media/*.*', ['transferMedia']);
 });
 
 
-gulp.task('default', ['buildJS','buildCSS','transferHTML','transferMedia','watch']);
+gulp.task('default', ['buildJS', 'buildServiceWorker', 'buildCSS','transferHTML','transferMedia','watch']);
