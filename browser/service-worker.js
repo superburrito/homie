@@ -15,7 +15,7 @@ var filesToCache = [
 	'/bower_components/ng-file-upload/ng-file-upload-shim.min.js',
 	'/bower_components/ng-file-upload/ng-file-upload.min.js',
 	'/bower_components/angular-cloudinary/angular-cloudinary.js',
-
+  
 	// Internal HTML JSS files
 	'/public/index.html',
 	'/public/main.js',

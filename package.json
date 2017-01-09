@@ -4,7 +4,8 @@
   "description": "Yale-NUS College Capstone Project",
   "main": "server/server.js",
   "scripts": {
-    "start": "nodemon --watch browser -e html,js,css server/server.js"
+    "start": "NODE_ENV=development nodemon --watch browser -e html,js,css server/server.js",
+    "deploy": "NODE_ENV=production"
   },
   "author": "Yao Hui Chua",
   "license": "ISC",
