@@ -42,7 +42,7 @@ app.listen(port, function (err) {
 
 			var User = db.model('user');
 
-			User.create({
+			return User.create({
 		  	  name: 'Rakesh Pk',
 			  email: 'rakesh@hotmail.com',
 			  password: 'password',
