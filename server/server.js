@@ -27,7 +27,7 @@ app.use(require('./utils/error.middleware.js'));
 // ===========================
 // ====== Start server =======
 // ===========================
-var port = 80;
+var port = 3000;
 app.listen(port, function (err) {
 	if (err) {
 		throw err;
