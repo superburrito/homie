@@ -54,7 +54,8 @@ app.listen(port, function (err) {
 
 			console.log("Database reset and models synced.");
 			
-		}, function () {
+		}, function (err) {
+			console.log(err);
 			console.log("Database sync failed.");
 		})
 		.then(function () {
