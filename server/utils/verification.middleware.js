@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const jwt = require('jsonwebtoken'); 
-const secret = require('./../config.js').secret; 
+const secret = require('./../env/index.js').secret; 
 
 // Verifies that token sent is valid, passes it on
 router.use(function (req, res, next) {

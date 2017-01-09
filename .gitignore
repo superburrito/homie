@@ -1,4 +1,6 @@
 node_modules
 bower_components
 public
-server/config.js
+server/env/prod.js
+server/env/dev.js
+

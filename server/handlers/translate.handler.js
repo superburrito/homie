@@ -1,6 +1,6 @@
 'use strict';
 
-const yandexKey = require('./../config.js').yandexKey; 
+const yandexKey = require('./../env/index.js').yandexKey; 
 
 const request = require('request');
 

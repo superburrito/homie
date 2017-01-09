@@ -127,26 +127,3 @@ AuthHandler.facebookAuth = (req, res) => {
 
 module.exports = AuthHandler;
 
-
-
-
-/*
-
-
-// All routes below require authentication ===================
-router.use(require('./../utils/verification.middleware.js'));
-// ===========================================================
-
-
-router.get('/', function (req, res) {
-	User.findAll()
-	.then(function (users) {
-		return res.status(200).send({
-			success: true,
-			message: "Users sent to client!",
-			users: users
-		});
-	})
-})
-
-*/
