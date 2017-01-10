@@ -1,7 +1,8 @@
 'use strict';
 
 var Sequelize = require('sequelize');
-var databaseURI = require('../env/index.js').databaseURI;
+var databaseURI = require('./../env/index.js').databaseURI;
+
 
 var db = new Sequelize(databaseURI, {
   define: {
