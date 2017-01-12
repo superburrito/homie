@@ -35,11 +35,13 @@ app.factory('StoreFactory', function(){
 
 
 
-	/* Phrasebook is an array of objects, where each object is
-		{
-			translated: dua ayam
-			translation: two chicken
-		} 
+	/* Phrasebook is an array of objects, i.e.
+		[
+			{
+				translated: dua ayam,
+				translation: two chicken
+			} 
+		]
 
 	*/
 
@@ -64,47 +66,6 @@ app.factory('StoreFactory', function(){
 		})
 		localStorage.setItem('phrasebook', JSON.stringify(phrases));
 	}
-
-
-
-	/* Tasks is an obj containing three arrays of (objects), i.e
-		{
-			cooking: [{...},{...}],
-			cleaning: [{...},{...},{...}],
-			caring: [{...},{...}],
-		}
-
-	*/
-
-	StoreFactory.getTasks = function () {
-		if (!localStorage.getItem('tasks')) {
-			localStorage.setItem('tasks', 
-				JSON.stringify({
-					cooking: [],
-					cleaning: [],
-					caring: []
-				})
-			);
-			StoreFactory.getTasks();
-		}; 
-		return JSON.parse(localStorage.getItem('tasks'));
-	}
-
-	StoreFactory.addTask = function (newTask, type) {
-		var tasks = StoreFactory.getTasks();
-		tasks[type].push(newTask);
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-	}
-
-	StoreFactory.deleteTask = function (deletedTask, type) {
-		var tasks = StoreFactory.getTasks();
-		tasks[type] = tasks[type].filter(function(task){
-			return task.name != deletedTask.name;
-		});
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-	}
-
-
 
 
 

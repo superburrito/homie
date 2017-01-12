@@ -1,78 +1,91 @@
 <div layout="column" class="task">
 
 	<!-- Tasks Navbar -->
-	<md-nav-bar md-theme="altTheme0" class="tnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="tnavbar">
-	  <md-nav-item class="tnavbar__button" md-nav-click="setTaskType('Cleaning')" layout="column">
-	  	<md-icon md-font-set="material-icons">local_laundry_service</md-icon>
+	<md-nav-bar md-theme="themeTaskP" class="tnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="tnavbar">
+	  <md-nav-item class="tnavbar__button" md-nav-click="setView('tasklist')" layout="column">
+	  	<md-icon md-font-set="material-icons">assignment</md-icon>
 	  </md-nav-item>
-	  <md-nav-item class="tnavbar__button" md-nav-click="setTaskType('Cooking')" layout="column">
-	  	<md-icon md-font-set="material-icons">restaurant</md-icon>
-	  </md-nav-item>
-	  <md-nav-item class="tnavbar__button" md-nav-click="setTaskType('Caring')" layout="column">
-	    <md-icon md-font-set="material-icons">people</md-icon>
+	  <md-nav-item class="tnavbar__button" md-nav-click="setView('addTask')" layout="column">
+	  	<md-icon md-font-set="material-icons">note_add</md-icon>
 	  </md-nav-item>
 	</md-nav-bar>
 	<!-- End of Tasks Navbar -->
 
-
-	<!-- Cleaning Tasklist-->
-	<div ng-show="taskType == 'Cleaning'">
-		<div layout="row" layout-align="center">
-			<h2>Cleaning</h2>
+	<!-- Tasklist -->
+	<div ng-show="view === 'tasklist'">
+		<div layout="row" layout-align="center" md-theme="default">
+			<h2>My Tasks</h2>
 		</div>
-		<md-list md-theme="default" class="tasklist" layout="column" layout-align="center">
-			<md-list-item class="tasklist__item md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="task in tasks.cleaning" layout="row">
-				<h3 class="tasklist__item--text" flex>{{task.name}}</h3>
+		<div ng-show="tasks.length == 0" layout="row" layout-align="center">
+			You have not added a task yet.
+		</div>
+		<md-list class="tasklist" layout="column">
+			<md-list-item class="tasklist__item md-whiteframe-2dp" ng-repeat="task in tasks" layout="row" md-theme="{{task.checked ? 'themeTaskC' : task.active ? 'themeTaskA' : 'themeTaskP'}}" md-theme-watch md-colors="{background: 'accent'}">
+				
+				<!-- task checkbox -->
+				<md-button ng-show="task.checked || task.cdTimerStartedTime" class="md-icon-button" aria-label="Checked">
+					<md-icon md-font-set="material-icons">turned_in</md-icon>
+				</md-button>
+				<md-button ng-show="!task.checked && !task.cdTimerStartedTime" class="md-icon-button" aria-label="Unchecked" ng-click="checkTask(task)">
+					<md-icon md-font-set="material-icons">turned_in_not</md-icon>
+				</md-button>
+
+				<!-- task main, dynamic class -->
+				<div ng-class="getClass(task)" layout="column" flex>
+					<h3 flex>{{task.name}}</h3>
+					<!-- progress bar -->
+					<md-progress-linear md-theme="altTheme3" class="md-accent" ng-show="task.cdTimerDur" md-mode="determinate" ng-value="{{task.cdTimerProgress}}"></md-progress-linear>
+				</div>
+
+				<!-- task delete btn -->
 				<md-button class="md-icon-button" aria-label="Delete" ng-click="deleteTask(task)">
 					<md-icon md-font-set="material-icons">delete_forever</md-icon>
 				</md-button>
+
 			</md-list-item>
 		</md-list>
 	</div>
-	<!-- End -->
 
-
-	<!-- Cooking Tasklist -->
-	<div ng-show="taskType == 'Cooking'">
+	<div ng-show="view === 'addTask'">
 		<div layout="row" layout-align="center">
-			<h2>Cooking</h2>
+			<h2>Add a Task</h2>
 		</div>
-		<md-list md-theme="altTheme1" class="tasklist" layout="column" layout-align="center">
-			<md-list-item class="tasklist__item md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="task in tasks.cooking" layout="row">
-				<h3 class="tasklist__item--text" flex>{{task.name}}</h3>
-				<md-button class="md-icon-button" aria-label="Delete" ng-click="deleteTask(task)">
-					<md-icon md-font-set="material-icons">delete_forever</md-icon>
-				</md-button>
-			</md-list-item>
-		</md-list>
-	</div>
-	<!-- End -->
-
-
-	<!-- Caring Tasklist -->
-	<div ng-show="taskType == 'Caring'">
-		<div layout="row" layout-align="center">
-			<h2>Caring</h2>
-		</div>
-		<md-list md-theme="altTheme2" class="tasklist" layout="column" layout-align="center">
-			<md-list-item class="tasklist__item md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="task in tasks.caring" layout="row">
-				<h3 class="tasklist__item--text" flex>{{task.name}}</h3>
-				<md-button class="md-icon-button" aria-label="Delete" ng-click="deleteTask(task)">
-					<md-icon md-font-set="material-icons">delete_forever</md-icon>
-				</md-button>
-			</md-list-item>
-		</md-list>
-	</div>
-	<!-- End -->
-
-	<div>
-		<form name="taskForm" class="taskform md-inline-form" ng-submit="addTask({name: newTaskName})" layout="column">
-			<md-input-container>
-			  <label>Add a {{taskType}} Task (5-30 Characters)</label>
+		<form name="taskForm" class="taskform md-inline-form" ng-submit="addTask()" layout="column" layout-align="none center">
+			<md-input-container class="taskform__taskName">
+			  <label>Include your task here (5-30 Characters).</label>
 			  <input ng-model="newTaskName" ng-maxlength="30" required>
 			</md-input-container>
+
+			<!-- task alert settings -->
+			<div class="taskform__alert" layout="column" layout-align="none center">
+				<div class="taskform__alert--bool">
+					<md-checkbox md-theme="themeTaskP" ng-model="newTaskAlarmBool">
+						Highlight the task at a certain time 
+					</md-checkbox>
+				</div>
+
+				<md-input-container class="taskform__alert--input" ng-show="newTaskAlarmBool">
+					<label>Highlight the task at...</label>			
+					<input type="time" ng-model="newTaskAlarmTime">
+				</md-input-container>
+			</div>
+
+			<!-- task countdown timer settings -->
+			<div class="taskform__dur" layout="column" layout-align="none center">
+				<div class="taskform__dur--bool">
+					<md-checkbox md-theme="themeTaskP" ng-model="newTaskDurBool">
+						Set a running timer for the task 
+					</md-checkbox>
+				</div>
+
+				<md-input-container class="taskform__dur--input" ng-show="newTaskDurBool">
+					<label>Timer duration (in mins)...</label>			
+					<input type="number" ng-model="newTaskDur" min="1" max="120">
+				</md-input-container>
+			</div>
+
 			<div class="taskform__footer">
-				<md-button class="taskform__footer--button md-raised md-primary" type="submit" ng-disabled="taskForm.$invalid">Add a Task</md-button>
+				<md-button class="taskform__footer--button md-raised md-primary" type="submit" ng-disabled="taskForm.$invalid">Confirm Task</md-button>
 			</div>
 		</form>
 	</div>

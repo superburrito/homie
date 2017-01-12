@@ -12,24 +12,23 @@ app.config(function ($mdThemingProvider) {
     .primaryPalette('grey')
     .dark();
 
-
-  // Alternate Theme 0
-  $mdThemingProvider.theme('altTheme0')
+  // Alternate Theme 0 -- Passive Task 
+  $mdThemingProvider.theme('themeTaskP')
     .primaryPalette('teal')
-    .accentPalette('teal', { 'default': '400' });
+    .accentPalette('teal', { 'default': '500' });
 
-  // Alternate Theme 1
-  $mdThemingProvider.theme('altTheme1')
+  // Alternate Theme 1 -- Active Task 
+  $mdThemingProvider.theme('themeTaskA')
     .primaryPalette('teal')
-    .accentPalette('orange', { 'default': '400' });
+    .accentPalette('pink', { 'default': '300' });
 
-  // Alternate Theme 2
-  $mdThemingProvider.theme('altTheme2')
+  // Alternate Theme 2 -- Checked Task
+  $mdThemingProvider.theme('themeTaskC')
     .primaryPalette('teal')
-    .accentPalette('deep-purple', { 'default': '400' });
+    .accentPalette('grey', { 'default': '600' });
 
 
-  // Alternate Theme 3
+  // Alternate Theme 3 -- Phrasebook
   $mdThemingProvider.theme('altTheme3')
     .primaryPalette('teal')
     .accentPalette('blue', { 'default': '500' });
