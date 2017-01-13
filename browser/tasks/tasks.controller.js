@@ -1,18 +1,33 @@
 'use strict';
 
 app.controller('TasksCtrl', function($scope, TasksFactory, $interval){
+	// Check if date has changed
+	const currDate = new Date();
+	const currMth = currDate.getMonth();
+	const currMthDay = currDate.getDate();
+	const storedDate = TasksFactory.getStoredDate();
+	console.log(currDate);
+	console.log(storedDate);
+	const storedMth = storedDate.getMonth();
+	const storedMthDay = storedDate.getDate();
+	if (currMth >= storedMth && currMthDay > storedMthDay) {
+		TasksFactory.storeDate(currDate);
+		console.log("currDate was updated to: " + TasksFactory.getStoredDate());
+		TasksFactory.resetTasks();
+		console.log("Tasks have been reset.");
+	}
+
 	// Load tasks
-	$scope.tasks = TasksFactory.renderTasks();
-	console.log($scope.tasks);
+	console.log(TasksFactory.getTasks());
+	$scope.tasks = TasksFactory.renderTasks();	
 
 	// Set default view
 	$scope.view = 'tasklist';
+	// View-switching
+	$scope.setView = function (str) { $scope.view = str; }
 
-	// Allow view switching
-	$scope.setView = function (str) {
-		$scope.view = str;
-	}
 
+	// Task-specific functions
 	$scope.checkTask = function (task) {
 		// If task is timed, begin timer
 		if(task.cdTimerDur && task.cdTimerStartedTime == null){
@@ -50,25 +65,33 @@ app.controller('TasksCtrl', function($scope, TasksFactory, $interval){
 		}
 
 		TasksFactory.addTask(newTask);
+
 		// Clear inputs
 		$scope.tasks = TasksFactory.renderTasks();
 		$scope.newTaskName = "";
+		$scope.newTaskAlarmBool = "";
+		$scope.newTaskAlarmTime = "";
+		$scope.newTaskDurBool = "";
+		$scope.newTaskDur = "";
 		$scope.taskForm.$setPristine();
+		$scope.taskForm.$setUntouched();
 	}
-
 	
-	// Continually update the appearence of task items
+	// Update the appearence of task items at every interval
 	updateTaskVisuals();
 	$interval(updateTaskVisuals, 8000);
 
 	// Helper: Updates how task items appear
 	function updateTaskVisuals() {
+		console.log("Updating...")
 		// Check clock, then check alarms
 		var currTime = new Date();
 		var currHr = currTime.getHours();
 		var currMin = currTime.getMinutes();
-		$scope.tasks.forEach(function(task){
-			if (task.alarmTimeHr && task.alarmTimeMin) {
+		$scope.tasks.forEach(function (task) {
+			console.log(task);
+			if ((task.alarmTimeHr !== null) 
+				&& (task.alarmTimeMin !== null)) {
 				if (currHr >= task.alarmTimeHr &&
 					currMin >= task.alarmTimeMin) {	
 					TasksFactory.activateTask(task);
@@ -79,8 +102,7 @@ app.controller('TasksCtrl', function($scope, TasksFactory, $interval){
 		$scope.tasks = TasksFactory.renderTasks();
 	}
 
-
-	// Helper: Dynamic classes
+	// 	Dynamic classes for task styling
 	$scope.getClass = function (task) {
 		if (task.cdTimerDur) {
 			return "tasklist__item--mainWithProg";

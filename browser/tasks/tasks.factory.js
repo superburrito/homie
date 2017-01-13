@@ -17,6 +17,9 @@ app.factory('TasksFactory', function(ToastFactory){
 		var tasks = TasksFactory.getTasks();
 		var currTime = new Date()
 		tasks = tasks.map(function (task) {
+			if (task.cdTimerDur && task.checked) {
+				task.cdTimerStartedTime = 100;
+			}
 			if (task.cdTimerStartedTime) {
 				const startedTime = new Date(task.cdTimerStartedTime);
 				const millisecs = Math.abs(currTime - startedTime)
@@ -25,8 +28,6 @@ app.factory('TasksFactory', function(ToastFactory){
 				task.cdTimerProgress = (secsPassed / secsTotal) * 100;
 				console.log("Progress is: " + task.cdTimerProgress);
 				if (secsPassed >= secsTotal) {
-					task.cdTimerStartedTime = null;
-					task.checked = true;
 					TasksFactory.checkTask(task);
 				} 
 			}
@@ -93,7 +94,32 @@ app.factory('TasksFactory', function(ToastFactory){
 		localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
 
+	TasksFactory.storeDate = function (dateToStore) {
+		localStorage.setItem('storedDate', JSON.stringify(dateToStore));
+	}
+
+	TasksFactory.getStoredDate = function () {
+		if(!localStorage.getItem('storedDate')) {
+			localStorage.setItem('storedDate', JSON.stringify(new Date()));
+			return TasksFactory.getStoredDate();
+		}
+		return new Date(JSON.parse(localStorage.getItem('storedDate')));
+	}
+
+	TasksFactory.resetTasks = function () {
+		var tasks = TasksFactory.getTasks();
+		tasks = tasks.map(function (task) {
+			if(task.cdTimerDur) {
+				task.cdTimerProgress = 0;	
+			}
+			task.active = false;
+			task.cdTimerStartedTime = null;
+			task.checked = false;
+			return task;
+		})
+		localStorage.setItem('tasks', JSON.stringify(tasks));
+	}
 	return TasksFactory;
-	
+
 });
 
