@@ -8,8 +8,7 @@ router.use('/node_modules', express.static(__dirname + '/../../node_modules'));
 
 router.use('/bower_components', express.static(__dirname + '/../../bower_components'));
 
-// Serve browser pages
-router.use('/public', express.static(__dirname + '/../../public'));
-
+// Serve files in public "as root"
+router.use(express.static(__dirname + '/../../public'));
 
 module.exports = router;

@@ -26,6 +26,10 @@ gulp.task('buildServiceWorker', function () {
 		.pipe(gulp.dest('./public'));
 });
 
+gulp.task('buildManifest', function () {
+	return gulp.src('./browser/manifest.json')
+		.pipe(gulp.dest('./public'));
+});
 
 gulp.task('buildCSS', function () {
 	return gulp.src('./browser/sass.scss')
@@ -49,10 +53,11 @@ gulp.task('transferMedia', function () {
 gulp.task('watch', function () {
 	gulp.watch('./browser/**/*.js', ['buildJS']);
 	gulp.watch('./browser/service-worker.js', ['buildServiceWorker']);
+	gulp.watch('./browser/manifest.json', ['buildManifest']);
 	gulp.watch('./browser/**/*.scss', ['buildCSS']);
 	gulp.watch('./browser/**/*.html', ['transferHTML']);
 	gulp.watch('./browser/media/*.*', ['transferMedia']);
 });
 
 
-gulp.task('default', ['buildJS', 'buildServiceWorker', 'buildCSS','transferHTML','transferMedia','watch']);
+gulp.task('default', ['buildJS', 'buildServiceWorker', 'buildManifest', 'buildCSS','transferHTML','transferMedia','watch']);

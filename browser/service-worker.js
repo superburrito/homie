@@ -1,6 +1,6 @@
 // Cache for application shell
-var apiCacheName = "HomieAPICache-v1";
-var shellCacheName = "HomieShellCache-v1";
+var apiCacheName = "HomieAPICache-v3";
+var shellCacheName = "HomieShellCache-v3";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
@@ -15,26 +15,27 @@ var filesToCache = [
 	'/bower_components/ng-file-upload/ng-file-upload-shim.min.js',
 	'/bower_components/ng-file-upload/ng-file-upload.min.js',
 	'/bower_components/angular-cloudinary/angular-cloudinary.js',
-  
-	// Internal HTML JSS files
-	'/public/index.html',
-	'/public/main.js',
-	'/public/style.css',
-	'/public/home/home.template.html',
-	'/public/landing/landing.template.html',
-	'/public/map/map.template.html',
-	'/public/navbar/navbar.template.html',
-	'/public/phrasebook/phrasebook.tempalte.html',
-	'/public/settings/settings.template.html',
-	'/public/sidenav/sidenav.template.html',
-	'/public/signup/signup.template.html',
-	'/public/tasks/tasks.template.html',
-	'/public/terms/terms.template.html',
-	'/public/toolbar/toolbar.template.html',
-	'/public/translator/translator.template.html',
+
+	// Internal HTML JSS requests
+  '/',
+	'/index.html',
+	'/main.js',
+	'/style.css',
+	'/home/home.template.html',
+	'/landing/landing.template.html',
+	'/map/map.template.html',
+	'/navbar/navbar.template.html',
+	'/phrasebook/phrasebook.template.html',
+	'/settings/settings.template.html',
+	'/sidenav/sidenav.template.html',
+	'/signup/signup.template.html',
+	'/tasks/tasks.template.html',
+	'/terms/terms.template.html',
+	'/toolbar/toolbar.template.html',
+	'/translator/translator.template.html',
 
 	// Media files
-	'/public/media/thumbnail.png'
+	'/media/thumbnail.png'
 ];
 
 
@@ -56,7 +57,7 @@ self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(cacheNames.map(function (cacheName) {
-        if (cacheName != 	shellCacheName) {
+        if (cacheName !== shellCacheName) {
           console.log('[SW] Removing old cache', cacheName);
           return caches.delete(cacheName);
         }
@@ -69,10 +70,12 @@ self.addEventListener('activate', function (event) {
 
 // Fetching: Retrieving data based on connectivity
 self.addEventListener('fetch', function (event) {
-  var apiUrl = 'https://localhost:3000';
+  var apiUrl = '128.199.104.204/'
+  var localUrl = 'localhost:8080';
 
-  // If an API request was made
-  if (event.request.url.indexOf(apiUrl) === 0) {
+  // If an API (data) request was made
+  if (event.request.url.includes(apiUrl) ||
+      event.request.url.includes(localUrl)) {
     event.respondWith(
       // Fetch the request first
       fetch(event.request)
@@ -96,7 +99,7 @@ self.addEventListener('fetch', function (event) {
         });
       })
     );
-  // If an App Shell request was made
+  // If a shell request was made
   } else {
     event.respondWith(
       // Check the cache for response. If the response isn't found, fetch it.
