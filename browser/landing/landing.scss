@@ -19,7 +19,7 @@
 	&__text {
 		margin: 0;
 		@media #{$view-small} {
-			&--terms {
+			&--terms, &--subtitle {
 				display: none !important;
 			}
 		}
