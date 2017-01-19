@@ -1,8 +1,7 @@
 <div class="signup__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
 	<div class="signup__translucence" layout="column" layout-align="center center">
-	<h1 class="signup__text">Registration</h1>
+		<h1 class="signup__header">Register</h1>
 		<form class="signup__form" layout="column" layout-align="none center" ng-submit="signup()">
-
 			<md-input-container class="signup__input1" md-theme="dark">
 		    <label>Name</label>
 		    <input ng-model="name">
@@ -15,9 +14,14 @@
 	      <label>Password</label>
 	      <input type="password" ng-model="password">
 	    </md-input-container>
+	    <div layout="row">
 			<md-button type="submit" class="md-raised md-primary">
-				Confirm 
+				Confirm Details
 			</md-button>
+			<md-button md-theme="themeTaskC" ng-click="goToLanding()" class="md-raised md-accent">
+				Return
+			</md-button>
+		</div>		
 		</form>
 	</div>
 </div>
