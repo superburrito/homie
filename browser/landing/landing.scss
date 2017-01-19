@@ -18,10 +18,16 @@
 
 	&__text {
 		margin: 0;
-		
-		&--terms {
-			width: 80vw;
-			text-align: center;
+		@media #{$view-small} {
+			&--terms {
+				display: none !important;
+			}
+		}
+		@media #{$view-normal} {
+			&--terms {
+				width: 80vw;
+				text-align: center;
+			}
 		}
 
 	}
@@ -37,6 +43,12 @@
 		color: white !important;
 		margin-top: 3px;
 		margin-bottom: 3px;
+	}
+
+	@media #{$view-small} {
+		&__fbButton {
+			display: none !important;
+		}
 	}
 
 }

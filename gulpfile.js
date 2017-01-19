@@ -7,7 +7,7 @@ const sass = require('gulp-sass');
 gulp.task('buildJS', function () {
 	// Grabs all JS files in browser
 	// Grabs app.js FIRST
-	return gulp.src(['./browser/app/app.js','./browser/**/*.js'])
+	return gulp.src(['./browser/app/app.js','./browser/**/*.js',"!./browser/service-worker.js"])
  				// convert into ES6
  				.pipe(babel({
  					// configure babel presets for transpiling
@@ -59,5 +59,6 @@ gulp.task('watch', function () {
 	gulp.watch('./browser/media/*.*', ['transferMedia']);
 });
 
+gulp.task('build', ['buildJS', 'buildServiceWorker', 'buildManifest', 'buildCSS','transferHTML','transferMedia']);
 
-gulp.task('default', ['buildJS', 'buildServiceWorker', 'buildManifest', 'buildCSS','transferHTML','transferMedia','watch']);
+gulp.task('default', ['build','watch']);
