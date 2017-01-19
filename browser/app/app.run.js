@@ -24,4 +24,6 @@ app.run(function ($window, AuthFactory) {
   AuthFactory.failedAuthListener();
   AuthFactory.successfulAuthListener();
   
+  
+  
 });

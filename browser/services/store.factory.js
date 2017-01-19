@@ -5,12 +5,12 @@ app.factory('StoreFactory', function(){
 
 	// Homie token management
 	StoreFactory.saveToken = function (token) {
-		localStorage.setItem('token', JSON.stringify(token));
+		localStorage.setItem('HOMIE-token', JSON.stringify(token));
 	}
 
 	StoreFactory.getToken = function () {
-		if (!localStorage.getItem('token')) return null;
-		return JSON.parse(localStorage.getItem('token'));
+		if (!localStorage.getItem('HOMIE-token')) return null;
+		return JSON.parse(localStorage.getItem('HOMIE-token'));
 	}
 
 	StoreFactory.hasToken = function () {
@@ -20,12 +20,12 @@ app.factory('StoreFactory', function(){
 
 	// FB Token management
 	StoreFactory.saveFbToken = function (token) {
-		localStorage.setItem('fbToken', JSON.stringify(token));
+		localStorage.setItem('HOMIE-fbToken', JSON.stringify(token));
 	} 
 
 	StoreFactory.getFbToken = function () {
-		if (!localStorage.getItem('fbToken')) return null;
-		return JSON.parse(localStorage.getItem('fbToken'));
+		if (!localStorage.getItem('HOMIE-fbToken')) return null;
+		return JSON.parse(localStorage.getItem('HOMIE-fbToken'));
 
 	}
 
@@ -48,23 +48,23 @@ app.factory('StoreFactory', function(){
 	StoreFactory.addPhrase = function (phrase) {
 		var phrases = StoreFactory.getPhrasebook();
 		phrases.push(phrase);
-		localStorage.setItem('phrasebook', JSON.stringify(phrases));
+		localStorage.setItem('HOMIE-phrasebook', JSON.stringify(phrases));
 	}
 
 	StoreFactory.getPhrasebook = function () {
-		if (!localStorage.getItem('phrasebook')) {
-			localStorage.setItem('phrasebook', JSON.stringify([]));
+		if (!localStorage.getItem('HOMIE-phrasebook')) {
+			localStorage.setItem('HOMIE-phrasebook', JSON.stringify([]));
 			StoreFactory.getPhrasebook();
 		}
-		return JSON.parse(localStorage.getItem('phrasebook'));
+		return JSON.parse(localStorage.getItem('HOMIE-phrasebook'));
 	}
 
 	StoreFactory.deletePhrase = function (deletedPhrase) {
 		var phrases = StoreFactory.getPhrasebook();
 		phrases = phrases.filter(function (phrase) {
-			return phrase.translated != deletedPhrase.translated;
+			return phrase.translated !== deletedPhrase.translated;
 		})
-		localStorage.setItem('phrasebook', JSON.stringify(phrases));
+		localStorage.setItem('HOMIE-phrasebook', JSON.stringify(phrases));
 	}
 
 
@@ -90,12 +90,12 @@ app.factory('StoreFactory', function(){
 	}
 
 	StoreFactory.saveProfile = function (profile) {
-		localStorage.setItem('profile', JSON.stringify(profile));
+		localStorage.setItem('HOMIE-profile', JSON.stringify(profile));
 	}
 
 	StoreFactory.getProfile = function () {
-		if (!localStorage.getItem('profile')) return null;
-		return JSON.parse(localStorage.getItem('profile'));
+		if (!localStorage.getItem('HOMIE-profile')) return null;
+		return JSON.parse(localStorage.getItem('HOMIE-profile'));
 	}
 
 	StoreFactory.updateBgUrl = function (newBgUrl) {
@@ -107,10 +107,10 @@ app.factory('StoreFactory', function(){
 
 	// Clearing store when logging out
 	StoreFactory.clear = function () {
-		localStorage.removeItem('profile');
-		localStorage.removeItem('token');
+		localStorage.removeItem('HOMIE-profile');
+		localStorage.removeItem('HOMIE-token');
 		if(StoreFactory.hasFbToken){
-			localStorage.removeItem('fbToken');
+			localStorage.removeItem('HOMIE-fbToken');
 		}
 		console.log('User info in localStorage cleared.');
 	}

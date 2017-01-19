@@ -1,16 +1,32 @@
 .toolbar {
 	height: $toolbar-vh;
-	min-height: $toolbar-vh;
+	min-height: $toolbar-min-height;
 
-	.toolbar__button {
-		margin-left: 2vh;
-		margin-right: 2vh;
+	@media #{$view-small} {
+		.toolbar__button {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+		.toolbar__text {
+			margin-right: 3px;
+			margin-top: 10px;
+			margin-bottom: 3px;
+		}
 	}
 
-	.toolbar__text {
-		margin-right: 2vh;
-		margin-top: 2vh;
-		margin-bottom: 2vh;
+	@media #{$view-normal} {
+		.toolbar__button {
+			margin-left: 2vh;
+			margin-right: 2vh;
+		}
+
+		.toolbar__text {
+			margin-right: 2vh;
+			margin-top: 2vh;
+			margin-bottom: 2vh;
+		}
 	}
+
 }
 

@@ -37,17 +37,17 @@ app.factory('TasksFactory', function(ToastFactory){
 	}
 
 	TasksFactory.getTasks = function () {
-		if (!localStorage.getItem('tasks')) {
-			localStorage.setItem('tasks', JSON.stringify([]));
+		if (!localStorage.getItem('HOMIE-tasks')) {
+			localStorage.setItem('HOMIE-tasks', JSON.stringify([]));
 			return TasksFactory.getTasks();
 		}; 
-		return JSON.parse(localStorage.getItem('tasks'));
+		return JSON.parse(localStorage.getItem('HOMIE-tasks'));
 	}
 
 	TasksFactory.addTask = function (newTask) {
 		var tasks = TasksFactory.getTasks();
 		tasks.push(newTask);
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
 		ToastFactory.taskCreated();
 	}
 
@@ -60,7 +60,7 @@ app.factory('TasksFactory', function(ToastFactory){
 			} 
 			return task;
 		});
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
 	}
 
 	TasksFactory.deleteTask = function (deletedTask) {
@@ -68,7 +68,7 @@ app.factory('TasksFactory', function(ToastFactory){
 		tasks = tasks.filter(function(task){
 			return task.name !== deletedTask.name;
 		});
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
 	}
 
 	TasksFactory.timeTask = function (timedTask) {
@@ -79,31 +79,33 @@ app.factory('TasksFactory', function(ToastFactory){
 			} 
 			return task;
 		});
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
 		ToastFactory.taskRunning(timedTask.name);
 	}
 
 	TasksFactory.activateTask = function (activatedTask) {
 		var tasks = TasksFactory.getTasks();
+		// Vibrate device
+		navigator.vibrate(200);
 		tasks = tasks.map(function(task){
 			if (task.name === activatedTask.name) {
 				task.active = true;
 			} 
 			return task;
 		});
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
 	}
 
 	TasksFactory.storeDate = function (dateToStore) {
-		localStorage.setItem('storedDate', JSON.stringify(dateToStore));
+		localStorage.setItem('HOMIE-storedDate', JSON.stringify(dateToStore));
 	}
 
 	TasksFactory.getStoredDate = function () {
-		if(!localStorage.getItem('storedDate')) {
-			localStorage.setItem('storedDate', JSON.stringify(new Date()));
+		if(!localStorage.getItem('HOMIE-storedDate')) {
+			localStorage.setItem('HOMIE-storedDate', JSON.stringify(new Date()));
 			return TasksFactory.getStoredDate();
 		}
-		return new Date(JSON.parse(localStorage.getItem('storedDate')));
+		return new Date(JSON.parse(localStorage.getItem('HOMIE-storedDate')));
 	}
 
 	TasksFactory.resetTasks = function () {
@@ -117,7 +119,7 @@ app.factory('TasksFactory', function(ToastFactory){
 			task.checked = false;
 			return task;
 		})
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
 	}
 	return TasksFactory;
 

@@ -1,3 +1,7 @@
 /* Config Variables */
 $toolbar-vh: 8vh;
+$toolbar-min-height: 50px;
 $main-vh: 92vh;
+
+$view-small: "screen and (max-height: 500px)";
+$view-normal: "screen and (min-height: 501px)";

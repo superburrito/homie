@@ -73,6 +73,9 @@ self.addEventListener('fetch', function (event) {
   var apiUrl = '128.199.104.204/'
   var localUrl = 'localhost:8080';
 
+  // Make sure we are fetching a GET request
+  if(event.request.method != "GET") return;
+
   // If an API (data) request was made
   if (event.request.url.includes(apiUrl) ||
       event.request.url.includes(localUrl)) {
