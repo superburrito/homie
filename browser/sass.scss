@@ -12,5 +12,11 @@
 @import "map/map.scss";
 
 body {
+	top: 0px !important; 
 	font-family: 'Lato', sans-serif;	
 }
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+} 
+

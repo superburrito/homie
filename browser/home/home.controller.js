@@ -23,19 +23,6 @@ app.controller('HomeCtrl', ($scope, $interval, StoreFactory) => {
 		if(parseInt(currentHour) < 10) currentHour = "0" + currentHour;
 		$scope.time = currentHour+ ":" + currentMinutes;
 
-		if(currentHour <= 4){
-			$scope.greeting = "Sweet dreams";
-		} else if (currentHour < 11){
-			$scope.greeting = "Rise and shine";
-		} else if (currentHour < 14){
-			$scope.greeting = "It's lunchtime";
-		} else if (currentHour < 18){
-			$scope.greeting = "Good afternoon";
-		} else {
-			$scope.greeting = "Good evening";
-		} 
 	}
-
-
 });
 

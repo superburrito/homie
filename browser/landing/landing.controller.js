@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('LandingCtrl', ($scope, AuthFactory, StoreFactory, $state) => {
+app.controller('LandingCtrl', ($scope, AuthFactory, StoreFactory, $state, $translate) => {
 	// Bring $state to scope to disable navbar
 	$scope.state = $state;
 
@@ -23,5 +23,16 @@ app.controller('LandingCtrl', ($scope, AuthFactory, StoreFactory, $state) => {
 	$scope.goToTerms = function () {
 		$state.go('terms');
 	}
+
+	$scope.switchLang = function () {
+		if($translate.use() === 'en'){
+			$translate.use('tl');
+		} else if($translate.use() === 'tl'){
+			$translate.use('id');
+		} else {
+			$translate.use('en');
+		}
+	}
+
 
 });

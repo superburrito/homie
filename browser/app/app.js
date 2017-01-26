@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('homieApp', ['ui.router','ngMaterial','ngFileUpload','angular-cloudinary', 'ngMap']);
+var app = angular.module('homieApp', ['ui.router','ngMaterial','ngFileUpload','angular-cloudinary', 'ngMap','pascalprecht.translate']);
 
 app.controller('MainCtrl', function ($scope, $mdSidenav, $state) {
 	

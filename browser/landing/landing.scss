@@ -18,6 +18,7 @@
 
 	&__text {
 		margin: 0;
+		margin-bottom: 5px;
 		@media #{$view-small} {
 			&--terms, &--subtitle {
 				display: none !important;
