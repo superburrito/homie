@@ -1,6 +1,6 @@
 <div layout="column" class="phrasebook__container">
-	<h2 class="phrasebook__header">Your Phrases:</h2>
-	<p class="phrasebook__emptyText" ng-show="noSavedPhrases">You have no saved phrases at the moment.</p>
+	<h2 class="phrasebook__header">{{ 'PHRASEBOOK_HEADER' | translate }}</h2>
+	<p class="phrasebook__emptyText" ng-show="noSavedPhrases">{{ 'PHRASEBOOK_NOSAVED' | translate }}</p>
 	<md-list md-theme="altTheme3" class="tasklist" layout="column" layout-align="center">
 		<md-list-item class="phrasebook__phrase md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="phrase in phrases" layout="row">
 			<div layout="column" flex>

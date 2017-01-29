@@ -2,21 +2,24 @@
 	<br>
 	<form name="translatorForm" class="translator__form" layout="column" layout-align="none center" flex>
 		<md-input-container class="translator__textarea">
-	    <label>Text To Translate:</label>
+	    <label>{{ 'TRANSLATE_HEADER' | translate }} </label>
       <textarea ng-model="textToTranslate" md-maxlength="50" minlength="5"  rows="2"></textarea>
 	  </md-input-container>
-	  <h3 class="translator__convertText">Convert text into...</h3>
+	  <h3 class="translator__convertText">
+	  	{{ 'TRANSLATE_CONVERT_HEADER' | translate }}
+	  </h3>
 	  <md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('tl')">
-			Tagalog (TL)
+	  		{{ 'TRANSLATE_TAGALOG'| translate }}
+			
 		</md-button>
 		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('id')">
-			Bahasa Indo (ID)
+  			{{ 'TRANSLATE_BAHASA' | translate }}	
 		</md-button>
 		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('en')">
-			English (EN)
+ 			{{ 'TRANSLATE_ENGLISH' | translate }}
 		</md-button>
 		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('zh')">
-			Chinese (ZH)
+			{{ 'TRANSLATE_CHINESE' | translate }}
 		</md-button>
 	</form>
 	<br>

@@ -1,6 +1,7 @@
 .toolbar {
 	height: $toolbar-vh;
 	min-height: $toolbar-min-height;
+	max-height: $toolbar-max-height;
 }
 @media #{$view-small} {
 	.toolbar__button {
@@ -26,5 +27,19 @@
 		margin-top: 2vh;
 		margin-bottom: 2vh;
 	}
+}
+
+@media #{$view-large} {
+	.toolbar__button {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	.toolbar__text {
+		margin-right: 20px;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		font-size: 150%;
+	}	
 }
 

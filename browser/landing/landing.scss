@@ -20,12 +20,22 @@
 		margin: 0;
 		margin-bottom: 5px;
 		@media #{$view-small} {
-			&--terms, &--subtitle {
+			&--terms, &--subtitle, &--divert {
 				display: none !important;
 			}
 		}
 		@media #{$view-normal} {
 			&--terms {
+				width: 80vw;
+				text-align: center;
+			}
+			&--divert {
+				display: none !important
+			}
+		}
+		@media #{$view-large} {
+			&--divert {
+				display: block !important;
 				width: 80vw;
 				text-align: center;
 			}
@@ -48,6 +58,9 @@
 
 	@media #{$view-small} {
 		&__fbButton {
+			display: none !important;
+		}
+		&__switchButton {
 			display: none !important;
 		}
 	}

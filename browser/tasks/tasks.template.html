@@ -14,7 +14,7 @@
 	<!-- Tasklist -->
 	<div ng-show="view === 'tasklist'">
 		<div layout="row" layout-align="center" md-theme="default">
-			<h2>My Tasks</h2>
+			<h2>{{ 'TASKS_HEADER' | translate }}</h2>
 		</div>
 		<div ng-show="tasks.length == 0" layout="row" layout-align="center">
 			You have not added a task yet.
@@ -48,11 +48,13 @@
 
 	<div ng-show="view === 'addTask'">
 		<div layout="row" layout-align="center">
-			<h2>Add a Task</h2>
+			<h2>{{ 'TASKS_ADD_A_TASK_LABEL' | translate }}</h2>
 		</div>
 		<form name="taskForm" class="taskform md-inline-form" ng-submit="addTask()" layout="column" layout-align="none center">
 			<md-input-container class="taskform__taskName">
-			  <label>Include your task here (5-30 Characters).</label>
+			  <label>
+			  	{{ 'TASKS_INCLUDE_TASK_HERE' | translate }}
+			  </label>
 			  <input ng-model="newTaskName" ng-maxlength="30" required>
 			</md-input-container>
 
@@ -60,12 +62,12 @@
 			<div class="taskform__alert" layout="column" layout-align="none center">
 				<div class="taskform__alert--bool">
 					<md-checkbox md-theme="themeTaskP" ng-model="newTaskAlarmBool">
-						Highlight the task at a certain time 
+					{{ 'TASKS_HIGHLIGHT_TASK' | translate }} 
 					</md-checkbox>
 				</div>
 
 				<md-input-container class="taskform__alert--input" ng-show="newTaskAlarmBool">
-					<label>Highlight the task at...</label>			
+					<label>{{ 'TASKS_HIGHLIGHT_TASK_AT' | translate }}</label>			
 					<input type="time" ng-model="newTaskAlarmTime">
 				</md-input-container>
 			</div>
@@ -74,20 +76,19 @@
 			<div class="taskform__dur" layout="column" layout-align="none center">
 				<div class="taskform__dur--bool">
 					<md-checkbox md-theme="themeTaskP" ng-model="newTaskDurBool">
-						Set a running timer for the task 
+						{{ 'TASKS_SET_TIMER' | translate }}
 					</md-checkbox>
 				</div>
 
 				<md-input-container class="taskform__dur--input" ng-show="newTaskDurBool">
-					<label>Timer duration (in mins)...</label>			
+					<label>{{ 'TASKS_SET_TIMER_DURATION' | translate }} </label>			
 					<input type="number" ng-model="newTaskDur" min="1" max="120">
 				</md-input-container>
 			</div>
 
 			<div class="taskform__footer">
-				<md-button class="taskform__footer--button md-raised md-primary" type="submit" ng-disabled="taskForm.$invalid">Confirm Task</md-button>
+				<md-button class="taskform__footer--button md-raised md-primary" type="submit" ng-disabled="taskForm.$invalid">{{ 'TASKS_CONFIRM' | translate }}</md-button>
 			</div>
 		</form>
 	</div>
-
 </div>

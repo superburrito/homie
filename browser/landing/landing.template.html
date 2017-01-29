@@ -1,4 +1,5 @@
 <div class="landing__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
+
 	<div class="landing__translucence" layout="column" layout-align="center center">
 		<h1 class="landing__text">Homie</h1>
 		<form class="landing__form" layout="column" layout-align="none center" ng-submit="login()">
@@ -21,14 +22,19 @@
 			<md-button md-theme="altTheme3" class="landing__fbButton md-raised md-accent" ng-click="fbLogin()">
 				&nbsp {{ 'ACCESS_FACEBOOK_LABEL' | translate }} &nbsp
 			</md-button>
-			<md-button class="md-raised md-warn" ng-click="switchLang()">
+			<md-button class="landing__switchButton md-raised md-warn" ng-click="switchLang()">
 				{{ 'SWITCH_LANG_LABEL' | translate }}
 			</md-button>
 		</form>
+		<p class="landing__text--divert">
+			You are running HOMIE in a browser that is too large.<br>
+			This application is meant for smaller platforms.</br> 
+		</p>
 		<p class="landing__text--terms">
-		This is an ALPHA prototype.<br>
-		By accessing this application,<br>
-		you are agreeing to the following<br>
-		<u ng-click="goToTerms()">Terms and Conditions</u>.</p>
+			This is an ALPHA prototype.<br>
+			By accessing this application,<br>
+			you are agreeing to the following<br>
+			<u ng-click="goToTerms()">Terms and Conditions</u>.
+		</p>
 	</div>
 </div>

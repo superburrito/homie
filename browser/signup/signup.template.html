@@ -1,25 +1,25 @@
 <div class="signup__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
 	<div class="signup__translucence" layout="column" layout-align="center center">
-		<h1 class="signup__header">Register</h1>
+		<h1 class="signup__header">{{ REGISTER_HEADER | translate }}</h1>
 		<form class="signup__form" layout="column" layout-align="none center" ng-submit="signup()">
 			<md-input-container class="signup__input1" md-theme="dark">
-		    <label>Name</label>
+		    <label>{{ REGISTER_NAME | translate }}</label>
 		    <input ng-model="name">
 		  </md-input-container>
 			<md-input-container class="signup__input2" md-theme="dark">
-		    <label>Email</label>
+		    <label>{{ REGISTER_EMAIL | translate }}</label>
 		    <input ng-model="email">
 		  </md-input-container>
 		  <md-input-container class="signup__input2" md-theme="dark">
-	      <label>Password</label>
+	      <label>{{ REGISTER_PASSWORD | translate }}</label>
 	      <input type="password" ng-model="password">
 	    </md-input-container>
 	    <div layout="row">
 			<md-button type="submit" class="md-raised md-primary">
-				Confirm Details
+				{{ REGISTER_CONFIRM | translate }}
 			</md-button>
 			<md-button md-theme="themeTaskC" ng-click="goToLanding()" class="md-raised md-accent">
-				Return
+				{{ REGISTER_RETURN | translate }}
 			</md-button>
 		</div>		
 		</form>
