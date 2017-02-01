@@ -17,7 +17,7 @@
 			<h2>{{ 'TASKS_HEADER' | translate }}</h2>
 		</div>
 		<div ng-show="tasks.length == 0" layout="row" layout-align="center">
-			You have not added a task yet.
+			{{ 'TASKS_NOTASKS' | translate }}
 		</div>
 		<md-list class="tasklist" layout="column">
 			<md-list-item class="tasklist__item md-whiteframe-2dp" ng-repeat="task in tasks" layout="row" md-theme="{{task.checked ? 'themeTaskC' : task.active ? 'themeTaskA' : 'themeTaskP'}}" md-theme-watch md-colors="{background: 'accent'}">

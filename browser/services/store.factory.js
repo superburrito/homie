@@ -34,41 +34,6 @@ app.factory('StoreFactory', function(){
 	}
 
 
-
-	/* Phrasebook is an array of objects, i.e.
-		[
-			{
-				translated: dua ayam,
-				translation: two chicken
-			} 
-		]
-
-	*/
-
-	StoreFactory.addPhrase = function (phrase) {
-		var phrases = StoreFactory.getPhrasebook();
-		phrases.push(phrase);
-		localStorage.setItem('HOMIE-phrasebook', JSON.stringify(phrases));
-	}
-
-	StoreFactory.getPhrasebook = function () {
-		if (!localStorage.getItem('HOMIE-phrasebook')) {
-			localStorage.setItem('HOMIE-phrasebook', JSON.stringify([]));
-			StoreFactory.getPhrasebook();
-		}
-		return JSON.parse(localStorage.getItem('HOMIE-phrasebook'));
-	}
-
-	StoreFactory.deletePhrase = function (deletedPhrase) {
-		var phrases = StoreFactory.getPhrasebook();
-		phrases = phrases.filter(function (phrase) {
-			return phrase.translated !== deletedPhrase.translated;
-		})
-		localStorage.setItem('HOMIE-phrasebook', JSON.stringify(phrases));
-	}
-
-
-
 	/* Profile is an object containing:
 		{
 			id: ...,
@@ -108,11 +73,15 @@ app.factory('StoreFactory', function(){
 	// Clearing store when logging out
 	StoreFactory.clear = function () {
 		localStorage.removeItem('HOMIE-profile');
+		
+		// Don't remove tokens for now
+		/*		
 		localStorage.removeItem('HOMIE-token');
 		if(StoreFactory.hasFbToken){
 			localStorage.removeItem('HOMIE-fbToken');
 		}
-		console.log('User info in localStorage cleared.');
+		*/
+		console.log('User info in localStorage cleared (except tokens).');
 	}
 
 

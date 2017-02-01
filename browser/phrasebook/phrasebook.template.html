@@ -7,6 +7,9 @@
 				<h4 class="phrasebook__phrase--translated" flex>{{phrase.translated}}</h4>
 				<h4 class="phrasebook__phrase--translation" flex>{{phrase.translation}}</h4>
 			</div>
+			<md-button ng-show="phraseCanBePlayed(phrase)" class="md-icon-button" aria-label="phrase" ng-click="playPhrase(phrase)">
+				<md-icon md-font-set="material-icons">record_voice_over</md-icon>
+			</md-button>
 			<md-button class="md-icon-button" aria-label="Delete" ng-click="deletePhrase(phrase)">
 				<md-icon md-font-set="material-icons">delete_forever</md-icon>
 			</md-button>

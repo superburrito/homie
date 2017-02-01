@@ -12,6 +12,8 @@ router.use('/auth', require('./auth.js'));
 
 router.use(require('./../utils/verification.middleware.js'));
 
+router.use('/reentry', require('./reentry.js'))
+
 router.use('/user', require('./user.js'));
 
 router.use('/translate', require('./translate.js'));

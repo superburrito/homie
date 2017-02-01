@@ -24,5 +24,6 @@ app.controller('HomeCtrl', ($scope, $interval, StoreFactory) => {
 		$scope.time = currentHour+ ":" + currentMinutes;
 
 	}
+
 });
 

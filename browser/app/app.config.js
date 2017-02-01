@@ -61,6 +61,7 @@ app.config(function($translateProvider) {
 
 		// My Tasks
 		"TASKS_HEADER": "My tasks",
+		"TASKS_NOTASKS": "You have not added a task yet.",
 		"TASKS_ADD_A_TASK_LABEL": "Add a Task",
 		"TASKS_INCLUDE_TASK_HERE": "Include your task here (5-30 characters).",
 		"TASKS_HIGHLIGHT_TASK": "Hightlight the task at a certain time",

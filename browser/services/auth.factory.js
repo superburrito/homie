@@ -3,7 +3,7 @@
 app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state, ToastFactory) {
 	var AuthFactory = {};
 
-	var authDataHandler = function (data) {
+	AuthFactory.authDataHandler = function (data) {
 		if (data && data.success) {
 			StoreFactory.saveAuthData(data);
 			$rootScope.$broadcast('authenticated');
@@ -12,7 +12,6 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		} 
 	};
 
-
 	AuthFactory.signup = function (name, email, password) {
 		$http.post('/auth/local/signup', {
 			name: name,
@@ -20,7 +19,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			password: password
 		})
 		.then(function (res) {
-			authDataHandler(res.data);
+			AuthFactory.authDataHandler(res.data);
 			return res.data;
 		})
 	};
@@ -32,7 +31,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			password: password
 		})
 		.then(function (res) {
-			authDataHandler(res.data);
+			AuthFactory.authDataHandler(res.data);
 			return res.data;
 		})
 	};
@@ -44,6 +43,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 	};
 
 
+	// Listeners
 	AuthFactory.failedAuthListener = function () {
 		$rootScope.$on('unauthenticated', function () {		
 			// Clear store, return to landing
@@ -95,7 +95,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			} else {
 				$http.post('/auth/facebook', fbUserData)
 				.then(function (res) {
-					authDataHandler(res.data);
+					AuthFactory.authDataHandler(res.data);
 					return res.data;
 				})
 			}
