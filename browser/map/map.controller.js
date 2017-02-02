@@ -7,6 +7,9 @@ app.controller('MapCtrl', ($scope, NgMap, MapFactory, $compile) => {
 	$scope.view = 'display';
 	$scope.setView = function (str) { $scope.view = str; }
 
+	// ApiURL
+	$scope.gMapsUrl = "http://maps.google.com/maps/api/js?key=	AIzaSyBcCdv3rzGIGedGjNBpw2XanSa9rsgPCc4";
+
 	// Helper
 	function expandCoords(coords) {
 		var expandedCoords = coords.map((coord) => {

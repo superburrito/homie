@@ -12,7 +12,14 @@
 	<!-- End of Navbar -->
 
 	<!-- Map -->
-	<div layout="column" ng-show="view === 'display'" class="map__wrap" flex>
+	<div 
+		map-lazy-load="https://maps.google.com/api/js"
+		map-lazy-load-params="{{gMApsUrl}}" 
+		layout="column" 
+		ng-show="view === 'display'" 
+		class="map__wrap" 
+		flex
+	>
 		<ng-map 
 			class="map__display" 
 			styles="{{options.styles}}"
