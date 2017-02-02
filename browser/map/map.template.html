@@ -36,10 +36,10 @@
 			id="{{coord.user.fbId}}"
 		>
 			<div ng-non-bindable="" class="map__infoWindow" layout="column" layout-align="center center">
-				<img class="map__infoWindow--src img-circle" src="{{coord.user.src}}" alt="hi">
+				<img class="map__infoWindow--src img-circle" src="{{coord.user.src}}">
 				<a href="http://www.facebook.com/{{coord.user.fbId}}">
 				<md-button md-theme="altTheme3" class="md-accent md-raised">
-					Facebook 	
+					Connect 	
 				</md-button>
 				</a>
 			</div>
@@ -52,17 +52,15 @@
 	<!-- Settings -->
 	<div ng-show="view === 'settings'" class="map__settings" layout="column" layout-align="center center">
 		<p class="map__settingsText">
-			You can register yourself at a location at any point of time. This allows people to see where you have been and 
-			they can send you Facebook messages. 
+			You can <b>mark</b> yourself at a location at any point of time. This lets people to see where you are and also allows them to see your Facebook profile. 
 			<br>
 			<br>
-			Don't worry -- you can 
-			change or hide this location later.
+			Don't worry -- you can change or hide this location later.
 		</p>
-		<md-button class="md-raised md-primary" ng-click="markUserLocation()">
+		<md-button class="map__button md-raised md-primary" ng-click="markUserLocation()">
 			Mark my location
 		</md-button> 
-		<md-button class="md-raised md-warn" ng-click="removeUserLocation()">
+		<md-button class="map__button md-raised md-warn" ng-click="removeUserLocation()">
 			Hide my location
 		</md-button> 
 	</div>

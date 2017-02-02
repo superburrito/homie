@@ -52,4 +52,10 @@ app.config(function($stateProvider){
 		templateUrl: '/map/map.template.html',
 		controller: 'MapCtrl'
 	})
+
+	$stateProvider.state('help', {
+		url: '/help',
+		templateUrl: '/help/help.template.html',
+		controller: 'HelpCtrl'
+	})
 });

@@ -33,7 +33,7 @@ app.config(function($translateProvider) {
 		"SIDENAV_PHRASEBOOK": "Phrasebook",
 		"SIDENAV_MAP": "Explore SG",
 		"SIDENAV_RIGHTS": "My Rights",
-		"SIDENAV_REACHOUT": "Reach Out",
+		"SIDENAV_GETHELP": "Get Help",
 		"SIDENAV_SETTINGS": "Settings",
 		"SIDENAV_LOGOUT": "Logout",
 

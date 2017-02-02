@@ -33,6 +33,10 @@ app.controller('SidenavCtrl', function ($http, $scope, $mdSidenav, $state, AuthF
 		$state.go('settings');
 	}
 
+	$scope.goToHelp = function () {
+		$mdSidenav('left').toggle();
+		$state.go('help');
+	}
 
 	$scope.logout = function () {
 		$mdSidenav('left').toggle();
