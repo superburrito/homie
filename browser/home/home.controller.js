@@ -8,7 +8,9 @@ app.controller('HomeCtrl', ($scope, $interval, StoreFactory) => {
 	var bgUrl = profile.bgUrl;
 
 	// Set up background	
-	var defaultBg = "http://www.morethancalendars.co.uk/uploads/images/Gallery/Animals-Portrait/Animals_25.jpg"
+	var defaultBg = "/media/homeDefault.jpg"
+	// Source: https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg
+
 	$scope.bg = bgUrl || defaultBg;
 	
 	// Start the clock, run interval checks

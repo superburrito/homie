@@ -59,10 +59,9 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 	};
 
 	AuthFactory.logout = function () {
+		StoreFactory.clear();
 		$state.go('landing');
-		FB.logout(() => {
-			StoreFactory.clear();
-		});
+		FB.logout();
 	};
 
 
