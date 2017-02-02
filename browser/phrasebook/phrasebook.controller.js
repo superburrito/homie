@@ -15,6 +15,9 @@ app.controller('PhrasebookCtrl', ($scope, PhrasebookFactory, $state) => {
 		if ($scope.phrases.length == 0) $scope.noSavedPhrases = true;
 	}
 
+	$scope.goToTranslator = function () {
+		$state.go('translator');
+	}
 
 	$scope.phraseCanBePlayed = function (phrase) {
 		return ['Eng','Ind','Chi'].indexOf(phrase.translation.split(':')[0]) !== -1;

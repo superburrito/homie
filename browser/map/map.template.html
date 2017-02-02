@@ -1,3 +1,70 @@
 <div layout="column" class="map__container">
-	<ng-map layout-fill></ng-map>
+	
+	<!-- Map Navbar -->
+	<md-nav-bar md-theme="themeTaskP" class="mnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="mnavbar">
+	  <md-nav-item class="mnavbar__button" md-nav-click="setView('display')" layout="column">
+	  	<md-icon md-font-set="material-icons">map</md-icon>
+	  </md-nav-item>
+	  <md-nav-item class="mnavbar__button" md-nav-click="setView('settings')" layout="column">
+	  	<md-icon md-font-set="material-icons">live_help</md-icon>
+	  </md-nav-item>
+	</md-nav-bar>
+	<!-- End of Navbar -->
+
+	<!-- Map -->
+	<div layout="column" ng-show="view === 'display'" class="map__wrap" flex>
+		<ng-map 
+			class="map__display" 
+			styles="{{options.styles}}"
+			center="[{{options.center.lat}}, {{options.center.lng}}]"
+			zoom="{{options.zoom}}"
+			flex
+		>
+		<marker 
+			class="map__marker"
+			ng-repeat="coord in coords"			
+			id="{{coord.user.id}}"
+			position="{{coord.lat}},{{coord.lng}}"
+			title="{{coord.user.name}}"
+			icon="{{coord.icon}}"
+			on-click="map.showInfoWindow(coord.user.fbId)"
+		>
+		</marker>
+
+		<info-window
+			ng-repeat="coord in coords"
+			id="{{coord.user.fbId}}"
+		>
+			<div ng-non-bindable="" class="map__infoWindow" layout="column" layout-align="center center">
+				<img class="map__infoWindow--src img-circle" src="{{coord.user.src}}" alt="hi">
+				<a href="http://www.facebook.com/{{coord.user.fbId}}">
+				<md-button md-theme="altTheme3" class="md-accent md-raised">
+					Facebook 	
+				</md-button>
+				</a>
+			</div>
+		</info-window> 
+
+		</ng-map>
+	</div>
+	<!-- End of Map -->
+
+	<!-- Settings -->
+	<div ng-show="view === 'settings'" class="map__settings" layout="column" layout-align="center center">
+		<p class="map__settingsText">
+			You can register yourself at a location at any point of time. This allows people to see where you have been and 
+			they can send you Facebook messages. 
+			<br>
+			<br>
+			Don't worry -- you can 
+			change or hide this location later.
+		</p>
+		<md-button class="md-raised md-primary" ng-click="markUserLocation()">
+			Mark my location
+		</md-button> 
+		<md-button class="md-raised md-warn" ng-click="removeUserLocation()">
+			Hide my location
+		</md-button> 
+	</div>
+	<!-- End of Settings -->
 </div>	

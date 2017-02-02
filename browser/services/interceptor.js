@@ -9,8 +9,8 @@ app.factory('APIInterceptor', function (StoreFactory, $rootScope) {
 		// If token exists and client calls Homie API
 		if (config.url.includes('api.cloudinary.com')) {
 			return config;
-		} else if (StoreFactory.hasToken()) {
-			config.headers['x-access-token'] = StoreFactory.getToken();	
+		} else if (StoreFactory.hasHToken()) {
+			config.headers['x-access-token'] = StoreFactory.getHToken();
 		}
 		return config;
 	}
@@ -27,7 +27,5 @@ app.factory('APIInterceptor', function (StoreFactory, $rootScope) {
 		}
 		return response;
 	}
-
 	return APIInterceptor;
-	
 })

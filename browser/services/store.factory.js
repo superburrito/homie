@@ -1,20 +1,21 @@
 'use strict';
 
+// Store factory manages cached tokens and cached profile info
 app.factory('StoreFactory', function(){
 	var StoreFactory = {};
 
 	// Homie token management
-	StoreFactory.saveToken = function (token) {
-		localStorage.setItem('HOMIE-token', JSON.stringify(token));
+	StoreFactory.saveHToken = function (token) {
+		localStorage.setItem('HOMIE-hToken', JSON.stringify(token));
 	}
 
-	StoreFactory.getToken = function () {
-		if (!localStorage.getItem('HOMIE-token')) return null;
-		return JSON.parse(localStorage.getItem('HOMIE-token'));
+	StoreFactory.getHToken = function () {
+		if (!localStorage.getItem('HOMIE-hToken')) return null;
+		return JSON.parse(localStorage.getItem('HOMIE-hToken'));
 	}
 
-	StoreFactory.hasToken = function () {
-		return StoreFactory.getToken() !== null;
+	StoreFactory.hasHToken = function () {
+		return StoreFactory.getHToken() !== null;
 	}
 
 
@@ -46,12 +47,19 @@ app.factory('StoreFactory', function(){
 	StoreFactory.saveAuthData = function (data) {
 		var name = data.user.name;
 		StoreFactory.saveProfile({
+			fbId: data.user.fbId,
 			id: data.user.id,
 			firstName: name.substring(0, name.indexOf(' ')),
-			lastName: name.substring(name.indexOf(' ')),
+			lastName: name.substring(name.indexOf(' ')), 
+			src: data.user.src,
 			bgUrl: data.user.bgUrl,
 		});
-		StoreFactory.saveToken(data.token);
+		if (data.hToken) {
+			StoreFactory.saveHToken(data.hToken);
+		}
+		if (data.fbToken) {
+			StoreFactory.saveFbToken(data.fbToken);
+		}
 	}
 
 	StoreFactory.saveProfile = function (profile) {
@@ -73,15 +81,10 @@ app.factory('StoreFactory', function(){
 	// Clearing store when logging out
 	StoreFactory.clear = function () {
 		localStorage.removeItem('HOMIE-profile');
-		
-		// Don't remove tokens for now
-		/*		
-		localStorage.removeItem('HOMIE-token');
-		if(StoreFactory.hasFbToken){
-			localStorage.removeItem('HOMIE-fbToken');
-		}
-		*/
-		console.log('User info in localStorage cleared (except tokens).');
+		localStorage.removeItem('HOMIE-hToken');
+		localStorage.removeItem('HOMIE-fbToken');
+
+		console.log('User info in localStorage cleared (including tokens).');
 	}
 
 

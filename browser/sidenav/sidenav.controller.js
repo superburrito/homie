@@ -35,23 +35,8 @@ app.controller('SidenavCtrl', function ($http, $scope, $mdSidenav, $state, AuthF
 
 
 	$scope.logout = function () {
-		// When logging out, update profile data
-		var profile = StoreFactory.getProfile()
-		return $http.post('/user/update', {
-			bgUrl: profile.bgUrl,
-		})
-		.then(function (response) {
-			if(response && response.data.success){
-				console.log("Profile data synced with server.")
-			} else {
-				console.log("Profile data did not sync.")
-			}
-		})
-		.then(function () {
-			$mdSidenav('left').toggle();
-			// Clear store, return to landing page
-			AuthFactory.logout();
-		})
+		$mdSidenav('left').toggle();
+		AuthFactory.logout();
 	}
 
 })

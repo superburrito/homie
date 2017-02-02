@@ -4,15 +4,15 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken'); 
 const secret = require('./../env/index.js').secret; 
 
-// Verifies that token sent is valid, passes it on
+// Verify that hToken sent is valid 
 router.use(function (req, res, next) {
-	var token = req.headers['x-access-token'];
-	if (token) {
-		jwt.verify(token, secret, function (err, decoded) {
+	const hToken = req.headers['x-access-token'];
+	if (hToken) {
+		jwt.verify(hToken, secret, function (err, decoded) {
 			if (err) {
 				return res.status(403).send({ 
 					success: false, 
-					message: "Failed to authenticate token."
+					message: "Failed to authenticate hToken."
 				});
 			} else {	
 				req.decoded = decoded;
@@ -22,10 +22,9 @@ router.use(function (req, res, next) {
 	} else {
 		return res.status(403).send({ 
 			success: false, 
-			message: "No token provided." 
+			message: "No hToken provided." 
 		});
 	}
 })
-
 
 module.exports = router;

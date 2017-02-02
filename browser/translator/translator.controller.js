@@ -42,7 +42,7 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 				translated: fromLang + ': ' + $scope.textToTranslate,
 				translation: toLang + ': ' + $scope.translatedText
 			})
-			ToastFactory.phraseSaved();
+			ToastFactory.displayMsg('Phrase saved.', 500);
 		}
 	};
 

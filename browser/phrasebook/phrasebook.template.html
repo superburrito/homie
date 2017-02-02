@@ -1,7 +1,11 @@
-<div layout="column" class="phrasebook__container">
+<div layout="column" layout-align="none center" class="phrasebook__container">
 	<h2 class="phrasebook__header">{{ 'PHRASEBOOK_HEADER' | translate }}</h2>
 	<p class="phrasebook__emptyText" ng-show="noSavedPhrases">{{ 'PHRASEBOOK_NOSAVED' | translate }}</p>
-	<md-list md-theme="altTheme3" class="tasklist" layout="column" layout-align="center">
+	<md-button ng-show="noSavedPhrases" class="phrasebook__button md-raised md-primary" ng-click="goToTranslator()">
+		Start Translating!
+	</md-button>
+
+	<md-list md-theme="altTheme3" class="phrasebook__list" layout="column" layout-align="center">
 		<md-list-item class="phrasebook__phrase md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="phrase in phrases" layout="row">
 			<div layout="column" flex>
 				<h4 class="phrasebook__phrase--translated" flex>{{phrase.translated}}</h4>

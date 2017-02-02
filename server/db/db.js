@@ -11,7 +11,7 @@ var db = new Sequelize(databaseURI, {
   }
 });
 
-db.define('user', {
+var User = db.define('user', {
   fbId: {
     type: Sequelize.STRING,
     allowNull: true
@@ -25,16 +25,29 @@ db.define('user', {
     allowNull: false,
     unique: true
   },
-  password: {
-  	type: Sequelize.STRING,
-    allowNull: true
+  src: {
+    type: Sequelize.TEXT,
+    allowNull: true,
   },
   bgUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: true
   }
 });
 
+var Coord = db.define('coord', {
+  lat: {
+    type: Sequelize.DOUBLE,
+    allowNull: false
+  }, 
+  lng: {
+    type: Sequelize.DOUBLE,
+    allowNull: false
+  }
+})
+
+// Coord has a userId
+Coord.belongsTo(User);
 
 
 module.exports = db;

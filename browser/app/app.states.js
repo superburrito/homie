@@ -27,12 +27,6 @@ app.config(function($stateProvider){
 		hideNavbar: true
 	})
 
-	$stateProvider.state('signup', {
-		url: '/signup',
-		templateUrl: '/signup/signup.template.html',
-		controller: 'SignupCtrl',
-		hideNavbar: true
-	})
 
 	$stateProvider.state('translator', {
 		url: '/translator',

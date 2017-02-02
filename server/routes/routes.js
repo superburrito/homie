@@ -18,5 +18,6 @@ router.use('/user', require('./user.js'));
 
 router.use('/translate', require('./translate.js'));
 
+router.use('/map', require('./map.js'));
 
 module.exports = router;

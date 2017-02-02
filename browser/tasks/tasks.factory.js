@@ -48,7 +48,7 @@ app.factory('TasksFactory', function(ToastFactory){
 		var tasks = TasksFactory.getTasks();
 		tasks.push(newTask);
 		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
-		ToastFactory.taskCreated();
+		ToastFactory.displayMsg('Task created and saved.', 600);
 	}
 
 	TasksFactory.checkTask = function (checkedTask) {

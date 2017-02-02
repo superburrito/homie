@@ -1,5 +1,52 @@
+
+.mnavbar {
+
+	width: 100%;
+
+	/* angular-material nav-bar bugfix */
+	ul {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		max-width: 100%;
+		margin: auto;
+	}
+
+	li {
+		margin-left: 0px !important;
+		width: 50%;
+		button {
+			width: 100%;
+		}
+		.md-unselected .material-icons {
+			color: rgba(0,0,0,0.54);
+		}
+	}
+}
+
 .map {
 	&__container {
 		height: $main-vh;
 	}
+
+
+	&__display {
+		height: $map-vh;
+		top: 0;
+		bottom: 0;
+	}
+
+	&__settingsText {
+		text-align: center;
+		width: 80%;
+	}
+
+	&__infoWindow {
+		&--src {
+			height: 100px;
+			width: 100px;
+		}
+	}
 }
+
+

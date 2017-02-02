@@ -27,36 +27,31 @@ app.config(function($translateProvider) {
 
 	const enTranslations = {
 		// Side navbar
-		"HOME_LABEL": "Home",
-		"MY_TASKS_LABEL": "My Tasks",
-		"TRANSLATOR_LABEL": "Translator",
-		"PHRASEBOOK_LABEL": "Phrasebook",
-		"MY_RIGHTS_LABEL": "My Rights",
-		"REACH_OUT_LABEL": "Reach Out",
-		"SETTINGS_LABEL": "Settings",
-		"LOGOUT_LABEL": "Logout",
+		"SIDENAV_HOME": "Home",
+		"SIDENAV_TASKS": "My Tasks",
+		"SIDENAV_TRANSLATOR": "Translator",
+		"SIDENAV_PHRASEBOOK": "Phrasebook",
+		"SIDENAV_MAP": "Explore SG",
+		"SIDENAV_RIGHTS": "My Rights",
+		"SIDENAV_REACHOUT": "Reach Out",
+		"SIDENAV_SETTINGS": "Settings",
+		"SIDENAV_LOGOUT": "Logout",
 
 		// Homepage
 		"HOME_GREETING": "Greetings",
 
 		// Landing page
-		"SIGN_IN_EMAIL": "Email",
-		"SIGN_IN_PASSWORD": "Password",
-		"SIGN_IN_BUTTON_LABEL": "Sign In",
-		"SIGN_UP_BUTTON_LABEL": "Sign Up",
-		"ACCESS_FACEBOOK_LABEL": "Access With Facebook",
-		"SWITCH_LANG_LABEL": "Switch Language",
-
-		// Register
-		"REGISTER_HEADER": "Register",
-		"REGISTER_NAME": "Name",
-		"REGISTER_EMAIL": "Email",
-		"REGISTER_PASSWORD": "Password",
-		"REGISTER_CONFIRM": "Confirm details",
-		"REGISTER_RETURN": "Return",
+		"LANDING_SLOGAN": "Your Handy Tool for Domestic Care.",
+		"ACCESS_FACEBOOK_LABEL": "Log In With Facebook",
+		"LANDING_CHANGELANG": "Use Another Language",
+		"LANDING_DIVERT1": "You are running the app in a browser that is too large.",
+		"LANDING_DIVERT2": "This application is meant for smaller platforms.",
+		"LANDING_TERMS1": "By using this application, you agree",
+		"LANDING_TERMS2": "to these ",
+		"LANDING_TERMS3": "Terms and Conditions",
 
 		// Phrasebook
-		"PHRASEBOOK_HEADER": "Your Phrases: ",
+		"PHRASEBOOK_HEADER": "My Phrases",
 		"PHRASEBOOK_NOSAVED": "You have no saved phrases at the moment.",
 
 		// My Tasks
@@ -98,6 +93,5 @@ app.config(function($translateProvider) {
 		.translations('tl', tlTranslations)
 		.translations('id', idTranslations)
 		.preferredLanguage('en');
-
 
 })

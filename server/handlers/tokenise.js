@@ -8,6 +8,7 @@ module.exports = function (user) {
 		// Payload
 		{ 
 			id: user.id, 
+			fbId: user.fbId,
 			name: user.name,
 			email: user.email 
 		}, 
@@ -15,7 +16,7 @@ module.exports = function (user) {
 		config.secret, 
 		{ 
 			algorithm: 'HS256',
-			expiresIn: '10d'
+			expiresIn: '60d'
 		}
 	);
 	return token;

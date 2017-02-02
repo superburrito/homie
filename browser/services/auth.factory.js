@@ -3,8 +3,54 @@
 app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state, ToastFactory) {
 	var AuthFactory = {};
 
+	AuthFactory.fbLogin = function () {
+		var fbPromise = $q.defer();
+		// Get short-lived token (slToken) from Facebook
+		FB.login((res) => {
+			if (res.authResponse) {
+				var slToken = res.authResponse.accessToken;
+				console.log("[LOGIN] Facebook login successful. slToken obtained:" + slToken);
+				fbPromise.resolve({ success: true, slToken: slToken })
+			} else {
+				console.log("[LOGIN] Facebook login failed.");
+				fbPromise.resolve({ success: false });
+			}
+		})
+	
+		// Pass fbUserData to Server to get long-lived token
+		fbPromise.promise.then((slTokenObj) => {
+			if(!slTokenObj.success) {
+				$rootScope.$broadcast('unauthenticated');
+			} else {
+				$http.post('/auth/facebook', slTokenObj)
+				.then(function (res) {
+					AuthFactory.authDataHandler(res.data);
+					return res.data;
+				})
+			}
+		})
+	};
+
+	AuthFactory.reentry = function () {
+		$http.get('/reentry')
+		.then((res) => { 
+			console.log("[RE-ENTRY] HOMIE server reentry res: " + JSON.stringify(res.data));
+			return res.data; 
+		})
+		.then((data) => {
+			AuthFactory.authDataHandler(data);
+		});
+	};
+
+	// Handles logins AND re-entries
 	AuthFactory.authDataHandler = function (data) {
 		if (data && data.success) {
+			if (data.fbToken) {
+				console.log("[LOGIN] Homie-FB Token Exchange successful. (ll) fbToken obtained: " + data.fbToken);
+			}
+			if (data.hToken) {
+				console.log("[LOGIN] Homie Token obtained: " + data.hToken);
+			}
 			StoreFactory.saveAuthData(data);
 			$rootScope.$broadcast('authenticated');
 		} else {
@@ -12,42 +58,18 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		} 
 	};
 
-	AuthFactory.signup = function (name, email, password) {
-		$http.post('/auth/local/signup', {
-			name: name,
-			email: email, 
-			password: password
-		})
-		.then(function (res) {
-			AuthFactory.authDataHandler(res.data);
-			return res.data;
-		})
-	};
-
-
-	AuthFactory.login = function (email, password) {
-		$http.post('/auth/local', {
-			email: email, 
-			password: password
-		})
-		.then(function (res) {
-			AuthFactory.authDataHandler(res.data);
-			return res.data;
-		})
-	};
-
-
 	AuthFactory.logout = function () {
-		StoreFactory.clear();
 		$state.go('landing');
+		FB.logout(() => {
+			StoreFactory.clear();
+		});
 	};
 
 
 	// Listeners
 	AuthFactory.failedAuthListener = function () {
-		$rootScope.$on('unauthenticated', function () {		
-			// Clear store, return to landing
-			ToastFactory.authProblem();
+		$rootScope.$on('unauthenticated', function () {	
+			ToastFactory.displayMsg('Authentication failed. You have been redirected.', 900);	
 			$state.go('landing');			
 		})
 	};
@@ -58,49 +80,6 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		})
 	};
 
-
-	AuthFactory.fbLogin = function () {
-		var fbPromise = $q.defer();
-		FB.login(function (res) {
-			if (res.authResponse) {
-				
-				console.log("FB client logged in. Fetching data...");
-				var fbToken = res.authResponse.accessToken;
-				StoreFactory.saveFbToken(fbToken);
-
-				FB.api('/me?fields=id,name,email', function (res) {
-					if (!res && res.error) {
-						console.log("FB denied user access.");
-						fbPromise.resolve({ success: false });
-					} else {
-						console.log('FB granted user access. FB Token is: ' + fbToken);
-						fbPromise.resolve({
-							success: true,
-							fbId: res.id,
-							name: res.name,
-							email: res.email,
-							fbToken: fbToken
-						});
-					}
-				})
-			} else {
-				console.log("Facebook login failed.");
-				fbPromise.resolve({ success: false });
-			}
-		},{ scope: 'email' })
-	
-		fbPromise.promise.then(function(fbUserData){
-			if(!fbUserData.success) {
-				$rootScope.$broadcast('unauthenticated');
-			} else {
-				$http.post('/auth/facebook', fbUserData)
-				.then(function (res) {
-					AuthFactory.authDataHandler(res.data);
-					return res.data;
-				})
-			}
-		})
-	};
 
 	return AuthFactory;
 

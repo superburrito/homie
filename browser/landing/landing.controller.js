@@ -1,22 +1,17 @@
 'use strict';
 
-app.controller('LandingCtrl', ($scope, AuthFactory, StoreFactory, $state, $translate, $http) => {
+app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFactory) => {
 	// Bring $state to scope to disable navbar
 	$scope.state = $state;
 
-	// Attempt re-entry into Home state if token is present
-	if(StoreFactory.hasToken()) {
-		$http.get('/reentry')
-			.then(function (res) { 
-				console.log("Response is: " + JSON.stringify(res.data));
-				return res.data; 
-			})
-			.then(function (data) {
-				AuthFactory.authDataHandler(data);
-			})
-	}
 
-	var defaultBg = "http://www.homeanddecor.com.sg/sites/default/files/imagecache/large/prof/2013/11/17323-hdb.jpg"
+	// Attempt re-entry into Home state if tokens are present
+	if (StoreFactory.hasHToken() && StoreFactory.hasFbToken()) {
+		AuthFactory.reentry();
+	}
+ 	
+	const defaultBg = "http://www.homeanddecor.com.sg/sites/default/files/imagecache/large/prof/2013/11/17323-hdb.jpg"
+	
 	$scope.bg = defaultBg;
 
 	$scope.login = function () {
@@ -45,6 +40,4 @@ app.controller('LandingCtrl', ($scope, AuthFactory, StoreFactory, $state, $trans
 			$translate.use('en');
 		}
 	}
-
-
 });

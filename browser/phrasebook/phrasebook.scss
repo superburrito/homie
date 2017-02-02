@@ -1,9 +1,14 @@
 .phrasebook {
 
-  &__header {
-  	padding-left: 10px;
-  	margin-bottom: 5px;
-  }
+	&__header {
+		padding-left: 10px;
+		margin-bottom: 5px;
+		text-align: center;
+	}
+
+	&__list {
+		width: 100%;
+	}
 
 	&__phrase {
 		border: 1px solid white;
@@ -21,7 +26,13 @@
 	}
 
 	&__emptyText {
-		padding-left: 10px;
+		text-align: center;
+	}
+
+	&__button {
+		width: 200px;
+		margin-top: 3px;
+		margin-bottom: 3px;
 	}
 
 }
