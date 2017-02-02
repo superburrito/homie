@@ -191,15 +191,15 @@ app.controller('MapCtrl', ($scope, NgMap, MapFactory, $compile) => {
 	    ]
 	  }
 	]
+
 	// Center
+	$scope.options.center = { lat: 1.29, lng: 103.85 }
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((pos) => {
 			$scope.options.center = { lat: pos.coords.latitude, lng: pos.coords.longitude }
 		})
-	} else {
-		$scope.options.center = { lat: 1.29, lng: 103.85 }
-	}
-
+	} 
+	
 	// Grab data from server first, then load map
 	MapFactory.getAllCoords()
 	.then((data) => {
