@@ -8,7 +8,7 @@ module.exports = function (user) {
 		// Payload
 		{ 
 			id: user.id, 
-			fbId: user.fbId,
+			fbId: user.fbId || null,
 			name: user.name,
 			email: user.email 
 		}, 

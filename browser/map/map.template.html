@@ -30,25 +30,45 @@
 		<marker 
 			class="map__marker"
 			ng-repeat="coord in coords"			
-			id="{{coord.user.id}}"
+			id="m{{coord.id}}"
 			position="{{coord.lat}},{{coord.lng}}"
 			title="{{coord.user.name}}"
 			icon="{{coord.icon}}"
-			on-click="map.showInfoWindow(coord.user.fbId)"
+			on-click="showDetail(coord)"
 		>
 		</marker>
 
-		<info-window
-			ng-repeat="coord in coords"
-			id="{{coord.user.fbId}}"
-		>
-			<div ng-non-bindable="" class="map__infoWindow" layout="column" layout-align="center center">
-				<img class="map__infoWindow--src img-circle" src="{{coord.user.src}}">
-				<a href="http://www.facebook.com/{{coord.user.fbId}}">
-				<md-button md-theme="altTheme3" class="md-accent md-raised">
-					Connect 	
-				</md-button>
+		<!-- Info Box -->
+		<info-window id="user-iw">
+			<div 
+				ng-non-bindable="" 
+				class="map__infoWindow" 
+				layout="column" 
+				layout-align="center center"
+			>
+				<!-- Image -->
+				<img 
+					ng-show="currCoord.user.src"
+					class="map__infoWindow--src" 
+					src="{{currCoord.user.src}}"
+				>
+				<!-- Name -->
+				<p class="map__infoWindow--name">
+					{{currCoord.user.name.split(' ')[0]}}
+				</p>
+				<!-- FB Link -->
+				<a 
+					ng-show="currCoord.user.fbId" 
+					href="http://www.facebook.com/{{currCoord.user.fbId}}"
+				>
+					<md-button 
+						md-theme="altTheme3" 
+						class="md-accent md-raised"
+					>
+							Facebook 	
+					</md-button>
 				</a>
+				<!-- Email?? -->
 			</div>
 		</info-window> 
 

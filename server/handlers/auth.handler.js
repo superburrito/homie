@@ -8,13 +8,92 @@ const User = db.model('user');
 const rp = require('request-promise');
 
 const tokenise = require('./tokenise');
+const filter = require('./filter');
 
-/* BCRYPT: Password hashing function by Niels Provos and David Mazieres (https://en.wikipedia.org/wiki/Bcrypt) */
-/*const bcrypt = require('bcrypt');
-const saltRounds = 10;*/
+// BCRYPT: Password hashing function by Niels Provos and David Mazieres (https://en.wikipedia.org/wiki/Bcrypt) 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const AuthHandler = {}
 
+AuthHandler.localAuth = (req, res, next) => {
+	return User.findOne({
+		where: { email: req.body.email }
+	})
+	.then((user) => {
+		if (!user) {
+			res.status(400).send({ 
+				success: false, 
+				message: 'auth_failure_not_found'
+			});
+		} else {
+			console.log("Found user is:" + user);
+			/* compareSync returns a bool.
+		   	Here, we compare the given password to the hashed one. 
+		   	We do not have to pass in a salt because BCRYPT has 
+			salts built into its generated hashes 
+			(http://stackoverflow.com/questions/6832445/how-can-bcrypt-have-built-in-salts) */
+			const comparePassword = bcrypt.compareSync(req.body.password, user.password);
+			if (!comparePassword) {
+				res.status(400).send({ 
+					success: false, 
+					message: 'auth_failure_wrong_val'
+				});
+			} else {
+				const hToken = tokenise(user);
+				const filteredUser = filter(user);
+				res.status(200).send({ 
+					success: true, 
+					message: 'auth_success_with_tokens', 
+					hToken: hToken,
+					user: filteredUser
+				});
+			}
+		}
+	})
+	.catch(next);
+};
+
+
+AuthHandler.localSignUp = (req, res, next) => {
+	const salt = bcrypt.genSaltSync(saltRounds);
+	const hash = bcrypt.hashSync(req.body.password, salt);
+
+	return User.findOne({
+		where: { email: req.body.email }
+	})
+	.then((user) => {
+		if (user) {
+			res.status(400).send({
+				success: false,
+				message: "account_exists",
+			})
+		} else {
+			return User.create({
+				name: req.body.name,
+				email: req.body.email,
+				password: hash,
+				bgUrl: null
+			})
+		}
+	})
+	.then((createdUser) => {
+		const hToken = tokenise(createdUser);
+		const filteredUser = filter(createdUser);
+		res.status(200).send({
+			success: true,
+			message: "account_created_with_token",
+			hToken: hToken,
+			user: filteredUser
+		})
+	}, () => {
+		res.status(400).send({
+			success: false,
+			message: "account_creation_failed"
+		})
+	})
+	.catch(next);
+};
 
 AuthHandler.facebookAuth = (req, res) => {
 	const APP_ID = config.fbAppId;
@@ -60,13 +139,14 @@ AuthHandler.facebookAuth = (req, res) => {
 				}
 			})
 			.then((user) => {
+				const filteredUser = filter(user);
 				const hToken = tokenise(user);
 				return res.status(200).send({
 					success: true,
-					message: 'Authentication with FB succeeded, tokens attached!',
+					message: 'fb_auth_success_with_tokens',
 					hToken: hToken,
 					fbToken: llToken,
-					user: user
+					user: filteredUser
 				});
 			});
 		})
@@ -75,7 +155,7 @@ AuthHandler.facebookAuth = (req, res) => {
 		console.log("Token Exchange with FB failed: " + err);
 		return res.status(400).send({ 
 			success: false,
-			message: 'Token Exchange with FB failed.'
+			message: 'fb_auth_failure_no_tokens'
 		})
 	})
 }

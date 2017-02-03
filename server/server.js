@@ -40,10 +40,11 @@ app.listen(port, function (err) {
 			var Coord = db.model('coord');
 
 			var userProm = User.create({
-		  	  name: 'Chua Yao Hui',
-		  	  fbId: 10153060782105247,
-			  email: 'yaohui91@hotmail.com',
-			  src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/12439280_10153334778955248_8673996898083161717_n.jpg?oh=4ee81bf224ca85979af6b10d31aad108&oe=5909C2D9',
+		  	  name: 'Rakesh Pk',
+		  	  fbId: 549225760,
+			  email: 'rakesh@hotmail.com',
+			  password: 12345,
+			  src: 'https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/1503502_10153081589165761_3424469626701072341_n.jpg?oh=cfdfc93f6f287fb8b9699f091f0995f6&oe=5949B1DC',
 			  bgUrl: ''
 			})
 

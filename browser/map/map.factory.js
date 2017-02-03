@@ -8,12 +8,6 @@ app.factory('MapFactory', function ($http, $state, ToastFactory) {
 		.then((res) => res.data);
 	}
 
-	MapFactory.updateUserCoord = function () {
-		return $http.post('/map', latLng)
-		.then((res) => res.data);
-	}
-
-
 	MapFactory.markUserLocation = function () {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((pos) => {
@@ -34,7 +28,7 @@ app.factory('MapFactory', function ($http, $state, ToastFactory) {
 				})
 			})
 		} else {
-			ToastFactory.displayMsg('GPS not turned on!', 800);
+			ToastFactory.displayMsg('Unable to use GPS!', 800);
 		}
 	}
 

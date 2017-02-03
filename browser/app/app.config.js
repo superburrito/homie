@@ -42,14 +42,26 @@ app.config(function($translateProvider) {
 
 		// Landing page
 		"LANDING_SLOGAN": "Your Handy Tool for Domestic Care.",
-		"ACCESS_FACEBOOK_LABEL": "Log In With Facebook",
+
+		"LANDING_EMAIL": "Email",
+		"LANDING_PASSWORD": "Password",
+		"LANDING_SIGNIN": "Sign In",
+		"LANDING_SIGNUP": "Sign Up",
+
+		"LANDING_FACEBOOKLOGIN": "Log In With Facebook",
 		"LANDING_CHANGELANG": "Use Another Language",
 		"LANDING_DIVERT1": "You are running the app in a browser that is too large.",
 		"LANDING_DIVERT2": "This application is meant for smaller platforms.",
-		"LANDING_TERMS1": "By using this application, you agree",
-		"LANDING_TERMS2": "to these ",
-		"LANDING_TERMS3": "Terms and Conditions",
+		"LANDING_TERMS1": "By using this application, you agree to these ",
+		"LANDING_TERMS2": "Terms and Conditions",
 
+		// Register
+		"REGISTER_HEADER": "Register",
+		"REGISTER_NAME": "Name",
+		"REGISTER_EMAIL": "Email",
+		"REGISTER_PASSWORD": "Password",
+		"REGISTER_CONFIRM": "Confirm details",
+		"REGISTER_RETURN": "Return",
 		// Phrasebook
 		"PHRASEBOOK_HEADER": "My Phrases",
 		"PHRASEBOOK_NOSAVED": "You have no saved phrases at the moment.",

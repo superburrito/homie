@@ -40,6 +40,14 @@ app.config(function($stateProvider){
 		controller: 'PhrasebookCtrl'
 	})
 
+	$stateProvider.state('signup', {
+		url: '/signup',
+		templateUrl: '/signup/signup.template.html',
+		controller: 'SignupCtrl',
+		hideNavbar: true
+	})
+
+
 	$stateProvider.state('terms', {
 		url: '/terms',
 		templateUrl: '/terms/terms.template.html',
@@ -52,6 +60,8 @@ app.config(function($stateProvider){
 		templateUrl: '/map/map.template.html',
 		controller: 'MapCtrl'
 	})
+
+
 
 	$stateProvider.state('help', {
 		url: '/help',

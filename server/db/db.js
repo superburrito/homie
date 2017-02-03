@@ -25,6 +25,10 @@ var User = db.define('user', {
     allowNull: false,
     unique: true
   },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   src: {
     type: Sequelize.TEXT,
     allowNull: true,

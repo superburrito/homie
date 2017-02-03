@@ -8,7 +8,8 @@ app.controller('MapCtrl', ($scope, NgMap, MapFactory, $compile) => {
 	$scope.setView = function (str) { $scope.view = str; }
 
 	// ApiURL
-	$scope.gMapsUrl = "https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI";
+	const apiKey = "AIzaSyBoEquSh_g4ZxKXRI21Zc801bAYLivD834";
+	$scope.gMapsUrl = "https://maps.google.com/maps/api/js?key=" + apiKey;
 
 	// Helper
 	function expandCoords(coords) {
@@ -200,24 +201,28 @@ app.controller('MapCtrl', ($scope, NgMap, MapFactory, $compile) => {
 		})
 	} 
 	
-	// Grab data from server first, then load map
-	MapFactory.getAllCoords()
-	.then((data) => {
+	// Save coords + Save map
+	const mapProm = NgMap.getMap(); 
+	const coordsProm = MapFactory.getAllCoords();
+	Promise.all([mapProm, coordsProm])
+	.then((values) => {
+		var map = values[0];
+		$scope.map = map;
+		const data = values[1];
 		if (data.success) {
-			console.log("Coords successfully obtained: " + JSON.stringify(data.coords));
 			$scope.coords = expandCoords(data.coords);
-
 		} else {
-			console.log("Failed to obtain markers from server.");
 			$scope.coords = [];
 		}
+		console.table($scope.coords);
+		$scope.currCoord = $scope.coords[0];
+
+		$scope.showDetail = (ev, coord) => {
+			console.log("coord was passed:" + JSON.stringify(coord));
+			$scope.currCoord = coord;
+			$scope.map.showInfoWindow('user-iw', 'm' + coord.id);
+		}
 	})
-
-
-	NgMap.getMap()
-	.then((map) => { 
-		$scope.map = map 
-	});
 
 	$scope.fbMessage = function (toFbId) {
 		MapFactory.fbMessage(toFbId);
