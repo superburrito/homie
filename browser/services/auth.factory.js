@@ -12,7 +12,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			password: password
 		})
 		.then(function (res) {
-			if (res.data && res.data.message === 'account_exists') {
+			if (res.data && res.data.msg === 'account_exists') {
 				ToastFactory.displayMsg('Account already exists!', 600);
 			} else {
 				AuthFactory.authDataHandler(res.data);
@@ -27,9 +27,9 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			password: password
 		})
 		.then(function (res) {
-			if (res.data && res.data.message === 'auth_failure_wrong_val') {
+			if (res.data && res.data.msg === 'auth_failure_wrong_val') {
 				ToastFactory.displayMsg('Wrong email or password!', 600);
-			} else if (res.data && res.data.message === 'auth_failure_not_found') {
+			} else if (res.data && res.data.msg === 'auth_failure_not_found') {
 				ToastFactory.displayMsg('No such user.', 500);
 			} else {
 				AuthFactory.authDataHandler(res.data);
@@ -55,7 +55,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 				})
 			} else {
 				FB.logout(() => {
-					console.log("[LOGIN] Already logged into FB. HOMIE has logged you out to prevent errors. Try again.")
+					console.log("[LOGIN] HOMIE has logged you out to avoid an error. Log in again.")
 					fbPromise.resolve({ success: false });
 				});
 			}
@@ -69,7 +69,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			} else {
 				$http.post('/auth/facebook', slTokenObj)
 				.then(function (res) {
-					if (res.data && res.data.message === 'fb_auth_failure_no_tokens') {
+					if (res.data && res.data.msg === 'fb_auth_failure_no_tokens') {
 						ToastFactory.displayMsg('A server error occurred.', 600);
 					} else {
 						AuthFactory.authDataHandler(res.data);

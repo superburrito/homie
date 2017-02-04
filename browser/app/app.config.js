@@ -31,7 +31,8 @@ app.config(function($translateProvider) {
 		"SIDENAV_TASKS": "My Tasks",
 		"SIDENAV_TRANSLATOR": "Translator",
 		"SIDENAV_PHRASEBOOK": "Phrasebook",
-		"SIDENAV_MAP": "Explore SG",
+		"SIDENAV_MAP": "Homies@SG",
+		"SIDENAV_MESSAGES": "My Messages",
 		"SIDENAV_RIGHTS": "My Rights",
 		"SIDENAV_GETHELP": "Get Help",
 		"SIDENAV_SETTINGS": "Settings",
@@ -41,7 +42,7 @@ app.config(function($translateProvider) {
 		"HOME_GREETING": "Greetings",
 
 		// Landing page
-		"LANDING_SLOGAN": "Your Handy Tool for Domestic Care.",
+		"LANDING_SLOGAN": "A Handy Tool for Domestic Helpers.",
 
 		"LANDING_EMAIL": "Email",
 		"LANDING_PASSWORD": "Password",

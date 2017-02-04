@@ -53,7 +53,7 @@ app.listen(port, function (err) {
 				lng: 103.80
 			})
 
-			Promise.all([coordProm, userProm])
+			return Promise.all([coordProm, userProm])
 			.spread((coord, user) => {
 				coord.setUser(user);
 			})

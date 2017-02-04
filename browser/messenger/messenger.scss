@@ -1,0 +1,24 @@
+.messenger {
+	&__header {
+		margin-bottom: 5px;
+		text-align: center;
+	}
+
+	&__sendingTo {
+		text-align: center;		
+	}
+
+
+	&__form {
+		width: 100%;
+		&--button {
+			width: 200px;
+			margin-top: 3px;
+			margin-bottom: 10px;
+		}
+
+		&--title, &--content {
+			width: 100%;
+		}
+	}
+}

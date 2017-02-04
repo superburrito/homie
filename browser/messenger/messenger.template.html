@@ -1,0 +1,23 @@
+<div class="messenger" layout="column" layout-align="none center">
+    <h2 class="messenger__header">HOMIE Messenger</h2>
+    <div>
+    <p class="messenger__sendingTo">Sending to: {{receiver.name}}</p>
+    </div>
+    <form name="messengerForm" class="messenger__form" layout="column" layout-align="none center">
+        <md-input-container class="messenger__form--title">
+            <label>Message Title</label>     
+            <input class="" type="text" ng-model="title" required>
+        </md-input-container>
+        <md-input-container class="md-block messenger__form--content">
+            <label>Message Content</label>
+            <textarea ng-model="content" md-maxlength="150" rows="3" md-select-on-focus required>
+            </textarea>
+        </md-input-container>
+        <md-button ng-click="sendMessage()" type="submit" class="md-primary md-raised messenger__form--button" ng-disabled="messengerForm.$invalid">
+            Send Your Message
+        </md-button>
+        <md-button md-theme="themeTaskC" class="messenger__form--button md-raised md-accent">
+            Return To Messages
+        </md-button>
+    </form>
+</div>

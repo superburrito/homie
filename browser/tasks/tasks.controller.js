@@ -68,11 +68,11 @@ app.controller('TasksCtrl', function($scope, TasksFactory, $interval){
 
 		// Clear inputs
 		$scope.tasks = TasksFactory.renderTasks();
-		$scope.newTaskName = "";
-		$scope.newTaskAlarmBool = "";
-		$scope.newTaskAlarmTime = "";
-		$scope.newTaskDurBool = "";
-		$scope.newTaskDur = "";
+		$scope.newTaskName = null;
+		$scope.newTaskAlarmBool = null;
+		$scope.newTaskAlarmTime = null;
+		$scope.newTaskDurBool = null;
+		$scope.newTaskDur = null;
 		$scope.taskForm.$setPristine();
 		$scope.taskForm.$setUntouched();
 	}

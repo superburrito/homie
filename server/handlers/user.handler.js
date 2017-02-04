@@ -13,9 +13,7 @@ UserHandler.updateProfile = (req, res) => {
 		return user.update({ bgUrl: bgUrl })
 	})
 	.then(() => {
-		res.status(200).send({
-			success: true
-		})
+		res.status(200).send({ success: true })
 	})
 };
 

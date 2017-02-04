@@ -21,12 +21,18 @@
 				<p>{{ 'SIDENAV_PHRASEBOOK' | translate }}</p>
 			</md-list-item>
 
+			<md-divider></md-divider>
+
 			<md-list-item ng-click="goToMap()">
-				<md-icon md-font-set="material-icons">map</md-icon>
+				<md-icon md-font-set="material-icons">group</md-icon>
 				<p>{{ 'SIDENAV_MAP' | translate }}</p>
 			</md-list-item>
 
-			<md-divider></md-divider>
+
+			<md-list-item ng-click="">
+				<md-icon md-font-set="material-icons">mail</md-icon>
+				<p>{{ 'SIDENAV_MESSAGES' | translate }}</p>
+			</md-list-item>
 
 			<md-list-item>
 				<md-icon md-font-set="material-icons">work</md-icon>
@@ -44,9 +50,6 @@
 				<md-icon md-font-set="material-icons">settings</md-icon>
 				<p>{{ 'SIDENAV_SETTINGS' | translate }}</p>
 			</md-list-item>
-
-
-			<md-divider></md-divider>
 
 			<md-list-item ng-click="logout()">
 				<md-icon md-font-set="material-icons">exit_to_app</md-icon>

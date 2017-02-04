@@ -38,7 +38,7 @@
 		>
 		</marker>
 
-		<!-- Info Box -->
+		<!-- Info Window -->
 		<info-window id="user-iw">
 			<div 
 				ng-non-bindable="" 
@@ -46,29 +46,21 @@
 				layout="column" 
 				layout-align="center center"
 			>
-				<!-- Image -->
 				<img 
 					ng-show="currCoord.user.src"
 					class="map__infoWindow--src" 
 					src="{{currCoord.user.src}}"
+					alt="No Image!"
 				>
-				<!-- Name -->
-				<p class="map__infoWindow--name">
+				<p
+					class="map__infoWindow--name"
+					style="font-size: 20px; margin-top: 6px; margin-bottom: 0px;"
+				>
 					{{currCoord.user.name.split(' ')[0]}}
 				</p>
-				<!-- FB Link -->
-				<a 
-					ng-show="currCoord.user.fbId" 
-					href="http://www.facebook.com/{{currCoord.user.fbId}}"
-				>
-					<md-button 
-						md-theme="altTheme3" 
-						class="md-accent md-raised"
-					>
-							Facebook 	
-					</md-button>
-				</a>
-				<!-- Email?? -->
+				<md-button class="md-raised md-primary" ng-click="showProfile($event)">
+					View Profile
+				</md-button> 
 			</div>
 		</info-window> 
 
@@ -78,17 +70,17 @@
 
 	<!-- Settings -->
 	<div ng-show="view === 'settings'" class="map__settings" layout="column" layout-align="center center">
-		<p class="map__settingsText">
-			You can <b>mark</b> yourself at a location at any point of time. This lets people to see where you are and also allows them to see your Facebook profile. 
+		<p class="map__settingsText">	
+			You can make add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.
 			<br>
 			<br>
-			Don't worry -- you can change or hide this location later.
+			Don't worry -- you can change or hide your profile at any time.
 		</p>
 		<md-button class="map__button md-raised md-primary" ng-click="markUserLocation()">
-			Mark my location
+			Display My Profile
 		</md-button> 
 		<md-button class="map__button md-raised md-warn" ng-click="removeUserLocation()">
-			Hide my location
+			Hide My Profile
 		</md-button> 
 	</div>
 	<!-- End of Settings -->

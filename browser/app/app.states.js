@@ -61,7 +61,11 @@ app.config(function($stateProvider){
 		controller: 'MapCtrl'
 	})
 
-
+	$stateProvider.state('messenger', {
+		url: '/messenger',
+		templateUrl: '/messenger/messenger.template.html',
+		controller: 'MessengerCtrl'
+	})
 
 	$stateProvider.state('help', {
 		url: '/help',
