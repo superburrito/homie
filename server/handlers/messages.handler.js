@@ -1,29 +1,24 @@
 'use strict';
 
-const db = require('./../db/db.js').db;
+const db = require('./../db/db.js');
 const User = db.model('user');
-const Sender = require('./../db/db.js').Sender;
 const Message = db.model('message');
-const Promise = require('bluebird');
-const filter = require('./filter');
+
 const MessagesHandler = {}
 
 MessagesHandler.getAllMessages = (req, res, next) => {
 	return Message.findAll({ 
 		where: { receiver_id: req.decoded.id },
-		include: [Sender]
+		include: [{
+			model: User,
+			as: 'sender',
+			attributes: ['id','fbId','name','email','src','description']
+		}]
 	})
 	.then((messages) => {
-		return Promise.map(messages, (message) => {
-			message.sender = filter(message.sender);
-			return message;
-		})
-	})
-	.then((messagesWithSender) => {
-		res.status(200).send({
+		return res.status(200).send({
 			success: true,
-			msg: 'message_get_success',
-			messages: messagesWithSender
+			messages: messages
 		})
 	})
 	.catch(next);
@@ -60,7 +55,7 @@ MessagesHandler.removeMessage = (req, res, next) => {
 
 
 MessagesHandler.removeAllMessages = (req, res, next) => {
-	return Message.destroy({ where: { receiverId: req.decoded.id } })
+	return Message.destroy({ where: { receiver_id: req.decoded.id } })
 	.then(() => {
 		res.status(200).send({ success: true });
 	})

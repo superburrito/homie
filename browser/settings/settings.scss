@@ -1,18 +1,19 @@
 .settings {
 
 	&__button {
-		width: 225px;
+		width: 275px;
 	}
+
 
 	&__form {
-
 		&--thumbnail {
 			img-align: middle;
-			width: 100px;
-			height: 100px;
+			width: 70px;
+			height: 70px;
 		}
 
-
+		&--description {
+			width: 100%;
+		}
 	}
-
 }

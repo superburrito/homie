@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $mdDialog, $http) => { 
+app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $mdDialog) => { 
 
 	function launchTutorial () {
 		if (localStorage.getItem('HOMIE-sMsgsT') !== 'seen') {

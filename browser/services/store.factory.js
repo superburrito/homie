@@ -18,7 +18,6 @@ app.factory('StoreFactory', function(){
 		return StoreFactory.getHToken() !== null;
 	}
 
-
 	// FB Token management
 	StoreFactory.saveFbToken = function (token) {
 		localStorage.setItem('HOMIE-fbToken', JSON.stringify(token));
@@ -27,7 +26,6 @@ app.factory('StoreFactory', function(){
 	StoreFactory.getFbToken = function () {
 		if (!localStorage.getItem('HOMIE-fbToken')) return null;
 		return JSON.parse(localStorage.getItem('HOMIE-fbToken'));
-
 	}
 
 	StoreFactory.hasFbToken = function () {
@@ -45,24 +43,20 @@ app.factory('StoreFactory', function(){
 	*/
 
 	StoreFactory.saveAuthData = function (data) {
-		var name = data.user.name;
-		StoreFactory.saveProfile({
-			fbId: data.user.fbId,
-			id: data.user.id,
-			firstName: name.substring(0, name.indexOf(' ')),
-			lastName: name.substring(name.indexOf(' ')), 
-			src: data.user.src,
-			bgUrl: data.user.bgUrl,
-		});
+		StoreFactory.saveProfile(data.user);
 		if (data.hToken) {
+			console.log("Saving HToken...");
 			StoreFactory.saveHToken(data.hToken);
 		}
 		if (data.fbToken) {
+			console.log("Saving FBToken...");
 			StoreFactory.saveFbToken(data.fbToken);
 		}
 	}
 
 	StoreFactory.saveProfile = function (profile) {
+		console.log("Saving profile...");
+		console.table(profile);
 		localStorage.setItem('HOMIE-profile', JSON.stringify(profile));
 	}
 
@@ -71,19 +65,11 @@ app.factory('StoreFactory', function(){
 		return JSON.parse(localStorage.getItem('HOMIE-profile'));
 	}
 
-	StoreFactory.updateBgUrl = function (newBgUrl) {
-		var profile = StoreFactory.getProfile();
-		profile.bgUrl = newBgUrl;
-		StoreFactory.saveProfile(profile);
-	}
-
-
 	// Clearing store when logging out
 	StoreFactory.clear = function () {
 		localStorage.removeItem('HOMIE-profile');
 		localStorage.removeItem('HOMIE-hToken');
 		localStorage.removeItem('HOMIE-fbToken');
-
 		console.log('User info in localStorage cleared (including tokens).');
 	}
 

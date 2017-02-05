@@ -2,7 +2,7 @@
 
 const config = require('./../env/index.js');
 
-const db = require('./../db/db.js').db;
+const db = require('./../db/db.js');
 const User = db.model('user');
 
 const rp = require('request-promise');
@@ -73,7 +73,7 @@ AuthHandler.localSignUp = (req, res, next) => {
 				name: req.body.name,
 				email: req.body.email,
 				password: hash,
-				bgUrl: null
+				src: ''
 			})
 		}
 	})
@@ -127,8 +127,7 @@ AuthHandler.facebookAuth = (req, res) => {
 						fbId: fbId,
 						name: name,
 						email: email,
-						src: src,
-						bgUrl: null
+						src: src
 					})
 				} else {
 					return user.update({

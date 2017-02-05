@@ -92,8 +92,9 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 	};
 
 	AuthFactory.resToDataFilter = (res) => {
-		if(res.status == 403) {
+		if (res.status === 403) {
 			$rootScope.broadcast('unauthenticated');
+			return;
 		}
 		return res.data;
 	}

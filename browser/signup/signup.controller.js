@@ -8,7 +8,14 @@ app.controller('SignupCtrl', function ($scope, AuthFactory, $state) {
 	$scope.bg = defaultBg;
 
 	$scope.signup = function () {
-		AuthFactory.signup($scope.name, $scope.email, $scope.password);
+		var splitName = $scope.name.split(' ');
+		for (var i=0; i < splitName.length; i++) {
+			splitName[i] = 
+				splitName[i].charAt(0).toUpperCase() +
+				splitName[i].slice(1)
+		}
+		var capitalisedName = splitName.join(' ');
+		AuthFactory.signup(capitalisedName, $scope.email, $scope.password);
 	} 
 
 	$scope.goToLanding = function () {

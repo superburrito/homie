@@ -12,35 +12,31 @@ var db = new Sequelize(databaseURI, {
 });
 
 var User = db.define('user', {
-  fbId: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
-  name: {
-  	type: Sequelize.STRING,
-    allowNull: false
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
-  src: {
-    type: Sequelize.TEXT,
-    allowNull: true,
-  },
-  bgUrl: {
-    type: Sequelize.TEXT,
-    allowNull: true
-  },
-  description: {
-    type: Sequelize.TEXT,
-    allowNull: true
-  }
+    fbId: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    name: {
+    	type: Sequelize.STRING,
+      allowNull: false
+    },
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    src: {
+      type: Sequelize.TEXT,
+      allowNull: true,
+    },
+    description: {
+      type: Sequelize.TEXT,
+      allowNull: true
+    }
 });
 
 var Coord = db.define('coord', {
@@ -69,11 +65,7 @@ var Message = db.define('message', {
 // Coord has a userId
 Coord.belongsTo(User);
 // Every message has a sender and a receiver
-var Sender = Message.belongsTo(User, {as: 'sender'});
-var Receiver = Message.belongsTo(User, {as: 'receiver'});
+Message.belongsTo(User, {as: 'sender'});
+Message.belongsTo(User, {as: 'receiver'});
 
-module.exports = {
-  db: db,
-  Sender: Sender,
-  Receiver: Receiver
-}
+module.exports = db;

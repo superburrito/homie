@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var db = require('./db/db.js').db;
+var db = require('./db/db.js');
 var Promise = require('bluebird');
 
 // Parse and log server requests
@@ -44,8 +44,7 @@ app.listen(port, function (err) {
 		  	  fbId: 549225760,
 			  email: 'rakesh@hotmail.com',
 			  password: 12345,
-			  src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/1503502_10153081589165761_3424469626701072341_n.jpg?oh=4a6174cb65a9e5ecfbd7cd2000b617cf&oe=590C225B',
-			  bgUrl: ''
+			  src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/1503502_10153081589165761_3424469626701072341_n.jpg?oh=4a6174cb65a9e5ecfbd7cd2000b617cf&oe=590C225B'
 			})
 
 /*			var user2Prom = User.create({

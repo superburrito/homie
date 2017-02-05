@@ -56,8 +56,9 @@ app.config(function($translateProvider) {
 		"TASKS_CONFIRM": "Confirm Task",
 
 		// Settings
-		"SETTINGS_BACKGROUND": "Choose a new background",
+		"SETTINGS_BACKGROUND": "Choose a (private) background",
 		"SETTINGS_CONFIRM": "Confirm your settings",
+		"SETTINGS_SRC": "Set your (public) profile picture",
 
 		// Translate
 		"TRANSLATE_HEADER": "Text to Translate",

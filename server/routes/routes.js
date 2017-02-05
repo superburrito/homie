@@ -19,10 +19,11 @@ router.use('/reentry', require('./reentry.js'))
 
 router.use('/user', require('./user.js'));
 
-router.use('/translate', require('./translate.js'));
-
 router.use('/map', require('./map.js'));
 
 router.use('/messages', require('./messages.js'));
+
+router.use('/translate', require('./translate.js'));
+
 
 module.exports = router;

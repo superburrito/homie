@@ -1,27 +1,22 @@
 'use strict';
 
-const db = require('./../db/db.js').db;
+const db = require('./../db/db.js');
 const User = db.model('user');
 const Coord = db.model('coord');
-const filter = require('./filter');
-const Promise = require('bluebird');
 
 const MapHandler = {}
 
 MapHandler.getAllCoords = (req, res, next) => {
 	return Coord.findAll({
-		include: [User]
+		include: [{
+			model: User,
+			attributes: ['fbId', 'name', 'email', 'src', 'description']
+		}]
 	})
 	.then((coords) => {
-		return Promise.map(coords, (coord) => {
-			coord.user = filter(coord.user);
-			return coord;
-		})
-	})
-	.then((filteredCoords) => {
 		res.status(200).send({
 			success: true,
-			coords: filteredCoords
+			coords: coords
 		})
 	})
 	.catch(next);

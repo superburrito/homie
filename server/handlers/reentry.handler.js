@@ -1,5 +1,5 @@
 'use strict';
-const db = require('./../db/db.js').db;
+const db = require('./../db/db.js');
 const User = db.model('user');
 const filter = require('./filter');
 

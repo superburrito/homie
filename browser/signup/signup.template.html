@@ -4,15 +4,25 @@
 		<form class="signup__form" layout="column" layout-align="none center" ng-submit="signup()">
 			<md-input-container class="signup__input1" md-theme="dark">
 		    <label>{{ 'REGISTER_NAME' | translate }}</label>
-		    <input ng-model="name">
+		    <input 
+		    	ng-model="name"
+		    	md-minlength="6"
+		    >
 		  </md-input-container>
 			<md-input-container class="signup__input2" md-theme="dark">
 		    <label>{{ 'REGISTER_EMAIL' | translate }}</label>
-		    <input ng-model="email">
+		    <input 
+		    	ng-model="email"
+		    >
 		  </md-input-container>
 		  <md-input-container class="signup__input2" md-theme="dark">
 	      <label>{{ 'REGISTER_PASSWORD' | translate }}</label>
-	      <input type="password" ng-model="password">
+	      <input 
+	      	type="password" 
+	      	ng-model="password"
+	      	md-minlength="6",
+	      	md-maxlength="26"
+	      	>
 	    </md-input-container>
 	    <div layout="row">
 			<md-button type="submit" class="md-raised md-primary">
