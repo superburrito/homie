@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('SettingsFactory', (cloudinary, StoreFactory, ToastFactory, $http, AuthFactory, $state) => {
+app.factory('SettingsFactory', (cloudinary, StoreFactory, ToastFactory, $http, AuthFactory, $state, $translate) => {
 	var SettingsFactory = {};
 
 	SettingsFactory.upload = (file) => {
@@ -17,10 +17,8 @@ app.factory('SettingsFactory', (cloudinary, StoreFactory, ToastFactory, $http, A
 	      	console.log('Cloudinary Res Data: ' + JSON.stringify(res.data));
 	     	// Upload succeeds
 	     	if (res && res.status === 200) {
-	     		ToastFactory.displayMsg('Upload successful.', 400);
 	      		return res.data.secure_url;
 	      	} else {
-	      		ToastFactory.displayMsg('Upload failed.', 400);
 	      		return null;
 	      	}
 	    })
@@ -33,11 +31,13 @@ app.factory('SettingsFactory', (cloudinary, StoreFactory, ToastFactory, $http, A
         .then((data) => {
         	if (data.success) {
         		console.log("Server sync res: " + JSON.stringify(data));
-        		ToastFactory.displayMsg('Update synced with server.', 500);
+        		ToastFactory.displayMsg(
+        			$translate.instant('T_SETTINGS_SYNC_SUCC'), 500);
         		StoreFactory.saveProfile(data.user);
         		$state.go('home');
         	} else {
-        		ToastFactory.displayMsg('Update did not sync with server.', 600);
+        		ToastFactory.displayMsg(
+        			$translate.instant('T_SETTINGS_SYNC_FAIL'), 600);
         	}
         })
 	}

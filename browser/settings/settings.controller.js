@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SettingsCtrl', function ($scope, ToastFactory, $state, SettingsFactory, StoreFactory) {
+app.controller('SettingsCtrl', function ($scope, ToastFactory, $state, SettingsFactory, StoreFactory, $translate) {
 
   // Hide any loading animations
 	$scope.notLoading = true;
@@ -8,7 +8,8 @@ app.controller('SettingsCtrl', function ($scope, ToastFactory, $state, SettingsF
 	$scope.update = function () {
 	    // If cannot get userId from Store, break
    		if (!StoreFactory.getProfile().id) {
-      		ToastFactory.displayMsg('Error: Your cache has missing data.', 800);
+      		ToastFactory.displayMsg(
+      			$translate.instant('T_SETTINGS_CACHE_ERR'), 700);
       		return; 
     	}
     	// Run animation

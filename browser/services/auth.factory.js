@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state, ToastFactory) {
+app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state, ToastFactory, $translate) {
 
 	var AuthFactory = {};
 
@@ -13,7 +13,8 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		})
 		.then(function (res) {
 			if (res.data && res.data.msg === 'account_exists') {
-				ToastFactory.displayMsg('Account already exists!', 600);
+				ToastFactory.displayMsg(
+					$translate.instant('T_AUTH_ACCT_EXISTS'), 500);
 			} else {
 				AuthFactory.authDataHandler(res.data);
 			}
@@ -28,9 +29,11 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		})
 		.then(function (res) {
 			if (res.data && res.data.msg === 'auth_failure_wrong_val') {
-				ToastFactory.displayMsg('Wrong email or password!', 600);
+				ToastFactory.displayMsg(
+					$translate.instant('T_AUTH_WRONG_CREDS'), 500);
 			} else if (res.data && res.data.msg === 'auth_failure_not_found') {
-				ToastFactory.displayMsg('No such user.', 500);
+				ToastFactory.displayMsg(
+					$translate.instant('T_AUTH_NO_SUCH'), 500);
 			} else {
 				AuthFactory.authDataHandler(res.data);
 			}
@@ -70,7 +73,8 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 				$http.post('/auth/facebook', slTokenObj)
 				.then(function (res) {
 					if (res.data && res.data.msg === 'fb_auth_failure_no_tokens') {
-						ToastFactory.displayMsg('A server error occurred.', 600);
+						ToastFactory.displayMsg(
+							$translate.instant('T_AUTH_SERVER_ERR'), 600);
 					} else {
 						AuthFactory.authDataHandler(res.data);
 					}

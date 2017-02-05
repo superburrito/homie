@@ -1,7 +1,7 @@
 <div layout="column" class="message">
-	<h2 class="messages__header">My Messages</h2>
+	<h2 class="messages__header">{{ 'MESSAGES_HEADER' | translate }}</h2>
 	<p class="messages__none" ng-show="noMessages">
-		You have no messages yet.
+		{{ 'MESSAGES_NONE' | translate }}
 	</p>
 	<md-list class="messages__list" layout="column">
 		<md-list-item 
@@ -31,7 +31,6 @@
 				<md-icon md-font-set="material-icons">	delete_forever
 				</md-icon>
 			</md-button>
-
 		</md-list-item>
 	</md-list>
 </div>

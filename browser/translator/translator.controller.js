@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFactory, ToastFactory){
+app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFactory, ToastFactory, $translate){
 	// Hide any loading animations
 	$scope.notLoading = true;
 
@@ -42,7 +42,8 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 				translated: fromLang + ': ' + $scope.textToTranslate,
 				translation: toLang + ': ' + $scope.translatedText
 			})
-			ToastFactory.displayMsg('Phrase saved.', 500);
+			ToastFactory.displayMsg(
+				$translate.instant('T_TRANSLATOR_SAVED'), 500);
 		}
 	};
 

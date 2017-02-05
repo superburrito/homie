@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog) {
+app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog, $translate) {
 	var MapFactory = {};
 
 	// Fire tutorial
@@ -10,10 +10,10 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog)
 		      $mdDialog.alert()
 		        .parent(angular.element(document.querySelector('.currentNavItem')))
 		        .clickOutsideToClose(true)
-		        .title('Welcome to Homies@SG!')
-		        .textContent("Feel free to reach out to other domestic helpers in the area. You can edit your visibility in the '?' tab.")
+		        .title($translate.instant('MAP_POPUP_HEADER'))
+		        .textContent($translate.instant('MAP_POPUP_MAIN'))
 		        .ariaLabel('Map Tutorial Dialog')
-		        .ok('Okay!')
+		        .ok($translate.instant('MAP_POPUP_OK'))
 		    );
 		}
 	    localStorage.setItem('HOMIE-sMapT', 'seen');
@@ -61,14 +61,13 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog)
 			.then((res) => AuthFactory.resToDataFilter(res))
 			.then((data) => {
 				if (data.success) {
-					console.log("New coord is: " + JSON.stringify(data.coord));
-					ToastFactory.displayMsg('Successfully added your profile to the map.', 1000);
+					ToastFactory.displayMsg($translate.instant('T_PROFILE_ADD_SUCCESS'), 1000);
 				} else {
-					ToastFactory.displayMsg('Failed to add your profile.', 800);
+					ToastFactory.displayMsg($translate.instant('T_PROFILE_ADD_FAIL'), 800);
 				}
 			})
 		} else {
-			ToastFactory.displayMsg('Unable to use GPS!', 800);
+			ToastFactory.displayMsg($translate.instant('T_GPS_FAIL'), 800);
 		}
 	}
 
@@ -77,9 +76,9 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog)
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
-				ToastFactory.displayMsg('Your profile has been hidden.', 800);
+				ToastFactory.displayMsg($translate.instant('T_PROFILE_HIDE_SUCCESS'), 800);
 			} else {
-				ToastFactory.displayMsg('An error occurred.', 500);
+				ToastFactory.displayMsg($translate.instant('T_PROFILE_HIDE_FAIL'), 500);
 			}
 		})
 	}

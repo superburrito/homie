@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MessengerCtrl', ($scope, $rootScope, $state, $http, ToastFactory) => {
+app.controller('MessengerCtrl', ($scope, $rootScope, $state, $http, ToastFactory, $translate) => {
 	$scope.receiver = $rootScope.receiver;
 
 	$scope.sendMessage = () => {
@@ -16,11 +16,11 @@ app.controller('MessengerCtrl', ($scope, $rootScope, $state, $http, ToastFactory
 				$scope.content = null;
 				$scope.messengerForm.$setPristine();
 				$scope.messengerForm.$setUntouched();
-				ToastFactory.displayMsg('Message sent!', 500);
+				ToastFactory.displayMsg($translate.instant('T_MESSENGER_SUCCESS'), 500);
 				// Go to messages state
 				$state.go('messages');
 			} else {
-				ToastFactory.displayMsg('Message failed to send.', 500);
+				ToastFactory.displayMsg($translate.instant('T_MESSENGER_FAIL'), 500);
 			}
 		})		
 	}

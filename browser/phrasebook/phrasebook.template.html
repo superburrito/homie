@@ -2,7 +2,7 @@
 	<h2 class="phrasebook__header">{{ 'PHRASEBOOK_HEADER' | translate }}</h2>
 	<p class="phrasebook__emptyText" ng-show="noSavedPhrases">{{ 'PHRASEBOOK_NOSAVED' | translate }}</p>
 	<md-button ng-show="noSavedPhrases" class="phrasebook__button md-raised md-primary" ng-click="goToTranslator()">
-		Start Translating!
+		{{ 'PHRASEBOOK_PROMPT' | translate }} 
 	</md-button>
 
 	<md-list md-theme="altTheme3" class="phrasebook__list" layout="column" layout-align="center">

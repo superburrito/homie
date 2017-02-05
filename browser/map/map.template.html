@@ -19,16 +19,16 @@
 	<!-- Settings -->
 	<div ng-show="view === 'settings'" class="map__settings" layout="column" layout-align="center center">
 		<p class="map__settingsText">	
-			You can make add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.
+			{{ 'MAP_SETTINGS1' | translate }}			
 			<br>
 			<br>
-			Don't worry -- you can change or hide your profile at any time.
+			{{ 'MAP_SETTINGS2' | translate }}
 		</p>
 		<md-button class="map__button md-raised md-primary" ng-click="markUserLocation()">
-			Display My Profile
+			{{ 'MAP_DISPLAY_BUTTON' | translate }}
 		</md-button> 
 		<md-button class="map__button md-raised md-warn" ng-click="removeUserLocation()">
-			Hide My Profile
+			{{ 'MAP_HIDE_BUTTON' | translate }}
 		</md-button> 
 	</div>
 	<!-- End of Settings -->

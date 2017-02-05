@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory) => {
+app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate) => {
 	
 	var MessagesFactory = {};
 
@@ -11,7 +11,7 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory) => {
 			if (data.success) {
 				return data.messages;
 			} else {
-				ToastFactory.displayMsg('Failed to load messages from server.', 500);
+				ToastFactory.displayMsg($translate.instant('T_MESSAGES_LOAD_FAIL'), 500);
 				return [];
 			}
 		})
@@ -25,7 +25,7 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory) => {
 				console.log("Deleted");
 				return;
 			} else {
-				ToastFactory.displayMsg('Delete failed.', 500);
+				ToastFactory.displayMsg($translate.instant('T_MESSAGES_DELETE_FAIL'), 500);
 				return;
 			}
 		})

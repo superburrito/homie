@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $mdDialog) => { 
+app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $mdDialog, $translate) => { 
 
 	function launchTutorial () {
 		if (localStorage.getItem('HOMIE-sMsgsT') !== 'seen') {
@@ -8,10 +8,10 @@ app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $md
 		      $mdDialog.alert()
 		        .parent(angular.element(document.querySelector('.currentNavItem')))
 		        .clickOutsideToClose(true)
-		        .title("Here's your mail!")
-		        .textContent("Click on the profile pictures on the left to view each message.")
+		        .title($translate.instant('MESSAGES_POPUP_HEADER'))
+		        .textContent($translate.instant('MESSAGES_POPUP_MAIN'))
 		        .ariaLabel('Msgs Tutorial Dialog')
-		        .ok('Sure!')
+		        .ok($translate.instant('MESSAGES_POPUP_OK'))
 		    );
 		}
 	    localStorage.setItem('HOMIE-sMsgsT', 'seen');
