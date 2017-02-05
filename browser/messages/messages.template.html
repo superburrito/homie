@@ -1,0 +1,37 @@
+<div layout="column" class="message">
+	<h2 class="messages__header">My Messages</h2>
+	<p class="messages__none" ng-show="noMessages">
+		You have no messages yet.
+	</p>
+	<md-list class="messages__list" layout="column">
+		<md-list-item 
+			class="messages__listItem" 
+			ng-repeat="message in messages"
+			md-whiteframe-2dp
+			layout="row"
+			layout-align="start center"
+		>
+			<img 
+				class="messages__listItem--src" 
+				src="{{message.sender.src}}"
+				alt="No Image"
+				ng-click="viewMessage(message)"
+				>
+			<div class="messages__listItem--info" flex>
+				<h3>{{message.sender.name.substring(0,10)}}</h3>
+				<p>{{message.title.substring(0,18).concat('...')}}</p>
+			</div>
+
+			<md-button 
+				class="md-icon-button" 
+				layout="column" 
+				layout-align="center center"
+				ng-click="deleteMessage(message)"
+			>
+				<md-icon md-font-set="material-icons">	delete_forever
+				</md-icon>
+			</md-button>
+
+		</md-list-item>
+	</md-list>
+</div>

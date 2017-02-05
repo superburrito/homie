@@ -11,84 +11,24 @@
 	</md-nav-bar>
 	<!-- End of Navbar -->
 
-	<!-- Map -->	
-	<div 
-		map-lazy-load="https://maps.google.com/maps/api/js"
-		map-lazy-load-params="{{gMapsUrl}}" 
-		layout="column" 
-		ng-show="view === 'display'" 
-		class="map__wrap" 
-		flex
-	>
-		<ng-map 
-			class="map__display" 
-			styles="{{options.styles}}"
-			center="[{{options.center.lat}}, {{options.center.lng}}]"
-			zoom="{{options.zoom}}"
-			flex
-		>
-		<marker 
-			class="map__marker"
-			ng-repeat="coord in coords"			
-			id="m{{coord.id}}"
-			position="{{coord.lat}},{{coord.lng}}"
-			title="{{coord.user.name}}"
-			icon="{{coord.icon}}"
-			on-click="showDetail(coord)"
-		>
-		</marker>
-
-		<!-- Info Box -->
-		<info-window id="user-iw">
-			<div 
-				ng-non-bindable="" 
-				class="map__infoWindow" 
-				layout="column" 
-				layout-align="center center"
-			>
-				<!-- Image -->
-				<img 
-					ng-show="currCoord.user.src"
-					class="map__infoWindow--src" 
-					src="{{currCoord.user.src}}"
-				>
-				<!-- Name -->
-				<p class="map__infoWindow--name">
-					{{currCoord.user.name.split(' ')[0]}}
-				</p>
-				<!-- FB Link -->
-				<a 
-					ng-show="currCoord.user.fbId" 
-					href="http://www.facebook.com/{{currCoord.user.fbId}}"
-				>
-					<md-button 
-						md-theme="altTheme3" 
-						class="md-accent md-raised"
-					>
-							Facebook 	
-					</md-button>
-				</a>
-				<!-- Email?? -->
-			</div>
-		</info-window> 
-
-		</ng-map>
+	<!-- Map -->		
+	<div id="mapDisplay" ng-show="view === 'display'">
 	</div>
 	<!-- End of Map -->
 
 	<!-- Settings -->
 	<div ng-show="view === 'settings'" class="map__settings" layout="column" layout-align="center center">
-		<p class="map__settingsText">
-			You can <b>mark</b> yourself at a location at any point of time. This lets people to see where you are and also allows them to see your Facebook profile. 
+		<p class="map__settingsText">	
+			You can make add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.
 			<br>
 			<br>
-			Don't worry -- you can change or hide this location later.
+			Don't worry -- you can change or hide your profile at any time.
 		</p>
 		<md-button class="map__button md-raised md-primary" ng-click="markUserLocation()">
-			Mark my location
+			Display My Profile
 		</md-button> 
 		<md-button class="map__button md-raised md-warn" ng-click="removeUserLocation()">
-			Hide my location
+			Hide My Profile
 		</md-button> 
 	</div>
 	<!-- End of Settings -->

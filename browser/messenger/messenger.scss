@@ -1,0 +1,28 @@
+.messenger {
+	&__sendingTo {
+		width: 100%;
+		background-color: #E91E63;
+		color: white;
+		&--src {
+			width: 60px;
+			height: 60px;
+			}
+		&--text {
+			margin-left: 10px;		
+		}
+	}
+
+	&__form {
+		width: 100%;
+		&--button {
+			width: 200px;
+			margin-top: 3px;
+			margin-bottom: 10px;
+		}
+
+		&--title, &--content {
+			width: 100%;
+		}
+	}
+
+}

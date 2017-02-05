@@ -1,0 +1,34 @@
+<md-dialog class="profile" aria-label="Profile">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h3>{{user.name}}</h3>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-font-set="material-icons">clear</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column">
+      <div class="md-dialog-content" layout="column" layout-align="none center">
+        <img class="profile__pic" alt="{{user.name.split(' ')[0]}}'s Profile Picture" 
+        src="{{user.src}}">
+        <p class="profile__description">
+          {{user.description}}
+        </p>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions class="profile__actions" layout="row" layout-align="center center">
+        <a ng-show="user.fbId" 
+          href="http://www.facebook.com/{{currCoord.user.fbId}}"
+        >
+          <md-button md-theme="altTheme3" class="profile__button md-accent md-raised">
+            Facebook  
+          </md-button>
+        </a>
+        <md-button class="profile__button md-primary md-raised" ng-click="goToMessenger()">
+            Send a Message  
+        </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

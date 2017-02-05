@@ -1,6 +1,6 @@
 'use strict';
 
-app.run(function ($window, AuthFactory) {
+app.run(function ($window, AuthFactory, $rootScope) {
 
   // Initialise FB JS SDK
   $window.fbAsyncInit = function() {
@@ -25,6 +25,12 @@ app.run(function ($window, AuthFactory) {
   AuthFactory.failedAuthListener();
   AuthFactory.successfulAuthListener();
   
-  
-  
+
+  // Check for rootScope vals in localStorage
+  if (localStorage.getItem('HOMIE-receiver').length > 10) {
+    $rootScope.receiver = JSON.parse(localStorage.getItem('HOMIE-receiver'));
+  }
+  if (localStorage.getItem('HOMIE-currMessage').length > 10) {
+    $rootScope.currMessage = JSON.parse(localStorage.getItem('HOMIE-currMessage'));
+  }
 });

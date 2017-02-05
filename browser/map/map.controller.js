@@ -1,242 +1,98 @@
 'use strict';
 
-app.controller('MapCtrl', ($scope, NgMap, MapFactory, $compile) => {
+app.controller('MapCtrl', ($scope, $rootScope, MapFactory, MapStyleFactory, $state) => {
 
+	// Launch tutorial
+	MapFactory.launchTutorial();
+	
 	/* ----------- MAP FUNCS ------------- */ 
 	// View controls
 	$scope.view = 'display';
-	$scope.setView = function (str) { $scope.view = str; }
+	$scope.setView = (str) => { $scope.view = str; }
+
+	$scope.showProfile = (event) => { MapFactory.showProfile(event); }
 
 	// ApiURL
 	const apiKey = "AIzaSyBoEquSh_g4ZxKXRI21Zc801bAYLivD834";
 	$scope.gMapsUrl = "https://maps.google.com/maps/api/js?key=" + apiKey;
 
-	// Helper
-	function expandCoords(coords) {
-		var expandedCoords = coords.map((coord) => {
-			coord.icon = {
-				url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-6096188ce806c80cf30dca727fe7c237.png',
-				scaledSize: [42, 42],
-				origin: [0, 0],
-				anchor: [0, 0]		
-			} 
-			return coord;
-		})
-		console.log("Expanded Coords:" + JSON.stringify(expandedCoords));
-		return expandedCoords;
-	}
-
-	// Define options
-	$scope.options = {};
-	// Zoom
-	$scope.options.zoom = 18;
-	// Styles 
-	$scope.options.styles = [
-	  {
-	    "elementType": "geometry",
-	    "stylers": [
-	      {
-	        "color": "#242f3e"
-	      }
-	    ]
-	  },
-	  {
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#746855"
-	      }
-	    ]
-	  },
-	  {
-	    "elementType": "labels.text.stroke",
-	    "stylers": [
-	      {
-	        "color": "#242f3e"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "administrative.locality",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#d59563"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "poi",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#d59563"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "poi.park",
-	    "elementType": "geometry",
-	    "stylers": [
-	      {
-	        "color": "#263c3f"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "poi.park",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#6b9a76"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "road",
-	    "elementType": "geometry",
-	    "stylers": [
-	      {
-	        "color": "#38414e"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "road",
-	    "elementType": "geometry.stroke",
-	    "stylers": [
-	      {
-	        "color": "#212a37"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "road",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#9ca5b3"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "road.highway",
-	    "elementType": "geometry",
-	    "stylers": [
-	      {
-	        "color": "#746855"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "road.highway",
-	    "elementType": "geometry.stroke",
-	    "stylers": [
-	      {
-	        "color": "#1f2835"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "road.highway",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#f3d19c"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "transit",
-	    "elementType": "geometry",
-	    "stylers": [
-	      {
-	        "color": "#2f3948"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "transit.station",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#d59563"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "water",
-	    "elementType": "geometry",
-	    "stylers": [
-	      {
-	        "color": "#17263c"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "water",
-	    "elementType": "labels.text.fill",
-	    "stylers": [
-	      {
-	        "color": "#515c6d"
-	      }
-	    ]
-	  },
-	  {
-	    "featureType": "water",
-	    "elementType": "labels.text.stroke",
-	    "stylers": [
-	      {
-	        "color": "#17263c"
-	      }
-	    ]
-	  }
-	]
-
-	// Center
-	$scope.options.center = { lat: 1.29, lng: 103.85 }
+	// Define gmap options
+	const options = {};
+	options.center = { lat: 1.29, lng: 103.85 }
+	options.zoom = 18;
+	options.styles = MapStyleFactory.getStyle();
+	// Load map first
+	var map = new google.maps.Map(document.getElementById('mapDisplay'), options);
+	// If GPS available, pan to current location
+	$scope.currPos = null;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((pos) => {
-			$scope.options.center = { lat: pos.coords.latitude, lng: pos.coords.longitude }
+			$scope.currPos = { 
+				lat: pos.coords.latitude, 
+				lng: pos.coords.longitude 
+			}
+
+			map.panTo($scope.currPos);
 		})
 	} 
-	
-	// Save coords + Save map
-	const mapProm = NgMap.getMap(); 
-	const coordsProm = MapFactory.getAllCoords();
-	Promise.all([mapProm, coordsProm])
-	.then((values) => {
-		var map = values[0];
-		$scope.map = map;
-		const data = values[1];
-		if (data.success) {
-			$scope.coords = expandCoords(data.coords);
-		} else {
-			$scope.coords = [];
+	// Load Markers
+	var markers = [];
+	function loadMarkers () { 
+		const iconOptions = {
+			url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-6096188ce806c80cf30dca727fe7c237.png',
+			scaledSize: new google.maps.Size(42, 42),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(0, 0)	
 		}
-		console.table($scope.coords);
-		$scope.currCoord = $scope.coords[0];
-
-		$scope.showDetail = (ev, coord) => {
-			console.log("coord was passed:" + JSON.stringify(coord));
-			$scope.currCoord = coord;
-			$scope.map.showInfoWindow('user-iw', 'm' + coord.id);
-		}
-	})
-
-	$scope.fbMessage = function (toFbId) {
-		MapFactory.fbMessage(toFbId);
+		return MapFactory.getAllCoords()
+		.then((coords) => {
+			// Display all retrieved coords in console
+			console.table(coords);
+			var ctr = 0;	
+			coords.forEach((coord) => {
+				var marker = new google.maps.Marker({
+					position: {lat: coord.lat, lng: coord.lng},
+					map: map,
+					icon: iconOptions,
+					title: coord.user.name,
+					zIndex: ctr 
+				});
+				markers.push(marker);
+				marker.setMap(map);
+				ctr++;
+				marker.addListener('click', function() {
+					$rootScope.currCoord = coord;
+					MapFactory.showProfile();
+				})
+			})
+		})
 	}
+	loadMarkers();
 
+	function clearMarkersSync () {
+		for (var i=0; i < markers.length; i++) {
+			markers[i].setMap(null);
+			markers[i] = null;
+		}
+		markers = [];
+	}
 
 	/* ----------- SETTINGS FUNCS ------------- */ 
 	$scope.markUserLocation = function () {
-		MapFactory.markUserLocation();
+		clearMarkersSync();
+		Promise.resolve(MapFactory.markUserLocation($scope.currPos))
+		.then(() => { 
+			loadMarkers(); 
+			$scope.view = 'display';
+		});
 	}
 
 	$scope.removeUserLocation = function () {
-		MapFactory.removeUserLocation();
+		clearMarkersSync();
+		Promise.resolve(MapFactory.removeUserLocation())
+		.then(() => { 
+			loadMarkers(); 
+			$scope.view = 'display';
+		});
 	}
-
 });
-

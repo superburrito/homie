@@ -1,43 +1,11 @@
 'use strict';
 
-app.controller('SidenavCtrl', function ($http, $scope, $mdSidenav, $state, AuthFactory, StoreFactory) {
+app.controller('SidenavCtrl', function ($scope, $mdSidenav, $state, AuthFactory) {
 
-	$scope.goToHome = function () {
+	$scope.stateGoer = (stateStr) => {
 		$mdSidenav('left').toggle();
-		$state.go('home');
-	} 
-
-	$scope.goToTasks = function () {
-		$mdSidenav('left').toggle();
-		$state.go('tasks');
-	} 
-
-	$scope.goToTranslator = function () {
-		$mdSidenav('left').toggle();
-		$state.go('translator');
+		$state.go(stateStr);
 	}
-
-	$scope.goToPhrasebook = function () {
-		$mdSidenav('left').toggle();
-		$state.go('phrasebook');
-	}
-
-	$scope.goToMap = function () {
-		$mdSidenav('left').toggle();
-		$state.go('map');
-	}
-
-
-	$scope.goToSettings = function () {
-		$mdSidenav('left').toggle();
-		$state.go('settings');
-	}
-
-	$scope.goToHelp = function () {
-		$mdSidenav('left').toggle();
-		$state.go('help');
-	}
-
 	$scope.logout = function () {
 		$mdSidenav('left').toggle();
 		AuthFactory.logout();

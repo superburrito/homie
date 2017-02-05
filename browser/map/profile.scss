@@ -1,0 +1,21 @@
+.profile {
+	&__pic {
+		border-radius: 10px;
+		margin: auto;
+		max-width: 60vw;
+		max-height: 60vw;
+		padding: 0px;
+	}
+
+	&__actions {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+	&__description {
+		text-align: center;
+	}
+	&__button {
+		margin-bottom: 10px;
+	}
+}

@@ -36,6 +36,10 @@ var User = db.define('user', {
   bgUrl: {
     type: Sequelize.TEXT,
     allowNull: true
+  },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: true
   }
 });
 
@@ -50,8 +54,26 @@ var Coord = db.define('coord', {
   }
 })
 
+var Message = db.define('message', {
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  content: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  }
+})
+
+// Relations
 // Coord has a userId
 Coord.belongsTo(User);
+// Every message has a sender and a receiver
+var Sender = Message.belongsTo(User, {as: 'sender'});
+var Receiver = Message.belongsTo(User, {as: 'receiver'});
 
-
-module.exports = db;
+module.exports = {
+  db: db,
+  Sender: Sender,
+  Receiver: Receiver
+}

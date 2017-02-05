@@ -1,8 +1,10 @@
 'use strict';
 
-const db = require('./../db/db.js');
+const db = require('./../db/db.js').db;
 const User = db.model('user');
 const Coord = db.model('coord');
+const filter = require('./filter');
+const Promise = require('bluebird');
 
 const MapHandler = {}
 
@@ -11,9 +13,15 @@ MapHandler.getAllCoords = (req, res, next) => {
 		include: [User]
 	})
 	.then((coords) => {
+		return Promise.map(coords, (coord) => {
+			coord.user = filter(coord.user);
+			return coord;
+		})
+	})
+	.then((filteredCoords) => {
 		res.status(200).send({
 			success: true,
-			coords: coords
+			coords: filteredCoords
 		})
 	})
 	.catch(next);
@@ -50,19 +58,16 @@ MapHandler.updateUserCoord = (req, res, next) => {
 };
 
 MapHandler.removeUserCoord = (req, res, next) => {
-	return Coord.findOne({
-		where: {
-			user_id: req.decoded.id
+	return Coord.destroy({
+		where: { user_id: req.decoded.id }
+	})
+	.then((affectedRows) => {
+		console.log("Destroyed rows: " + affectedRows);
+		if (affectedRows >= 1) { 
+			res.status(200).send({ success: true });
+		} else {
+			res.status(400).send({ success: false });
 		}
-	})
-	.then((coord) => {
-		return coord.destroy();
-	})
-	.then(() => {
-		res.send({
-			success: true,
-			message: 'Coord Destroyed'
-		})
 	})
 	.catch(next);
 };
