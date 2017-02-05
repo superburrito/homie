@@ -9,17 +9,9 @@ const filter = require('./filter');
 const MessagesHandler = {}
 
 MessagesHandler.getAllMessages = (req, res, next) => {
-	return Message.create({
-		title: "Hello Dude How are You",
-		content: "How's it going??",
-		sender_id: 1,
-		receiver_id: 2 
-	})
-	.then(() => {
-		return Message.findAll({ 
-			where: { receiver_id: req.decoded.id },
-			include: [Sender]
-		})
+	return Message.findAll({ 
+		where: { receiver_id: req.decoded.id },
+		include: [Sender]
 	})
 	.then((messages) => {
 		return Promise.map(messages, (message) => {
