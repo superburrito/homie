@@ -1,11 +1,11 @@
 'use strict';
 
-app.factory('MapFactory', function ($http, $state, ToastFactory, $mdDialog) {
+app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog) {
 	var MapFactory = {};
 
 	// Fire tutorial
 	MapFactory.launchTutorial = () => {
-		if (localStorage.getItem('HOMIE-smt') !== 'seen') {
+		if (localStorage.getItem('HOMIE-sMapT') !== 'seen') {
 		    $mdDialog.show(
 		      $mdDialog.alert()
 		        .parent(angular.element(document.querySelector('.currentNavItem')))
@@ -16,23 +16,30 @@ app.factory('MapFactory', function ($http, $state, ToastFactory, $mdDialog) {
 		        .ok('Okay!')
 		    );
 		}
-	    localStorage.setItem('HOMIE-smt', 'seen');
+	    localStorage.setItem('HOMIE-sMapT', 'seen');
 	}	
 
-	MapFactory.showProfile = (event) => {
+	MapFactory.showProfile = () => {
 	    $mdDialog.show({
 	      controller: 'ProfileCtrl',
 	      templateUrl: '/map/profile.template.html',
 	      parent: angular.element(document.body),
-	      targetEvent: event,
+	      targetEvent: null,
 	      clickOutsideToClose:true,
-	      fullscreen: true 
+	      fullscreen: false
 	    })
 	}
 
 	MapFactory.getAllCoords = () => {
 		return $http.get('/map')
-		.then((res) => res.data);
+		.then((res) => AuthFactory.resToDataFilter(res))
+		.then((data) => {
+			if (data.success) {
+				return data.coords;
+			} else {
+				return [];
+			}
+		});
 	}
 
 	MapFactory.expandCoords = (coords) => {
@@ -48,25 +55,17 @@ app.factory('MapFactory', function ($http, $state, ToastFactory, $mdDialog) {
 		return expandedCoords;
 	}
 
-	MapFactory.markUserLocation = () => {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition((pos) => {
-				const latLng = {
-					lat: pos.coords.latitude,
-					lng: pos.coords.longitude
+	MapFactory.markUserLocation = (currPos) => {
+		if (currPos) {
+			return $http.post('/map', currPos)
+			.then((res) => AuthFactory.resToDataFilter(res))
+			.then((data) => {
+				if (data.success) {
+					console.log("New coord is: " + JSON.stringify(data.coord));
+					ToastFactory.displayMsg('Successfully added your profile to the map.', 1000);
+				} else {
+					ToastFactory.displayMsg('Failed to add your profile.', 800);
 				}
-
-				return $http.post('/map', latLng)
-				.then((res) => res.data)
-				.then((data) => {
-					console.table(data);
-					if (data.success) {
-						ToastFactory.displayMsg('Successfully added your profile to the map.', 1000);
-						$state.reload();
-					} else {
-						ToastFactory.displayMsg('Failed to add your profile.', 800);
-					}
-				})
 			})
 		} else {
 			ToastFactory.displayMsg('Unable to use GPS!', 800);
@@ -75,11 +74,10 @@ app.factory('MapFactory', function ($http, $state, ToastFactory, $mdDialog) {
 
 	MapFactory.removeUserLocation = function () {
 		return $http.delete('/map')
-		.then((res) => res.data)
+		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
 				ToastFactory.displayMsg('Your profile has been hidden.', 800);
-				$state.reload();
 			} else {
 				ToastFactory.displayMsg('An error occurred.', 500);
 			}

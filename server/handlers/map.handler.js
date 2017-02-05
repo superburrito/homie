@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('./../db/db.js');
+const db = require('./../db/db.js').db;
 const User = db.model('user');
 const Coord = db.model('coord');
 const filter = require('./filter');
@@ -62,6 +62,7 @@ MapHandler.removeUserCoord = (req, res, next) => {
 		where: { user_id: req.decoded.id }
 	})
 	.then((affectedRows) => {
+		console.log("Destroyed rows: " + affectedRows);
 		if (affectedRows >= 1) { 
 			res.status(200).send({ success: true });
 		} else {

@@ -1,8 +1,14 @@
 <div class="messenger" layout="column" layout-align="none center">
-    <h2 class="messenger__header">HOMIE Messenger</h2>
-    <div>
-    <p class="messenger__sendingTo">Sending to: {{receiver.name}}</p>
+    <div class="messenger__sendingTo" layout="row">
+        <h3 class="messenger__sendingTo--text">
+            <b> To: {{receiver.name}} </b>
+        </h3>
+        <span flex>
+        </span>
+        <img class="messenger__sendingTo--src" src="{{receiver.src}}" alt="No Image">
     </div>
+    <br>
+    <br>
     <form name="messengerForm" class="messenger__form" layout="column" layout-align="none center">
         <md-input-container class="messenger__form--title">
             <label>Message Title</label>     
@@ -16,7 +22,7 @@
         <md-button ng-click="sendMessage()" type="submit" class="md-primary md-raised messenger__form--button" ng-disabled="messengerForm.$invalid">
             Send Your Message
         </md-button>
-        <md-button md-theme="themeTaskC" class="messenger__form--button md-raised md-accent">
+        <md-button ng-click="goToMessages()" md-theme="themeTaskC" class="messenger__form--button md-raised md-accent">
             Return To Messages
         </md-button>
     </form>

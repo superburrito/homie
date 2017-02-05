@@ -1,13 +1,16 @@
 .messenger {
-	&__header {
-		margin-bottom: 5px;
-		text-align: center;
-	}
-
 	&__sendingTo {
-		text-align: center;		
+		width: 100%;
+		background-color: #E91E63;
+		color: white;
+		&--src {
+			width: 60px;
+			height: 60px;
+			}
+		&--text {
+			margin-left: 10px;		
+		}
 	}
-
 
 	&__form {
 		width: 100%;
@@ -21,4 +24,5 @@
 			width: 100%;
 		}
 	}
+
 }

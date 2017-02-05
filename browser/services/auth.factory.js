@@ -80,7 +80,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 	};
 
 	// Local & FB Reentry
-	AuthFactory.reentry = function () {
+	AuthFactory.reentry = () => {
 		$http.get('/reentry')
 		.then((res) => { 
 			console.log("[RE-ENTRY] HOMIE server reentry res: " + JSON.stringify(res.data));
@@ -90,6 +90,13 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			AuthFactory.authDataHandler(data);
 		});
 	};
+
+	AuthFactory.resToDataFilter = (res) => {
+		if(res.status == 403) {
+			$rootScope.broadcast('unauthenticated');
+		}
+		return res.data;
+	}
 
 	// Handles data from local/FB logins AND re-entries
 	AuthFactory.authDataHandler = function (data) {

@@ -2,7 +2,7 @@
 
 const config = require('./../env/index.js');
 
-const db = require('./../db/db.js');
+const db = require('./../db/db.js').db;
 const User = db.model('user');
 
 const rp = require('request-promise');

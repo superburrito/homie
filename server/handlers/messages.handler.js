@@ -1,23 +1,30 @@
 'use strict';
 
-const db = require('./../db/db.js');
+const db = require('./../db/db.js').db;
 const User = db.model('user');
+const Sender = require('./../db/db.js').Sender;
 const Message = db.model('message');
 const Promise = require('bluebird');
 const filter = require('./filter');
 const MessagesHandler = {}
 
 MessagesHandler.getAllMessages = (req, res, next) => {
-	return Message.findAll({ 
-		where: { receiverId: req.decoded.id },
+	return Message.create({
+		title: "Hello Dude How are You",
+		content: "How's it going??",
+		sender_id: 1,
+		receiver_id: 2 
+	})
+	.then(() => {
+		return Message.findAll({ 
+			where: { receiver_id: req.decoded.id },
+			include: [Sender]
+		})
 	})
 	.then((messages) => {
 		return Promise.map(messages, (message) => {
-			return User.findOne({ where: { id: message.senderId } })
-			.then((user) => {
-				message.user = filter(user);
-				return message;
-			})
+			message.sender = filter(message.sender);
+			return message;
 		})
 	})
 	.then((messagesWithSender) => {
@@ -50,14 +57,11 @@ MessagesHandler.sendMessage = (req, res, next) => {
 	
 
 MessagesHandler.removeMessage = (req, res, next) => {
-	return Message.findOne({
-		where: { id: req.body.messageId }
+	return Message.destroy({
+		where: { id: req.params.messageId }
 	})
-	.then((message) => {
-		message.destroy()
-		.success(() => {
-			res.status(200).send({ success: true });
-		})
+	.then(() => {
+		res.status(200).send({ success: true });
 	})
 	.catch(next);
 }

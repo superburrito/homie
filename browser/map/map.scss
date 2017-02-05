@@ -23,16 +23,15 @@
 	}
 }
 
+#mapDisplay {
+	height: $map-vh;
+	top: 0;
+	bottom: 0;
+}
+
 .map {
 	&__container {
 		height: $main-vh;
-	}
-
-
-	&__display {
-		height: $map-vh;
-		top: 0;
-		bottom: 0;
 	}
 
 	&__settingsText {
@@ -40,7 +39,7 @@
 		width: 80%;
 	}
 
-	&__infoWindow {
+	&__infoWin {
 		&--src {
 			height: 100px;
 			width: 100px;

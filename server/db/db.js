@@ -69,8 +69,11 @@ var Message = db.define('message', {
 // Coord has a userId
 Coord.belongsTo(User);
 // Every message has a sender and a receiver
-Message.belongsTo(User, {as: 'sender'});
-Message.belongsTo(User, {as: 'receiver'});
-User.hasMany(Message);
+var Sender = Message.belongsTo(User, {as: 'sender'});
+var Receiver = Message.belongsTo(User, {as: 'receiver'});
 
-module.exports = db;
+module.exports = {
+  db: db,
+  Sender: Sender,
+  Receiver: Receiver
+}

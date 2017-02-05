@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MapCtrl', ($scope, $rootScope, NgMap, MapFactory, MapStyleFactory) => {
+app.controller('MapCtrl', ($scope, $rootScope, MapFactory, MapStyleFactory, $state) => {
 
 	// Launch tutorial
 	MapFactory.launchTutorial();
@@ -16,46 +16,83 @@ app.controller('MapCtrl', ($scope, $rootScope, NgMap, MapFactory, MapStyleFactor
 	const apiKey = "AIzaSyBoEquSh_g4ZxKXRI21Zc801bAYLivD834";
 	$scope.gMapsUrl = "https://maps.google.com/maps/api/js?key=" + apiKey;
 
-	// Define options
-	$scope.options = {};
-	$scope.options.zoom = 18;
-	$scope.options.styles = MapStyleFactory.getStyle();
-	$scope.options.center = { lat: 1.29, lng: 103.85 }
+	// Define gmap options
+	const options = {};
+	options.center = { lat: 1.29, lng: 103.85 }
+	options.zoom = 18;
+	options.styles = MapStyleFactory.getStyle();
+	// Load map first
+	var map = new google.maps.Map(document.getElementById('mapDisplay'), options);
+	// If GPS available, pan to current location
+	$scope.currPos = null;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((pos) => {
-			$scope.options.center = { lat: pos.coords.latitude, lng: pos.coords.longitude }
+			$scope.currPos = { 
+				lat: pos.coords.latitude, 
+				lng: pos.coords.longitude 
+			}
+
+			map.panTo($scope.currPos);
 		})
 	} 
-
-	// Save coords + Save map
-	const mapProm = NgMap.getMap(); 
-	const coordsProm = MapFactory.getAllCoords();
-	Promise.all([mapProm, coordsProm])
-	.then((values) => {
-		$scope.map = values[0];
-		const data = values[1];
-		if (data.success) {
-			$scope.coords = MapFactory.expandCoords(data.coords);
-		} else {
-			$scope.coords = [];
+	// Load Markers
+	var markers = [];
+	function loadMarkers () { 
+		const iconOptions = {
+			url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-6096188ce806c80cf30dca727fe7c237.png',
+			scaledSize: new google.maps.Size(42, 42),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(0, 0)	
 		}
-		console.table($scope.coords);
-		$rootScope.currCoord = $scope.coords[0];
+		return MapFactory.getAllCoords()
+		.then((coords) => {
+			// Display all retrieved coords in console
+			console.table(coords);
+			var ctr = 0;	
+			coords.forEach((coord) => {
+				var marker = new google.maps.Marker({
+					position: {lat: coord.lat, lng: coord.lng},
+					map: map,
+					icon: iconOptions,
+					title: coord.user.name,
+					zIndex: ctr 
+				});
+				markers.push(marker);
+				marker.setMap(map);
+				ctr++;
+				marker.addListener('click', function() {
+					$rootScope.currCoord = coord;
+					MapFactory.showProfile();
+				})
+			})
+		})
+	}
+	loadMarkers();
 
-		$scope.showDetail = (ev, coord) => {
-			console.log("coord was passed:" + JSON.stringify(coord));
-			$rootScope.currCoord = coord;
-			$scope.map.showInfoWindow('user-iw', 'm' + coord.id);
+	function clearMarkersSync () {
+		for (var i=0; i < markers.length; i++) {
+			markers[i].setMap(null);
+			markers[i] = null;
 		}
-	})
+		markers = [];
+	}
 
 	/* ----------- SETTINGS FUNCS ------------- */ 
 	$scope.markUserLocation = function () {
-		MapFactory.markUserLocation();
+		clearMarkersSync();
+		Promise.resolve(MapFactory.markUserLocation($scope.currPos))
+		.then(() => { 
+			loadMarkers(); 
+			$scope.view = 'display';
+		});
 	}
 
 	$scope.removeUserLocation = function () {
-		MapFactory.removeUserLocation();
+		clearMarkersSync();
+		Promise.resolve(MapFactory.removeUserLocation())
+		.then(() => { 
+			loadMarkers(); 
+			$scope.view = 'display';
+		});
 	}
-
 });

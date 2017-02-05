@@ -27,6 +27,10 @@ app.run(function ($window, AuthFactory, $rootScope) {
   
 
   // Check for rootScope vals in localStorage
-  $rootScope.receiver = JSON.parse(localStorage.getItem('HOMIE-receiver'));
-  
+  if (localStorage.getItem('HOMIE-receiver').length > 10) {
+    $rootScope.receiver = JSON.parse(localStorage.getItem('HOMIE-receiver'));
+  }
+  if (localStorage.getItem('HOMIE-currMessage').length > 10) {
+    $rootScope.currMessage = JSON.parse(localStorage.getItem('HOMIE-currMessage'));
+  }
 });

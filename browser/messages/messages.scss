@@ -1,0 +1,23 @@
+.messages {
+	&__header {
+		text-align: center;
+	}
+	&__listItem {
+		background-color: #EEEEEE;
+		border: 1px solid white;
+		&--src {
+			width: 70px;
+			height: 70px;	
+		}
+		&--info {
+			margin-left: 10px;
+			h3, p {
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
+		}
+	}
+	&__none {
+		text-align: center;
+	}
+}

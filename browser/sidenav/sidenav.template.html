@@ -1,35 +1,35 @@
 <md-sidenav class="sidenav md-sidenav-left md-whiteframe-4dp" md-component-id="left" layout="column">
 	<md-content layout="column">
 		<md-list flex>
-			<md-list-item ng-click="goToHome()">
+			<md-list-item ng-click="stateGoer('home')">
 				<md-icon md-font-set="material-icons">home</md-icon>
 				<p>{{ 'SIDENAV_HOME' | translate }}</p>
 			</md-list-item>
 
-			<md-list-item ng-click="goToTasks()">
+			<md-list-item ng-click="stateGoer('tasks')">
 				<md-icon md-font-set="material-icons">accessibility</md-icon>
 				<p>{{ 'SIDENAV_TASKS' | translate }}</p>
 			</md-list-item>
 
-			<md-list-item ng-click="goToTranslator()">
+			<md-list-item ng-click="stateGoer('translator')">
 				<md-icon md-font-set="material-icons">textsms</md-icon>
 				<p>{{ 'SIDENAV_TRANSLATOR' | translate }}</p>
 			</md-list-item>
 
-			<md-list-item ng-click="goToPhrasebook()">
+			<md-list-item ng-click="stateGoer('phrasebook')">
 				<md-icon md-font-set="material-icons">book</md-icon>
 				<p>{{ 'SIDENAV_PHRASEBOOK' | translate }}</p>
 			</md-list-item>
 
 			<md-divider></md-divider>
 
-			<md-list-item ng-click="goToMap()">
+			<md-list-item ng-click="stateGoer('map')">
 				<md-icon md-font-set="material-icons">group</md-icon>
 				<p>{{ 'SIDENAV_MAP' | translate }}</p>
 			</md-list-item>
 
 
-			<md-list-item ng-click="">
+			<md-list-item ng-click="stateGoer('messages')">
 				<md-icon md-font-set="material-icons">mail</md-icon>
 				<p>{{ 'SIDENAV_MESSAGES' | translate }}</p>
 			</md-list-item>
@@ -39,14 +39,14 @@
 				<p>{{ 'SIDENAV_RIGHTS' | translate }}</p>
 			</md-list-item>
 
-			<md-list-item ng-click="goToHelp()">
+			<md-list-item ng-click="stateGoer('help')">
 				<md-icon md-font-set="material-icons">ring_volume</md-icon>
 				<p>{{ 'SIDENAV_GETHELP' | translate }}</p>
 			</md-list-item>
 
 			<md-divider></md-divider>
 
-			<md-list-item ng-click="goToSettings()">
+			<md-list-item ng-click="stateGoer('settings')">
 				<md-icon md-font-set="material-icons">settings</md-icon>
 				<p>{{ 'SIDENAV_SETTINGS' | translate }}</p>
 			</md-list-item>

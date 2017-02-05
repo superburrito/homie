@@ -7,7 +7,6 @@ app.config(function($stateProvider){
 		controller: 'HomeCtrl'
 	})
 
-
 	$stateProvider.state('tasks', {
 		url: '/tasks',
 		templateUrl: '/tasks/tasks.template.html',
@@ -26,7 +25,6 @@ app.config(function($stateProvider){
 		controller: 'LandingCtrl',
 		hideNavbar: true
 	})
-
 
 	$stateProvider.state('translator', {
 		url: '/translator',
@@ -65,6 +63,18 @@ app.config(function($stateProvider){
 		url: '/messenger',
 		templateUrl: '/messenger/messenger.template.html',
 		controller: 'MessengerCtrl'
+	})
+
+	$stateProvider.state('messages', {
+		url: '/messages',
+		templateUrl: '/messages/messages.template.html',
+		controller: 'MessagesCtrl'
+	})
+
+	$stateProvider.state('message', {
+		url: '/message',
+		templateUrl: '/message/message.template.html',
+		controller: 'MessageCtrl'
 	})
 
 	$stateProvider.state('help', {

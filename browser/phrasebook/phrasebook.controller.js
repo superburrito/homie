@@ -3,16 +3,14 @@
 app.controller('PhrasebookCtrl', ($scope, PhrasebookFactory, $state) => {
 	$scope.phrases = PhrasebookFactory.getPhrasebook();
 
-	if ($scope.phrases.length == 0) {
-		$scope.noSavedPhrases = true;
-	} else {
-		$scope.noSavedPhrases = false;
-	}
+	($scope.phrases.length === 0) 
+		? $scope.noSavedPhrases = true
+		: $scope.noSavedPhrases = false;
 
 	$scope.deletePhrase = function (phraseObj) {
 		PhrasebookFactory.deletePhrase(phraseObj);
 		$scope.phrases = PhrasebookFactory.getPhrasebook();
-		if ($scope.phrases.length == 0) $scope.noSavedPhrases = true;
+		if ($scope.phrases.length === 0) $scope.noSavedPhrases = true;
 	}
 
 	$scope.goToTranslator = function () {
