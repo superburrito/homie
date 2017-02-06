@@ -6,7 +6,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 	// Local Auth
 	AuthFactory.signup = function (name, email, password) {
-		$http.post('/auth/local/signup', {
+		return $http.post('/auth/local/signup', {
 			name: name,
 			email: email, 
 			password: password
@@ -23,7 +23,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 
 	AuthFactory.login = function (email, password) {
-		$http.post('/auth/local', {
+		return $http.post('/auth/local', {
 			email: email, 
 			password: password
 		})
@@ -49,10 +49,10 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 				FB.login((res) => {
 					if (res.authResponse) {
 						var slToken = res.authResponse.accessToken;
-						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 600);
+						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 500);
 						fbPromise.resolve({ success: true, slToken: slToken })
 					} else {
-						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_FAIL'), 600);
+						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_FAIL'), 500);
 						fbPromise.resolve({ success: false });
 					}
 				})
@@ -65,15 +65,16 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		});
 
 		// Pass fbUserData to Server to get long-lived token
-		fbPromise.promise.then((slTokenObj) => {
+		return fbPromise.promise.then((slTokenObj) => {
 			if(!slTokenObj.success) {
 				$rootScope.$broadcast('unauthenticated');
+				return;
 			} else {
-				$http.post('/auth/facebook', slTokenObj)
+				return $http.post('/auth/facebook', slTokenObj)
 				.then(function (res) {
 					if (res.data && res.data.msg === 'fb_auth_failure_no_tokens') {
 						ToastFactory.displayMsg(
-							$translate.instant('T_AUTH_SERVER_ERR'), 600);
+							$translate.instant('T_AUTH_SERVER_ERR'), 500);
 					} else {
 						AuthFactory.authDataHandler(res.data);
 					}
@@ -84,7 +85,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 	// Local & FB Reentry
 	AuthFactory.reentry = () => {
-		$http.get('/reentry')
+		return $http.get('/reentry')
 		.then((res) => { 
 			console.log("[RE-ENTRY] HOMIE server reentry res: " + JSON.stringify(res.data));
 			return res.data; 

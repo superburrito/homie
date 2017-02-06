@@ -12,7 +12,7 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 		$scope.playerDisabled = true;
 		if ($scope.textToTranslate) {
 			$scope.notLoading = false;
-			$http.post('/translate', {
+			return $http.post('/translate', {
 				text: $scope.textToTranslate,
 				lang: type
 			})	
