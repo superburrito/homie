@@ -42,45 +42,33 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 	// Facebook Auth
 	AuthFactory.fbLogin = function () {
-		var fbPromise = $q.defer();
-		FB.getLoginStatus((res) => {
-			if (res.status !== 'connected') {
+		return FB.getLoginStatus((fbGetStatRes) => {
+			if (fbGetStatRes.status !== 'connected') {
 				// Get short-lived token (slToken) from Facebook
-				FB.login((res) => {
-					if (res.authResponse) {
-						var slToken = res.authResponse.accessToken;
+				return FB.login((fbLoginRes) => {
+					if (fbLoginRes.authResponse) {
+						var slToken = fbLoginRes.authResponse.accessToken;
 						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 500);
-						fbPromise.resolve({ success: true, slToken: slToken })
+						return $http.post('/auth/facebook', { slToken: slToken })
+						.then((homieRes) => {
+							if (homieRes.data && homieRes.status === 400) {
+								ToastFactory.displayMsg(
+									$translate.instant('T_AUTH_SERVER_ERR'), 500);
+							} else {
+								AuthFactory.authDataHandler(homieRes.data);
+							}
+						}) 
 					} else {
 						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_FAIL'), 500);
-						fbPromise.resolve({ success: false });
+						return ;
 					}
 				})
 			} else {
-				FB.logout(() => {
+				return FB.logout(() => {
 					ToastFactory.displayMsg($translate.instant('T_AUTH_FB_LOGOUT'), 600);
-					fbPromise.resolve({ success: false });
 				});
 			}
 		});
-
-		// Pass fbUserData to Server to get long-lived token
-		return fbPromise.promise.then((slTokenObj) => {
-			if(!slTokenObj.success) {
-				$rootScope.$broadcast('unauthenticated');
-				return;
-			} else {
-				return $http.post('/auth/facebook', slTokenObj)
-				.then(function (res) {
-					if (res.data && res.data.msg === 'fb_auth_failure_no_tokens') {
-						ToastFactory.displayMsg(
-							$translate.instant('T_AUTH_SERVER_ERR'), 500);
-					} else {
-						AuthFactory.authDataHandler(res.data);
-					}
-				})
-			}
-		})
 	};
 
 	// Local & FB Reentry
