@@ -49,16 +49,16 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 				FB.login((res) => {
 					if (res.authResponse) {
 						var slToken = res.authResponse.accessToken;
-						console.log("[LOGIN] FB login successful. slToken obtained:" + slToken);
+						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 600);
 						fbPromise.resolve({ success: true, slToken: slToken })
 					} else {
-						console.log("[LOGIN] FB login failed.");
+						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_FAIL'), 600);
 						fbPromise.resolve({ success: false });
 					}
 				})
 			} else {
 				FB.logout(() => {
-					console.log("[LOGIN] HOMIE has logged you out to avoid an error. Log in again.")
+					ToastFactory.displayMsg($translate.instant('T_AUTH_FB_LOGOUT'), 600);
 					fbPromise.resolve({ success: false });
 				});
 			}
@@ -67,7 +67,6 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		// Pass fbUserData to Server to get long-lived token
 		fbPromise.promise.then((slTokenObj) => {
 			if(!slTokenObj.success) {
-				ToastFactory.displayMsg('Facebook has blocked access.', 600);
 				$rootScope.$broadcast('unauthenticated');
 			} else {
 				$http.post('/auth/facebook', slTokenObj)

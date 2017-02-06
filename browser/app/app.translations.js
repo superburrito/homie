@@ -129,6 +129,9 @@ app.config(function($translateProvider) {
 		'T_AUTH_WRONG_CREDS': "Wrong email or password!",
 		'T_AUTH_NO_SUCH': "No such account.",
 		'T_AUTH_SERVER_ERR': "Server error.",
+		'T_AUTH_FB_LOGOUT': "You have been logged out to avoid an error.",
+		'T_AUTH_FB_FAIL': "Facebook has blocked your access.",
+		'T_AUTH_FB_SUCCESS': "Facebook has authorised your access!",
 
 		'T_TASK_TIMER_START': "Timer has started for ",
 
