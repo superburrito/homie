@@ -95,11 +95,15 @@ app.config(function($translateProvider) {
 
 		// Message
 		"MESSAGE_FROM": "From:",
+		"MESSAGE_TO": "To: ",
 		"MESSAGE_REPLY": "Reply To Sender",
 		"MESSAGE_RETURN": "Return To Messages",
 
 		// Messages
-		"MESSAGES_HEADER": "My Messages",
+		"MESSAGES_INBOX_NAV": "Inbox",
+		"MESSAGES_SENT_NAV": "Sent",
+		"MESSAGES_INBOX_HEADER": "My Inbox",
+		"MESSAGES_SENT_HEADER": "Sent Messages",
 		"MESSAGES_NONE": "You have no messages yet.",
 		"MESSAGES_POPUP_HEADER": "Welcome to your inbox!",
 		"MESSAGES_POPUP_MAIN": "Click on the profile pictures on the left to view each of your messages.",

@@ -93,6 +93,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 	// Handles data from local/FB logins AND re-entries
 	AuthFactory.authDataHandler = function (data) {
+		console.log("[LOGIN] Accessing client is: " + JSON.stringify(data.user));
 		if (data && data.success) {
 			if (data.fbToken) {
 				console.log("[LOGIN] Homie-FB Token Exchange successful. (ll) fbToken obtained: " + data.fbToken);

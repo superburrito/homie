@@ -4,8 +4,21 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate) =>
 	
 	var MessagesFactory = {};
 
-	MessagesFactory.getAllMessages = () => {
-		return $http.get('/messages')
+	MessagesFactory.getInbox = () => {
+		return $http.get('/messages/inbox')
+		.then((res) => AuthFactory.resToDataFilter(res))
+		.then((data) => {
+			if (data.success) {
+				return data.messages;
+			} else {
+				ToastFactory.displayMsg($translate.instant('T_MESSAGES_LOAD_FAIL'), 500);
+				return [];
+			}
+		})
+	}
+
+	MessagesFactory.getSent = () => {
+		return $http.get('/messages/sent')
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {

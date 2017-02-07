@@ -6,12 +6,31 @@ const Message = db.model('message');
 
 const MessagesHandler = {}
 
-MessagesHandler.getAllMessages = (req, res, next) => {
+MessagesHandler.getInbox = (req, res, next) => {
 	return Message.findAll({ 
 		where: { receiver_id: req.decoded.id },
 		include: [{
 			model: User,
 			as: 'sender',
+			attributes: ['id','fbId','name','email','src','description']
+		}]
+	})
+	.then((messages) => {
+		return res.status(200).send({
+			success: true,
+			messages: messages
+		})
+	})
+	.catch(next);
+}
+
+
+MessagesHandler.getSent = (req, res, next) => {
+	return Message.findAll({ 
+		where: { sender_id: req.decoded.id },
+		include: [{
+			model: User,
+			as: 'receiver',
 			attributes: ['id','fbId','name','email','src','description']
 		}]
 	})
@@ -36,7 +55,7 @@ MessagesHandler.sendMessage = (req, res, next) => {
 		res.status(200).send({
 			success: true,
 			msg: 'message_get_success',
-			messages: createdMessage
+			createdMessage: createdMessage
 		})
 	})
 	.catch(next);

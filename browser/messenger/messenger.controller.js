@@ -12,6 +12,7 @@ app.controller('MessengerCtrl', ($scope, $rootScope, $state, $http, ToastFactory
 		.then((res) => res.data)
 		.then((data) => {
 			if (data.success) {
+				console.log("Created Msg is:" + JSON.stringify(data.createdMessage));
 				$scope.title = null;
 				$scope.content = null;
 				$scope.messengerForm.$setPristine();

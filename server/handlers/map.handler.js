@@ -10,7 +10,7 @@ MapHandler.getAllCoords = (req, res, next) => {
 	return Coord.findAll({
 		include: [{
 			model: User,
-			attributes: ['fbId', 'name', 'email', 'src', 'description']
+			attributes: ['id','fbId', 'name', 'email', 'src', 'description']
 		}]
 	})
 	.then((coords) => {

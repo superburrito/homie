@@ -6,9 +6,9 @@ app.controller('HomeCtrl', ($scope, $interval, StoreFactory) => {
 	var profile = StoreFactory.getProfile();
 	$scope.firstName = profile.name.split(' ')[0];
 	
-	// Set up background	
+ 	// Labelled for non-commercial reuse: 
+	// https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg
 	var defaultBg = "/media/homeDefault.jpg"
-	// Source: https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg
 
 	$scope.bg = defaultBg;
 	
