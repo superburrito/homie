@@ -6,10 +6,11 @@ app.factory('APIInterceptor', function (StoreFactory, $rootScope) {
 	var APIInterceptor = {};
 
 	APIInterceptor.request = function (config) {
-		// If token exists and client calls Homie API
 		if (config.url.includes('api.cloudinary.com')) {
 			return config;
-		} else if (StoreFactory.hasHToken()) {
+		} 
+
+		if (StoreFactory.hasHToken()) {
 			config.headers['x-access-token'] = StoreFactory.getHToken();
 		}
 		return config;

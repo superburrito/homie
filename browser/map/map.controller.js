@@ -12,10 +12,6 @@ app.controller('MapCtrl', ($scope, $rootScope, MapFactory, MapStyleFactory, $sta
 
 	$scope.showProfile = (event) => { MapFactory.showProfile(event); }
 
-	// ApiURL
-	const apiKey = "AIzaSyBoEquSh_g4ZxKXRI21Zc801bAYLivD834";
-	$scope.gMapsUrl = "https://maps.google.com/maps/api/js?key=" + apiKey;
-
 	// Define gmap options
 	const options = {};
 	options.center = { lat: 1.29, lng: 103.85 }
@@ -38,8 +34,9 @@ app.controller('MapCtrl', ($scope, $rootScope, MapFactory, MapStyleFactory, $sta
 	// Load Markers
 	var markers = [];
 	function loadMarkers () { 
+		// Icon src: http://www.myiconfinder.com/uploads/iconsets/256-256-6096188ce806c80cf30dca727fe7c237.png
 		const iconOptions = {
-			url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-6096188ce806c80cf30dca727fe7c237.png',
+			url: '/media/mapIcon.png',
 			scaledSize: new google.maps.Size(42, 42),
 			origin: new google.maps.Point(0, 0),
 			anchor: new google.maps.Point(0, 0)	
