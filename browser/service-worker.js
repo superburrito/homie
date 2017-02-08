@@ -17,29 +17,37 @@ var filesToCache = [
 	'/bower_components/ng-file-upload/ng-file-upload.min.js',
 	'/bower_components/angular-cloudinary/angular-cloudinary.js',
   'https://code.responsivevoice.org/responsivevoice.js',
-  '/bower_components/ngmap/build/scripts/ng-map.min.js',
   'https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI', 
 
 	// Internal HTML JSS requests
+  // Mains
   '/',
 	'/index.html',
 	'/main.js',
 	'/style.css',
-	'/home/home.template.html',
-	'/landing/landing.template.html',
-	'/map/map.template.html',
-	'/navbar/navbar.template.html',
-	'/phrasebook/phrasebook.template.html',
-	'/settings/settings.template.html',
-	'/sidenav/sidenav.template.html',
-	'/signup/signup.template.html',
-	'/tasks/tasks.template.html',
-	'/terms/terms.template.html',
-	'/toolbar/toolbar.template.html',
-	'/translator/translator.template.html',
 
-	// Media files
-	'/media/thumbnail.png'
+  // Media items
+  '/media/helpDefault.jpg',
+  '/media/homeDefault.jpg',
+  '/media/landingDefault.jpg',
+  '/media/mapIcon.png',
+  '/media/thumbnail.png',
+
+  // Messages
+	'/home/home.template.html',
+  '/tasks/tasks.template.html',
+  '/settings/settings.template.html',
+  '/landing/landing.template.html',
+  '/translator/translator.template.html',
+  '/phrasebook/phrasebook.template.html',
+  '/signup/signup.template.html',
+  '/terms/terms.template.html',
+  '/map/map.template.html',
+  '/messenger/messenger.template.html',
+  '/messages/messages.template.html',
+  '/message/message.template.html',
+  '/help/help.template.html'
+
 ];
 
 

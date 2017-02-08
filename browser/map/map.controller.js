@@ -3,7 +3,9 @@
 app.controller('MapCtrl', ($scope, $rootScope, MapFactory, MapStyleFactory, $state) => {
 
 	// Launch tutorial
-	MapFactory.launchTutorial();
+	if (localStorage.getItem('HOMIE-sMapT') !== 'seen') {
+		MapFactory.launchTutorial();
+	}
 	
 	/* ----------- MAP FUNCS ------------- */ 
 	// View controls

@@ -24,13 +24,13 @@
 				md-whiteframe-2dp
 				layout="row"
 				layout-align="start center"
+				ng-click="viewMessage(inboxMessage)"
 			>
 				<img 
 					class="messages__listItem--src" 
 					src="{{inboxMessage.sender.src}}"
 					alt="No Image"
-					ng-click="viewMessage(inboxMessage)"
-					>
+				>
 				<div class="messages__listItem--info" flex>
 					<h3>{{inboxMessage.sender.name.substring(0,10)}}</h3>
 					<p>{{inboxMessage.title.substring(0,18).concat('...')}}</p>

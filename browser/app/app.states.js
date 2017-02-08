@@ -45,7 +45,6 @@ app.config(function($stateProvider){
 		hideNavbar: true
 	})
 
-
 	$stateProvider.state('terms', {
 		url: '/terms',
 		templateUrl: '/terms/terms.template.html',
@@ -81,5 +80,11 @@ app.config(function($stateProvider){
 		url: '/help',
 		templateUrl: '/help/help.template.html',
 		controller: 'HelpCtrl'
+	})
+
+	$stateProvider.state('programs', {
+		url: '/programs',
+		templateUrl: '/programs/programs.template.html',
+		controller: 'ProgramsCtrl'
 	})
 });

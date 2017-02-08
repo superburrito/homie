@@ -116,38 +116,45 @@ AuthHandler.facebookAuth = (req, res) => {
 		.then((resBody) => {
 			console.log("resBody: " + resBody);
 			const parsedBody = JSON.parse(resBody);
-			const fbId = parsedBody.id.replace('\u0040','@');
-			const name = parsedBody.name;
-			const email = parsedBody.email.replace('\u0040','@');
-			const src = parsedBody.picture.data.url || null;
-			return User.findOne({ where: { fbId: fbId} })		
-			.then((user) => {
-				if (!user) {
-					return User.create({
-						fbId: fbId,
-						name: name,
-						email: email,
-						src: src
-					})
-				} else {
-					return user.update({
-						name: name,
-						email: email,
-						src: src
-					})
-				}
-			})
-			.then((user) => {
-				const filteredUser = filter(user);
-				const hToken = tokenise(user);
-				return res.status(200).send({
-					success: true,
-					msg: 'fb_auth_success_with_tokens',
-					hToken: hToken,
-					fbToken: llToken,
-					user: filteredUser
+			if (!parsedBody.id || !parsedBody.name || !parsedBody.email) {
+				return res.status(400).send({
+					success: false,
+					msg: 'fb_auth_data_retrieval_failure'
+				})
+			} else {
+				const fbId = parsedBody.id.replace('\u0040','@');
+				const name = parsedBody.name;
+				const email = parsedBody.email.replace('\u0040','@');
+				const src = parsedBody.picture.data.url || null;
+				return User.findOne({ where: { fbId: fbId} })		
+				.then((user) => {
+					if (!user) {
+						return User.create({
+							fbId: fbId,
+							name: name,
+							email: email,
+							src: src
+						})
+					} else {
+						return user.update({
+							name: name,
+							email: email,
+							src: src
+						})
+					}
+				})
+				.then((user) => {
+					const filteredUser = filter(user);
+					const hToken = tokenise(user);
+					return res.status(200).send({
+						success: true,
+						msg: 'fb_auth_success_with_tokens',
+						hToken: hToken,
+						fbToken: llToken,
+						user: filteredUser
+					});
 				});
-			});
+			}
 		})
 	})
 	.catch((err) => {

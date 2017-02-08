@@ -1,8 +1,21 @@
 'use strict';
 
-app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate) => {
+app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate, $mdDialog) => {
 	
 	var MessagesFactory = {};
+
+	MessagesFactory.launchTutorial = () => {
+		$mdDialog.show(
+	      $mdDialog.alert()
+	        .parent(angular.element(document.querySelector('.currentNavItem')))
+	        .clickOutsideToClose(true)
+	        .title($translate.instant('MESSAGES_POPUP_HEADER'))
+	        .textContent($translate.instant('MESSAGES_POPUP_MAIN'))
+	        .ariaLabel('Msgs Tutorial Dialog')
+	        .ok($translate.instant('MESSAGES_POPUP_OK'))
+	    );
+	    localStorage.setItem('HOMIE-sMsgsT', 'seen');
+	}
 
 	MessagesFactory.getInbox = () => {
 		return $http.get('/messages/inbox')

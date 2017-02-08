@@ -1,6 +1,12 @@
 'use strict';
 
-app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFactory, ToastFactory, $translate){
+app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFactory, ToastFactory, TranslatorFactory, $translate){
+	
+	// Launch tutorial
+	if (localStorage.getItem('HOMIE-sTransT') !== 'seen') {
+		TranslatorFactory.launchTutorial();
+	}
+
 	// Hide any loading animations
 	$scope.notLoading = true;
 
@@ -12,14 +18,8 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 		$scope.playerDisabled = true;
 		if ($scope.textToTranslate) {
 			$scope.notLoading = false;
-			return $http.post('/translate', {
-				text: $scope.textToTranslate,
-				lang: type
-			})	
-			.then(function (res) { 
-				console.log("Response is: " + JSON.stringify(res.data));
-				return res.data; 
-			})
+
+			return TranslatorFactory.translate(type, $scope.textToTranslate)
 			.then(function (data) {
 				$scope.notLoading = true;
 				$scope.translatedText = data.translatedText; 

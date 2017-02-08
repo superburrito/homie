@@ -1,24 +1,12 @@
 'use strict';
 
-app.controller('TasksCtrl', function($scope, TasksFactory, $interval, $mdDialog, $translate){
-	// Launch tutorial
-	function launchTutorial () {
-		if (localStorage.getItem('HOMIE-sTasksT') !== 'seen' &&
-			TasksFactory.getTasks().length === 0) {
-		    $mdDialog.show(
-		      $mdDialog.alert()
-		        .parent(angular.element(document.querySelector('.currentNavItem')))
-		        .clickOutsideToClose(true)
-		        .title($translate.instant('TASKS_POPUP_HEADER'))
-		        .textContent($translate.instant('TASKS_POPUP_MAIN'))
-		        .ariaLabel('Tasks Tutorial Dialog')
-		        .ok($translate.instant('TASKS_POPUP_OK'))
-		    );
-		}
-	    localStorage.setItem('HOMIE-sTasksT', 'seen');
-	}	
-	launchTutorial();
+app.controller('TasksCtrl', ($scope, TasksFactory, $interval) => {
 
+	// Launch tutorial
+	if (localStorage.getItem('HOMIE-sTasksT') !== 'seen' &&
+		TasksFactory.getTasks().length === 0) {
+		TasksFactory.launchTutorial();
+	}
 
 	// Check if date has changed
 	const currDate = new Date();

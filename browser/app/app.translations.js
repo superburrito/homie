@@ -8,8 +8,9 @@ app.config(function($translateProvider) {
 		"SIDENAV_TASKS": "My Tasks",
 		"SIDENAV_TRANSLATOR": "Translator",
 		"SIDENAV_PHRASEBOOK": "Phrasebook",
-		"SIDENAV_MAP": "Homies@SG",
+		"SIDENAV_MAP": "HOMIES@SG",
 		"SIDENAV_MESSAGES": "My Messages",
+		"SIDENAV_EDUCATION": "My Education",
 		"SIDENAV_RIGHTS": "My Rights",
 		"SIDENAV_GETHELP": "Get Help",
 		"SIDENAV_SETTINGS": "Settings",
@@ -19,7 +20,7 @@ app.config(function($translateProvider) {
 		"HOME_GREETING": "Greetings",
 
 		// Landing page
-		"LANDING_SLOGAN": "The Handy Tool for Domestic Care.",
+		"LANDING_SLOGAN": "The Handy Tool for all Domestic Helpers.",
 
 		"LANDING_EMAIL": "Email",
 		"LANDING_PASSWORD": "Password",
@@ -28,7 +29,7 @@ app.config(function($translateProvider) {
 
 		"LANDING_FACEBOOKLOGIN": "Log In With Facebook",
 		"LANDING_CHANGELANG": "Use Another Language",
-		"LANDING_DIVERT1": "You are running the app in a browser that is too large.",
+		"LANDING_DIVERT1": "You are running the app in a window that is too large!",
 		"LANDING_DIVERT2": "This application is meant for smaller platforms.",
 		"LANDING_TERMS1": "By using this application, you agree to these ",
 		"LANDING_TERMS2": "Terms and Conditions",
@@ -57,9 +58,9 @@ app.config(function($translateProvider) {
 		"TASKS_SET_TIMER_DURATION": "Timer duration (in mins)...",
 		"TASKS_CONFIRM": "Confirm Task",
 		'TASKS_POPUP_HEADER': "Welcome to your task manager!",
-		'TASKS_POPUP_MAIN': "Here, you can create tasks in the right tab and add alarms (as well as timers) to them. When an alarm goes off, the associated task will turn pink and your phone will vibrate.",
+		'TASKS_POPUP_MAIN': "Create your tasks by selecting the right tab. For each task, you can add an alarm and/or a timer. If a task has a timer, it will turn pink and cause your phone to vibrate when the alarm is reached. If a task has a timer, it will have a progress bar.",
 		'TASKS_POPUP_OK': "Alright!",
-
+		
 		// Settings
 		"SETTINGS_CONFIRM": "Confirm your settings",
 		"SETTINGS_SRC": "Set your profile picture",
@@ -72,22 +73,25 @@ app.config(function($translateProvider) {
 		"TRANSLATE_BAHASA": "Bahasa Indo (ID)",
 		"TRANSLATE_ENGLISH": "English (EN)",
 		"TRANSLATE_CHINESE": "Chinese (ZH)",
+		"TRANSLATE_POPUP_HEADER": "You're using HOMIE's Translator!",
+		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons. ",
+		"TRANSLATE_POPUP_OK": "Ok!",
 
 		// HELP
 		"HELP_HEADER": "Reach Out",
-		"HELP_PARAGRAPH1": "If you are a domestic helper and you need someone to talk to, please do not hesitate to reach out.",
+		"HELP_PARAGRAPH1": "If you need someone to talk to, please do not hesitate to reach out.",
 		"HELP_PARAGRAPH2": "Organisations, such as the Humanitarian Organisation for Migration Economics (HOME) and the Centre for Domestic Employees (CDE) can assist you.",
 		"HELP_HOME": "Contact HOME",
 		"HELP_CDE": "Contact CDE",
 
 		// MAP
-		"MAP_SETTINGS1": "You can make add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.",
+		"MAP_SETTINGS1": "You can add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.",
 		"MAP_SETTINGS2": "Don't worry -- you can change or hide your profile at any time.",
 		"MAP_DISPLAY_BUTTON": "Display My Profile",
 		"MAP_HIDE_BUTTON": "Hide My Profile",
-		"MAP_POPUP_HEADER": "Welcome to HOMIES@SG!",
-		"MAP_POPUP_MAIN": "See who's around you and feel free to reach out to other housekeepers in the area. Learn more in the '?' tab.",
-		"MAP_POPUP_OK": "Okay!",
+		"MAP_POPUP_HEADER": "Welcome to HOMIES@SG.",
+		"MAP_POPUP_MAIN": "You will asked for your location -- select 'Allow'! Then, see who's around you and reach out to other domestic helpers in the area. Learn more in the '?' tab.",
+		"MAP_POPUP_OK": "Sounds good!",
 
 		// Profile
 		"PROFILE_FACEBOOK": "Facebook",
@@ -100,13 +104,13 @@ app.config(function($translateProvider) {
 		"MESSAGE_RETURN": "Return To Messages",
 
 		// Messages
-		"MESSAGES_INBOX_NAV": "Inbox",
+		"MESSAGES_INBOX_NAV": "Received",
 		"MESSAGES_SENT_NAV": "Sent",
-		"MESSAGES_INBOX_HEADER": "My Inbox",
+		"MESSAGES_INBOX_HEADER": "Received Messages",
 		"MESSAGES_SENT_HEADER": "Sent Messages",
 		"MESSAGES_NONE": "You have no messages yet.",
 		"MESSAGES_POPUP_HEADER": "Welcome to your inbox!",
-		"MESSAGES_POPUP_MAIN": "Click on the profile pictures on the left to view each of your messages.",
+		"MESSAGES_POPUP_MAIN": "Click on your messages to open them.",
 		"MESSAGES_POPUP_OK": "Sure!",
 
 		// Messenger
@@ -129,7 +133,7 @@ app.config(function($translateProvider) {
 		"T_MESSENGER_SUCCESS": "Message sent!",
 		"T_MESSENGER_FAIL": "Failed to send message.",
 
-		'T_AUTH_ACCT_EXIST': "Account already exists!",
+		'T_AUTH_ACCT_EXISTS': "Account already exists!",
 		'T_AUTH_WRONG_CREDS': "Wrong email or password!",
 		'T_AUTH_NO_SUCH': "No such account.",
 		'T_AUTH_SERVER_ERR': "Server error.",

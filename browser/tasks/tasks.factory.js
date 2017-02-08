@@ -1,7 +1,23 @@
 'use strict';
 
-app.factory('TasksFactory', function(ToastFactory, $translate){
+app.factory('TasksFactory', function(ToastFactory, $translate, $mdDialog){
 	var TasksFactory = {};
+
+	/* Tutorial (exposed to Toolbar) */
+
+	TasksFactory.launchTutorial = () => {
+	    $mdDialog.show(
+	      $mdDialog.alert()
+	        .parent(angular.element(document.querySelector('.currentNavItem')))
+	        .clickOutsideToClose(true)
+	        .title($translate.instant('TASKS_POPUP_HEADER'))
+	        .textContent($translate.instant('TASKS_POPUP_MAIN'))
+	        .ariaLabel('Tasks Tutorial Dialog')
+	        .ok($translate.instant('TASKS_POPUP_OK'))
+	    );
+	    localStorage.setItem('HOMIE-sTasksT', 'seen');
+	}	
+
 
 	/* Tasks is an array of objects, i.e.
 		[
@@ -12,7 +28,7 @@ app.factory('TasksFactory', function(ToastFactory, $translate){
 			}
 		]
 	*/
-	
+
 	TasksFactory.renderTasks = function () {
 		var tasks = TasksFactory.getTasks();
 		var currTime = new Date()

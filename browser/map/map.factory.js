@@ -5,17 +5,15 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog,
 
 	// Fire tutorial
 	MapFactory.launchTutorial = () => {
-		if (localStorage.getItem('HOMIE-sMapT') !== 'seen') {
-		    $mdDialog.show(
-		      $mdDialog.alert()
-		        .parent(angular.element(document.querySelector('.currentNavItem')))
-		        .clickOutsideToClose(true)
-		        .title($translate.instant('MAP_POPUP_HEADER'))
-		        .textContent($translate.instant('MAP_POPUP_MAIN'))
-		        .ariaLabel('Map Tutorial Dialog')
-		        .ok($translate.instant('MAP_POPUP_OK'))
-		    );
-		}
+	    $mdDialog.show(
+	      $mdDialog.alert()
+	        .parent(angular.element(document.querySelector('.currentNavItem')))
+	        .clickOutsideToClose(true)
+	        .title($translate.instant('MAP_POPUP_HEADER'))
+	        .textContent($translate.instant('MAP_POPUP_MAIN'))
+	        .ariaLabel('Map Tutorial Dialog')
+	        .ok($translate.instant('MAP_POPUP_OK'))
+	    );
 	    localStorage.setItem('HOMIE-sMapT', 'seen');
 	}	
 
