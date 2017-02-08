@@ -57,9 +57,9 @@ app.config(function($translateProvider) {
 		"TASKS_SET_TIMER": "Set a running timer for the task",
 		"TASKS_SET_TIMER_DURATION": "Timer duration (in mins)...",
 		"TASKS_CONFIRM": "Confirm Task",
-		'TASKS_POPUP_HEADER': "Welcome to your task manager!",
+		'TASKS_POPUP_HEADER': "Welcome to your task manager.",
 		'TASKS_POPUP_MAIN': "Create your tasks by selecting the right tab. For each task, you can add an alarm and/or a timer. If a task has a timer, it will turn pink and cause your phone to vibrate when the alarm is reached. If a task has a timer, it will have a progress bar.",
-		'TASKS_POPUP_OK': "Alright!",
+		'TASKS_POPUP_OK': "Ok!",
 		
 		// Settings
 		"SETTINGS_CONFIRM": "Confirm your settings",
@@ -75,7 +75,7 @@ app.config(function($translateProvider) {
 		"TRANSLATE_CHINESE": "Chinese (ZH)",
 		"TRANSLATE_POPUP_HEADER": "You're using HOMIE's Translator!",
 		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons. ",
-		"TRANSLATE_POPUP_OK": "Ok!",
+		"TRANSLATE_POPUP_OK": "Got it!",
 
 		// HELP
 		"HELP_HEADER": "Reach Out",
@@ -90,8 +90,8 @@ app.config(function($translateProvider) {
 		"MAP_DISPLAY_BUTTON": "Display My Profile",
 		"MAP_HIDE_BUTTON": "Hide My Profile",
 		"MAP_POPUP_HEADER": "Welcome to HOMIES@SG.",
-		"MAP_POPUP_MAIN": "You will asked for your location -- select 'Allow'! Then, see who's around you and reach out to other domestic helpers in the area. Learn more in the '?' tab.",
-		"MAP_POPUP_OK": "Sounds good!",
+		"MAP_POPUP_MAIN": "Chrome will ask you for your location -- select 'Allow'! Then, see who's around you and reach out to other domestic helpers in the area. You can find more information in the '?' tab.",
+		"MAP_POPUP_OK": "Sure!",
 
 		// Profile
 		"PROFILE_FACEBOOK": "Facebook",
@@ -111,7 +111,7 @@ app.config(function($translateProvider) {
 		"MESSAGES_NONE": "You have no messages yet.",
 		"MESSAGES_POPUP_HEADER": "Welcome to your inbox!",
 		"MESSAGES_POPUP_MAIN": "Click on your messages to open them.",
-		"MESSAGES_POPUP_OK": "Sure!",
+		"MESSAGES_POPUP_OK": "Ok!",
 
 		// Messenger
 		"MESSENGER_TO": "To:",
