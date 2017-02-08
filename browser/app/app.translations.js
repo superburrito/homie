@@ -58,9 +58,9 @@ app.config(function($translateProvider) {
 		"TASKS_SET_TIMER_DURATION": "Timer duration (in mins)...",
 		"TASKS_CONFIRM": "Confirm Task",
 		'TASKS_POPUP_HEADER': "Welcome to your task manager.",
-		'TASKS_POPUP_MAIN': "Create your tasks by selecting the right tab. For each task, you can add an alarm and/or a timer. If a task has a timer, it will turn pink and cause your phone to vibrate when the alarm is reached. If a task has a timer, it will have a progress bar.",
+		'TASKS_POPUP_MAIN': "Create your tasks by selecting the right tab. For each task, you can add an alarm and/or a timer. If your task has an alarm, it will turn pink and cause your phone to vibrate when the alarm is triggered. If your task has a timer, it will time your task with a loading bar when you select it.",
 		'TASKS_POPUP_OK': "Ok!",
-		
+
 		// Settings
 		"SETTINGS_CONFIRM": "Confirm your settings",
 		"SETTINGS_SRC": "Set your profile picture",
@@ -74,7 +74,7 @@ app.config(function($translateProvider) {
 		"TRANSLATE_ENGLISH": "English (EN)",
 		"TRANSLATE_CHINESE": "Chinese (ZH)",
 		"TRANSLATE_POPUP_HEADER": "You're using HOMIE's Translator!",
-		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons. ",
+		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons.",
 		"TRANSLATE_POPUP_OK": "Got it!",
 
 		// HELP
@@ -90,7 +90,7 @@ app.config(function($translateProvider) {
 		"MAP_DISPLAY_BUTTON": "Display My Profile",
 		"MAP_HIDE_BUTTON": "Hide My Profile",
 		"MAP_POPUP_HEADER": "Welcome to HOMIES@SG.",
-		"MAP_POPUP_MAIN": "Chrome will ask you for your location -- select 'Allow'! Then, see who's around you and reach out to other domestic helpers in the area. You can find more information in the '?' tab.",
+		"MAP_POPUP_MAIN": "Chrome will ask you for your location -- select 'Allow'. Then, see who's around you and reach out to other domestic helpers in the area. You can find more information in the '?' tab.",
 		"MAP_POPUP_OK": "Sure!",
 
 		// Profile
@@ -110,7 +110,7 @@ app.config(function($translateProvider) {
 		"MESSAGES_SENT_HEADER": "Sent Messages",
 		"MESSAGES_NONE": "You have no messages yet.",
 		"MESSAGES_POPUP_HEADER": "Welcome to your inbox!",
-		"MESSAGES_POPUP_MAIN": "Click on your messages to open them.",
+		"MESSAGES_POPUP_MAIN": "Messages that you have received or sent are stored in this section. Select your messages to view them. When you delete a message, it will be deleted on the receiver/sender's app too.",
 		"MESSAGES_POPUP_OK": "Ok!",
 
 		// Messenger
