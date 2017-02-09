@@ -22,10 +22,10 @@ AuthHandler.localAuth = (req, res, next) => {
 	})
 	.then((user) => {
 		if (!user) {
-			res.status(400).send({ 
+			return res.status(400).send({ 
 				success: false, 
 				msg: 'auth_failure_not_found'
-			});
+			})
 		} else {
 			console.log("Found user is:" + user);
 			/* compareSync returns a bool.
@@ -35,14 +35,14 @@ AuthHandler.localAuth = (req, res, next) => {
 			(http://stackoverflow.com/questions/6832445/how-can-bcrypt-have-built-in-salts) */
 			const comparePassword = bcrypt.compareSync(req.body.password, user.password);
 			if (!comparePassword) {
-				res.status(400).send({ 
+				return res.status(400).send({ 
 					success: false, 
 					msg: 'auth_failure_wrong_val'
 				});
 			} else {
 				const hToken = tokenise(user);
 				const filteredUser = filter(user);
-				res.status(200).send({ 
+				return res.status(200).send({ 
 					success: true, 
 					msg: 'auth_success_with_tokens', 
 					hToken: hToken,
@@ -64,7 +64,7 @@ AuthHandler.localSignUp = (req, res, next) => {
 	})
 	.then((user) => {
 		if (user) {
-			res.status(400).send({
+			return res.status(400).send({
 				success: false,
 				msg: "account_exists",
 			})
@@ -78,18 +78,14 @@ AuthHandler.localSignUp = (req, res, next) => {
 		}
 	})
 	.then((createdUser) => {
+		if (!createdUser) { return Promise.reject(); }
 		const hToken = tokenise(createdUser);
 		const filteredUser = filter(createdUser);
-		res.status(200).send({
+		return res.status(200).send({
 			success: true,
 			msg: "account_created_with_token",
 			hToken: hToken,
 			user: filteredUser
-		})
-	}, () => {
-		res.status(400).send({
-			success: false,
-			msg: "account_creation_failed"
 		})
 	})
 	.catch(next);
@@ -116,17 +112,29 @@ AuthHandler.facebookAuth = (req, res) => {
 		.then((resBody) => {
 			console.log("resBody: " + resBody);
 			const parsedBody = JSON.parse(resBody);
-			if (!parsedBody.id || !parsedBody.name || !parsedBody.email) {
+			if (!parsedBody.id || !parsedBody.name) {
 				return res.status(400).send({
 					success: false,
 					msg: 'fb_auth_data_retrieval_failure'
 				})
 			} else {
-				const fbId = parsedBody.id.replace('\u0040','@');
+				const fbId = parsedBody.id;
 				const name = parsedBody.name;
-				const email = parsedBody.email.replace('\u0040','@');
+				var email = null;
+				if (parsedBody.email) {
+					email = parsedBody.email.replace('\u0040','@');
+				} 
 				const src = parsedBody.picture.data.url || null;
-				return User.findOne({ where: { fbId: fbId} })		
+
+				// Check for Existing Email, then existing FB id
+				return User.findOne({ where: { email: email } })
+				.then((user) => {
+					if (!user) {
+						return User.findOne({ where: { fbId: fbId } })
+					} else {
+						return user;
+					}
+				})
 				.then((user) => {
 					if (!user) {
 						return User.create({
@@ -137,6 +145,7 @@ AuthHandler.facebookAuth = (req, res) => {
 						})
 					} else {
 						return user.update({
+							fbId: fbId,
 							name: name,
 							email: email,
 							src: src

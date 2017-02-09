@@ -14,7 +14,8 @@ var db = new Sequelize(databaseURI, {
 var User = db.define('user', {
     fbId: {
       type: Sequelize.STRING,
-      allowNull: true
+      allowNull: true,
+      unique: true
     },
     name: {
     	type: Sequelize.STRING,
@@ -22,7 +23,7 @@ var User = db.define('user', {
     },
     email: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true
     },
     password: {
