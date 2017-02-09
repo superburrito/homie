@@ -73,8 +73,8 @@ AuthHandler.localSignUp = (req, res, next) => {
 				name: req.body.name,
 				email: req.body.email,
 				password: hash,
-				src: ''
-			})
+				src: 'https://gethomie.sg/media/defaultProfile.png'
+			});
 		}
 	})
 	.then((createdUser) => {
@@ -86,7 +86,7 @@ AuthHandler.localSignUp = (req, res, next) => {
 			msg: "account_created_with_token",
 			hToken: hToken,
 			user: filteredUser
-		})
+		});
 	})
 	.catch(next);
 };
@@ -124,7 +124,7 @@ AuthHandler.facebookAuth = (req, res) => {
 				if (parsedBody.email) {
 					email = parsedBody.email.replace('\u0040','@');
 				} 
-				const src = parsedBody.picture.data.url || null;
+				const src = parsedBody.picture.data.url || 'https://gethomie.sg/media/defaultProfile.png';
 
 				/* 
 				// "Merge FB and Local" implementation. Only secure if 
