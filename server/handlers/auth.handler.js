@@ -126,7 +126,9 @@ AuthHandler.facebookAuth = (req, res) => {
 				} 
 				const src = parsedBody.picture.data.url || null;
 
-				// Check for Existing Email, then existing FB id
+				/* 
+				// "Merge FB and Local" implementation. Only secure if 
+				// we use confirmation emails for local signups
 				return User.findOne({ where: { email: email } })
 				.then((user) => {
 					if (!user) {
@@ -135,6 +137,8 @@ AuthHandler.facebookAuth = (req, res) => {
 						return user;
 					}
 				})
+				*/
+				return User.findOne({ where: { fbId: fbId } })
 				.then((user) => {
 					if (!user) {
 						return User.create({
