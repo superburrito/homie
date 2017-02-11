@@ -59,8 +59,45 @@ var Message = db.define('message', {
   content: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  senderdeleted: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  receiverdeleted: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
   }
 })
+
+var Question = db.define('question', {
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  content: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  category: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  }
+})
+
+
+var Response = db.define('response', {
+  content: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  likesCtr: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  }
+})
+
+var Like = db.define('like');
 
 // Relations
 // Coord has a userId
@@ -68,5 +105,17 @@ Coord.belongsTo(User);
 // Every message has a sender and a receiver
 Message.belongsTo(User, {as: 'sender'});
 Message.belongsTo(User, {as: 'receiver'});
+
+// Every like has a liker and a likedresponse
+Like.belongsTo(User, {as: 'liker'});
+Like.belongsTo(Response, {as: 'likedresponse'})
+
+
+// Every question has a asker
+Question.belongsTo(User, {as: 'asker'});
+// Every response has a responder
+Response.belongsTo(User, {as: 'responder'});
+// Every question has many responses
+Question.hasMany(Response);
 
 module.exports = db;

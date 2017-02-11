@@ -151,8 +151,7 @@ AuthHandler.facebookAuth = (req, res) => {
 						return user.update({
 							fbId: fbId,
 							name: name,
-							email: email,
-							src: src
+							email: email
 						})
 					}
 				})

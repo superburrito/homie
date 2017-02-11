@@ -49,7 +49,9 @@ MessagesHandler.sendMessage = (req, res, next) => {
 		title: req.body.title,
 		content: req.body.content,
 		sender_id: req.decoded.id,
-		receiver_id: req.body.receiver_id
+		receiver_id: req.body.receiver_id,
+		senderdeleted: false,
+		receiverdeleted: false
 	})
 	.then((createdMessage) => {
 		res.status(200).send({
@@ -63,11 +65,30 @@ MessagesHandler.sendMessage = (req, res, next) => {
 	
 
 MessagesHandler.removeMessage = (req, res, next) => {
-	return Message.destroy({
+	return Message.findOne({
 		where: { id: req.params.messageId }
 	})
+	.then((message) => {
+		if (message.sender_id === req.decoded.id) {
+			return message.update({
+				senderdeleted: false
+			})
+		} else if (message.receiver_id === req.decoded.id) {
+			return message.update({
+				receiverdeleted: false
+			})
+		} else {
+			return Promise.reject();
+		}
+	})
+	.then((message) => {
+		if (message.senderdeleted === true &&
+			message.receiverdeleted === true) {
+			return message.destroy();
+		}
+	})
 	.then(() => {
-		res.status(200).send({ success: true });
+		return res.status(200).send({ success: true })
 	})
 	.catch(next);
 }
@@ -80,6 +101,5 @@ MessagesHandler.removeAllMessages = (req, res, next) => {
 	})
 	.catch(next);
 }
-
 
 module.exports = MessagesHandler;

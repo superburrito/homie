@@ -32,8 +32,8 @@
 					alt="No Image"
 				>
 				<div class="messages__listItem--info" flex>
-					<h3>{{inboxMessage.sender.name.substring(0,10)}}</h3>
-					<p>{{inboxMessage.title.substring(0,18).concat('...')}}</p>
+					<h3>{{ limitStr(inboxMessage.sender.name, 18) }}</h3>
+					<p>{{ limitStr(inboxMessage.title, 25) }}</p>
 				</div>
 
 				<md-button 
@@ -69,8 +69,8 @@
 					ng-click="viewMessage(sentMessage)"
 					>
 				<div class="messages__listItem--info" flex>
-					<h3>{{sentMessage.receiver.name.substring(0,10)}}</h3>
-					<p>{{sentMessage.title.substring(0,18).concat('...')}}</p>
+					<h3>{{ limitStr(receiver.name, 18) }}</h3>
+					<p>{{ limitStr(sentMessage.title, 25) }}</p>
 				</div>
 
 				<md-button 

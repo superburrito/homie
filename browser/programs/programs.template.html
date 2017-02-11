@@ -7,13 +7,11 @@
 			</span>
 			<span flex></span>
 			<div layout="column" layout-align="center">
-				<a ng-href={{event.link}}>
-				<md-button class="md-icon-button">
+				<md-button class="md-icon-button" ng-click="goToLink(event)">
 					<md-icon md-font-set="material-icons">
 						open_in_new
 					</md-icon>
 				</md-button>
-				</a>
 			</div>
 		</md-toolbar>
 		<md-content class="program__main" layout="column">
@@ -29,7 +27,6 @@
 			<br>
 		</md-content>
 	</div>
-
 
 
 </div>

@@ -12,46 +12,43 @@
 			</md-list-item>
 
 			<md-list-item ng-click="stateGoer('translator')">
-				<md-icon md-font-set="material-icons">textsms</md-icon>
+				<md-icon md-font-set="material-icons">g_translate</md-icon>
 				<p>{{ 'SIDENAV_TRANSLATOR' | translate }}</p>
-			</md-list-item>
-
-			<md-list-item ng-click="stateGoer('phrasebook')">
-				<md-icon md-font-set="material-icons">book</md-icon>
-				<p>{{ 'SIDENAV_PHRASEBOOK' | translate }}</p>
 			</md-list-item>
 
 			<md-divider></md-divider>
 
 			<md-list-item ng-click="stateGoer('map')">
-				<md-icon md-font-set="material-icons">group</md-icon>
+				<md-icon md-font-set="material-icons">public</md-icon>
 				<p>{{ 'SIDENAV_MAP' | translate }}</p>
 			</md-list-item>
 
+			<md-list-item ng-click="stateGoer('forum')">
+				<md-icon md-font-set="material-icons">group</md-icon>
+				<p>{{ 'SIDENAV_DISCUSS' | translate }}</p>
+			</md-list-item> 
 
 			<md-list-item ng-click="stateGoer('messages')">
 				<md-icon md-font-set="material-icons">mail</md-icon>
 				<p>{{ 'SIDENAV_MESSAGES' | translate }}</p>
 			</md-list-item>
 
-<!-- 			<md-list-item ng-click="stateGoer('programs')">
-				<md-icon md-font-set="material-icons">accessibility</md-icon>
+ 			<md-list-item ng-click="stateGoer('programs')">
+				<md-icon md-font-set="material-icons">school</md-icon>
 				<p>{{ 'SIDENAV_EDUCATION' | translate }}</p>
-			</md-list-item> -->
-
-			<md-divider></md-divider>
+			</md-list-item> 
 
 			<md-list-item>
 				<md-icon md-font-set="material-icons">work</md-icon>
 				<p>{{ 'SIDENAV_RIGHTS' | translate }}</p>
 			</md-list-item>
 
+			<md-divider></md-divider>
+
 			<md-list-item ng-click="stateGoer('help')">
 				<md-icon md-font-set="material-icons">ring_volume</md-icon>
 				<p>{{ 'SIDENAV_GETHELP' | translate }}</p>
 			</md-list-item>
-
-			<md-divider></md-divider>
 
 			<md-list-item ng-click="stateGoer('settings')">
 				<md-icon md-font-set="material-icons">settings</md-icon>

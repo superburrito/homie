@@ -23,6 +23,8 @@ router.use('/map', require('./map.js'));
 
 router.use('/messages', require('./messages.js'));
 
+router.use('/forum', require('./forum.js'));
+
 router.use('/translate', require('./translate.js'));
 
 

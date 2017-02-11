@@ -1,10 +1,10 @@
 <div class="message" layout="column">
     <div class="message__sendingFrom" layout="row">
         <h3 ng-hide="sentBySelf" class="message__sendingFrom--text">
-            <b> {{ 'MESSAGE_FROM' | translate }} {{message.sender.name}} </b>
+            <b> {{ 'MESSAGE_FROM' | translate }} {{ limitStr(message.sender.name, 20) }} </b>
         </h3>
         <h3 ng-show="sentBySelf" class="message__sendingFrom--text">
-            <b> {{ 'MESSAGE_TO' | translate }} {{message.receiver.name}} </b>
+            <b> {{ 'MESSAGE_TO' | translate }} {{ limitStr(message.receiver.name, 20) }} </b>
         </h3>
         <span flex>
         </span>

@@ -32,12 +32,6 @@ app.config(function($stateProvider){
 		controller: 'TranslatorCtrl'
 	})
 
-	$stateProvider.state('phrasebook', {
-		url: '/phrasebook',
-		templateUrl: '/phrasebook/phrasebook.template.html',
-		controller: 'PhrasebookCtrl'
-	})
-
 	$stateProvider.state('signup', {
 		url: '/signup',
 		templateUrl: '/signup/signup.template.html',
@@ -80,6 +74,24 @@ app.config(function($stateProvider){
 		url: '/help',
 		templateUrl: '/help/help.template.html',
 		controller: 'HelpCtrl'
+	})
+
+	$stateProvider.state('forum', {
+		url: '/forum',
+		templateUrl: '/forum/forum.template.html',
+		controller: 'ForumCtrl'
+	})
+
+	$stateProvider.state('ask', {
+		url: '/ask',
+		templateUrl: '/ask/ask.template.html',
+		controller: 'AskCtrl'
+	})
+
+	$stateProvider.state('question', {
+		url: '/forum/:questionId',
+		templateUrl: '/question/question.template.html',
+		controller: 'QuestionCtrl',
 	})
 
 	$stateProvider.state('programs', {

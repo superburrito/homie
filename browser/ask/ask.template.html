@@ -1,0 +1,44 @@
+<div class="ask" layout="column" layout-align="none center">
+    <div class="ask__header" layout="row">
+        <h3 class="ask__header--text">
+            <b> Post A New Question</b>
+        </h3>
+    </div>
+    <form name="askForm" class="ask__form" layout="column" layout-align="none center">
+        <md-input-container class="ask__form--title">
+            <label>Question Title</label>     
+            <input class="" type="text" ng-model="title" required>
+        </md-input-container>
+        <md-input-container class="md-block ask__form--content">
+            <label>Explain Your Question</label>
+            <textarea 
+                ng-model="content" 
+                md-maxlength="150" 
+                rows="3" 
+                md-select-on-focus required
+            >
+            </textarea>
+        </md-input-container>
+        <md-input-container class="ask__form--category">
+            <label>Category</label>
+            <md-select
+                ng-model="category"
+            >
+                <md-option 
+                    ng-repeat="category in categories"
+                    ng-value="category.value"
+                >
+                    {{category.translated}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <br>
+        <br>
+        <md-button ng-click="postQuestion()" type="submit" class="md-primary md-raised ask__form--button" ng-disabled="askForm.$invalid">
+            Post Your Question
+        </md-button>
+        <md-button ng-click="goToForum()" md-theme="themeTaskC" class="ask__form--button md-raised md-accent">
+            Return To Forum
+        </md-button>
+    </form>
+</div>

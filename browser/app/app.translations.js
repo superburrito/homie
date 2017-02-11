@@ -12,6 +12,7 @@ app.config(function($translateProvider) {
 		"SIDENAV_MESSAGES": "My Messages",
 		"SIDENAV_EDUCATION": "My Education",
 		"SIDENAV_RIGHTS": "My Rights",
+		"SIDENAV_DISCUSS": "Let's Discuss",
 		"SIDENAV_GETHELP": "Get Help",
 		"SIDENAV_SETTINGS": "Settings",
 		"SIDENAV_LOGOUT": "Logout",
@@ -74,7 +75,7 @@ app.config(function($translateProvider) {
 		"TRANSLATE_ENGLISH": "English (EN)",
 		"TRANSLATE_CHINESE": "Chinese (ZH)",
 		"TRANSLATE_POPUP_HEADER": "You're using HOMIE's Translator!",
-		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons.",
+		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons. You can also save phrases. Saved phrases will be stored in the next tab.",
 		"TRANSLATE_POPUP_OK": "Ok!",
 
 		// HELP
@@ -90,7 +91,7 @@ app.config(function($translateProvider) {
 		"MAP_DISPLAY_BUTTON": "Display My Profile",
 		"MAP_HIDE_BUTTON": "Hide My Profile",
 		"MAP_POPUP_HEADER": "Welcome to HOMIES@SG.",
-		"MAP_POPUP_MAIN": "Chrome will ask you for your location. Select 'Allow'. Then, see who's around you and reach out to other domestic helpers in the area. You can find more information in the '?' tab.",
+		"MAP_POPUP_MAIN": "Chrome will ask you for your location. Select 'Allow'. Then, see who's around you and reach out to other domestic helpers in the area. You can learn more in the next tab.",
 		"MAP_POPUP_OK": "Sure!",
 
 		// Profile
@@ -119,6 +120,20 @@ app.config(function($translateProvider) {
 		"MESSENGER_CONTENT": "Message Content",
 		"MESSENGER_SEND": "Send Your Message",
 		"MESSENGER_RETURN": "Return To Messages",
+
+		// Forum
+		"FORUM_HEADER": "Forum",
+		"FORUM_CAT_ALL": "All",
+		"FORUM_ASK": "Ask a Question",
+		// Ask
+		"ASK_CAT_SALARY": "Salary",
+		"ASK_CAT_HEALTH": "Health",
+		"ASK_CAT_PRIVACY": "Privacy",
+		"ASK_CAT_WORK": "Work",
+		"ASK_CAT_LEAVE": "Leave", // as in, off days
+		"ASK_CAT_OTHERS": "Others",
+		
+
 
 		// Toasts
 		"T_PROFILE_ADD_SUCCESS": "Successfully added your profile to the map.",
@@ -150,6 +165,11 @@ app.config(function($translateProvider) {
 		'T_TASK_CREATED': "Task created and saved.",
 
 		'T_TRANSLATOR_SAVED': "Phrase saved.",
+		'T_POST_SUCCESS': "Your question has been posted.",
+		'T_POST_FAIL': "Your question was not posted.",
+
+		"T_QN_FAIL": "Failed to load this post.",
+		"T_RESP_FAIL": "Fail to upload your response."
 	}
 
 	const tlTranslations = {

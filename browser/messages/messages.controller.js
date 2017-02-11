@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope) => { 
+app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, GeneralFactory) => { 
 
 	$scope.view = 'inbox';
 	$scope.setView = (str) => {
@@ -51,4 +51,6 @@ app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope) => 
 			getSent();
 		})
 	}
+
+	$scope.limitStr = GeneralFactory.limitStr;
 })

@@ -37,7 +37,8 @@ app.listen(port, function (err) {
 
 			const User = db.model('user');
 			const Coord = db.model('coord');
-			const Message = db.model('message');
+			const Question = db.model('question');
+			const Response = db.model('response');
 
 			var userProm = User.create({
 		  	  name: 'Rakesh Pk',
@@ -47,25 +48,36 @@ app.listen(port, function (err) {
 			  src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/1503502_10153081589165761_3424469626701072341_n.jpg?oh=4a6174cb65a9e5ecfbd7cd2000b617cf&oe=590C225B'
 			})
 
-/*			var user2Prom = User.create({
-		  	  name: 'Chua Yao Hui',
-		  	  fbId: 621065247,
-			  email: 'yaohui91@hotmail.com',
-			  password: 12345,
-			  src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/12439280_10153334778955248_8673996898083161717_n.jpg?oh=4ee81bf224ca85979af6b10d31aad108&oe=5909C2D9',
-			  bgUrl: ''
-			})*/
-
 			var coordProm = Coord.create({
 				lat: 1.29,
 				lng: 103.80
 			})
 
+			var questionProm = Question.create({
+				title: 'Negotiating Pay',
+				content: `How to negotiate pay? My employer is very problematic. She does not understand that I have to support my family back at home. I need some help. Can somebody help me talk to my employer? I will appreciate it...`,
+				category: 'Salary',
+			})
+
+			var respProm = Response.create({
+				title: 'This is how you do it',
+				content: 'You talk to her.',
+				likesCtr: 0
+			})
 
 
-			return Promise.all([coordProm, userProm])
-			.spread((coord, user) => {
-				return coord.setUser(user);
+			return Promise.all([coordProm, userProm, questionProm, respProm])
+			.spread((coord, user, question, response) => {
+				return coord.setUser(user)
+				.then(() => {
+					return question.setAsker(user);
+				})
+				.then(() => {
+					return response.setResponder(user);
+				})
+				.then(() => {
+					return question.addResponse(response);
+				});
 			})
 
 			// =====================

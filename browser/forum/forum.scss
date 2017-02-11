@@ -1,0 +1,61 @@
+.forum {
+
+	&__noQuestions {
+		text-align: center;
+	}
+
+
+	&__question {
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+
+	&__toolbar {
+		height: $toolbar-vh;
+		min-height: $toolbar-min-height;
+		max-height: $toolbar-max-height;
+		&--text {
+			margin-left: 10px;
+		}
+	}
+
+	@media #{$view-small} {
+		&__toolbar--button {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+		&__toolbar--text {
+			margin-right: 3px;
+			margin-top: 10px;
+			margin-bottom: 3px;
+		}
+	}
+
+	@media #{$view-normal} {
+		&__toolbar--button {
+			margin-left: 2vh;
+			margin-right: 2vh;
+		}
+
+		&__toolbar--text {
+			margin-right: 2vh;
+			margin-top: 2vh;
+			margin-bottom: 2vh;
+		}
+	}
+
+	@media #{$view-large} {
+		&__toolbar--button {
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		&__toolbar--text {
+			margin-right: 20px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			font-size: 150%;
+		}	
+	}
+}
