@@ -2,7 +2,7 @@
 
 app.controller('ToolbarCtrl', function (
 	$scope, $state, TasksFactory, 
-	MapFactory, MessagesFactory, TranslatorFactory
+	MapFactory, MessagesFactory, TranslatorFactory, ForumFactory
 	) {
 	$scope.loadHelper = () => {
 		const stateName = $state.current.name;
@@ -15,6 +15,8 @@ app.controller('ToolbarCtrl', function (
 			MessagesFactory.launchTutorial();
 		} else if (stateName === 'translator') {
 			TranslatorFactory.launchTutorial();
+		} else if (stateName === 'forum') {
+			ForumFactory.launchTutorial();
 		}
 	}
 });

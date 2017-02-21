@@ -2,6 +2,11 @@
 
 app.controller('ForumCtrl', ($scope, $mdMenu, ForumFactory, $state, GeneralFactory) => {
 
+	// Launch tutorial
+	if (localStorage.getItem('HOMIE-sForumT') !== 'seen') {
+		ForumFactory.launchTutorial();
+	}
+
 	function loadAndCheckQuestions() {
 		ForumFactory.getAllQuestions()
 		.then((questions) => {

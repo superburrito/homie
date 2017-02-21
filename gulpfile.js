@@ -2,6 +2,9 @@ const gulp = require('gulp'); // <-- "pipes" modules
 const babel = require('gulp-babel'); // <-- transpiles es6 into es5
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
+const ngAnnotate = require('gulp-ng-annotate');
+const uglifyJS = require('gulp-uglify');
+const cleanCSS = require('gulp-clean-css');
 
 
 gulp.task('buildJS', function () {
@@ -15,6 +18,8 @@ gulp.task('buildJS', function () {
  				}))
     		// concats everything into a main.js file
         .pipe(concat('main.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglifyJS())
         // and saves it in the public dir
         .pipe(gulp.dest('./public/'));
 });
@@ -35,6 +40,7 @@ gulp.task('buildCSS', function () {
 	return gulp.src('./browser/sass.scss')
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('style.css'))
+	.pipe(cleanCSS())
 	.pipe(gulp.dest('./public/'));
 });
 

@@ -4,9 +4,11 @@
 	<md-nav-bar md-theme="themeTaskP" class="mnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="transNavbar">
 	  <md-nav-item class="transNavbar" md-nav-click="setView('translator')" layout="column">
 	  	<md-icon md-font-set="material-icons">g_translate</md-icon>
+	  	<span class="transNavbar__buttonText">&nbsp; &nbsp; {{ 'TRANS_NAV_TRANSLATOR' | translate }}</span>
 	  </md-nav-item>
 	  <md-nav-item class="transNavbar" md-nav-click="setView('phrasebook')" layout="column">
 	  	<md-icon md-font-set="material-icons">book</md-icon>
+	  	<span class="transNavbar__buttonText">&nbsp; &nbsp; {{ 'TRANS_NAV_PHRASEBOOK' | translate }}</span>
 	  </md-nav-item>
 	</md-nav-bar>
 	<!-- End of Navbar -->

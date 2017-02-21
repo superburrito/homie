@@ -1,5 +1,4 @@
 .task {
-
 	.tnavbar {
 
 		width: 100%;
@@ -21,6 +20,12 @@
 			}
 			.md-unselected .material-icons {
 				color: rgba(0,0,0,0.54);
+			}
+		}
+
+		@media #{$view-thin} {
+			&__buttonText {
+				display: none !important;
 			}
 		}
 	}

@@ -49,6 +49,8 @@ app.config(function($translateProvider) {
 		"PHRASEBOOK_PROMPT": 'Start Translating!',
 
 		// My Tasks
+		"TASKS_NAV_TASKS": "My Tasks",
+		"TASKS_NAV_ADDATASK": "Add A Task",
 		"TASKS_HEADER": "My Tasks",
 		"TASKS_NOTASKS": "You have not added a task yet.",
 		"TASKS_ADD_A_TASK_LABEL": "Add a Task",
@@ -68,6 +70,8 @@ app.config(function($translateProvider) {
 		"SETTINGS_DESCRIPTION": "Update your profile description here!",
 
 		// Translate
+		"TRANS_NAV_TRANSLATOR": "Translator",
+		"TRANS_NAV_PHRASEBOOK": "My Phrasebook",
 		"TRANSLATE_HEADER": "Text to Translate",
 		"TRANSLATE_CONVERT_HEADER": "Convert Text Into...",
 		"TRANSLATE_TAGALOG": "Tagalog (TL)",
@@ -86,6 +90,8 @@ app.config(function($translateProvider) {
 		"HELP_CDE": "Contact CDE",
 
 		// MAP
+		"MAP_NAV_MAPVIEW": "Explore My Area",
+		"MAP_NAV_ADDMYPROFILE": "Add My Profile",
 		"MAP_SETTINGS1": "You can add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.",
 		"MAP_SETTINGS2": "Don't worry, you can change or hide your profile at any time.",
 		"MAP_DISPLAY_BUTTON": "Display My Profile",
@@ -123,6 +129,9 @@ app.config(function($translateProvider) {
 
 		// Forum
 		"FORUM_HEADER": "Forum",
+		"FORUM_POPUP_HEADER": "Welcome to the Forum!",
+		"FORUM_POPUP_MAIN": "Here, you can pose questions to our community and respond to what others are thinking about. Click on the magnifying glass on the right for more options.",
+		"FORUM_POPUP_OK": "Cool!",
 		"FORUM_CAT_ALL": "All",
 		"FORUM_ASK": "Ask a Question",
 		// Ask

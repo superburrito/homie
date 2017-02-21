@@ -4,9 +4,11 @@
 	<md-nav-bar md-theme="themeTaskP" class="tnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="tnavbar">
 	  <md-nav-item class="tnavbar__button" md-nav-click="setView('tasklist')" layout="column">
 	  	<md-icon md-font-set="material-icons">assignment</md-icon>
+	  	<span class="tnavbar__buttonText">&nbsp; &nbsp; {{ 'TASKS_NAV_TASKS' | translate }}</span>
 	  </md-nav-item>
 	  <md-nav-item class="tnavbar__button" md-nav-click="setView('addTask')" layout="column">
 	  	<md-icon md-font-set="material-icons">note_add</md-icon>
+		<span class="tnavbar__buttonText">&nbsp; &nbsp; {{ 'TASKS_NAV_ADDATASK' | translate }}</span>
 	  </md-nav-item>
 	</md-nav-bar>
 	<!-- End of Tasks Navbar -->
