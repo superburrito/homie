@@ -163,11 +163,11 @@ app.config(function($translateProvider) {
 		'T_AUTH_FB_FAIL': "Facebook has blocked your access.",
 		'T_AUTH_FB_SUCCESS': "Facebook has authorised your access!",
 
-		'T_TASK_TIMER_START': "Timer has started for ",
+		'T_TASK_TIMER_START': "Timer has started for ", // (e.g. Timer has started for Wash the Dishes)
 
 		'T_SETTINGS_CACHE_ERR': "Error: Your cache has missing data.",
-		'T_SETTINGS_SYNC_SUCC': "Settings synced with server.",
-		'T_SETTINGS_SYNC_FAIL': "Syncing with server failed.",
+		'T_SETTINGS_SYNC_SUCC': "Settings saved online.",
+		'T_SETTINGS_SYNC_FAIL': "Failed to save settings.",
 
 		'T_TASK_CREATED': "Task created and saved.",
 

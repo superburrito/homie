@@ -8,7 +8,10 @@ const MessagesHandler = {}
 
 MessagesHandler.getInbox = (req, res, next) => {
 	return Message.findAll({ 
-		where: { receiver_id: req.decoded.id },
+		where: { 
+			receiver_id: req.decoded.id,
+			receiverdeleted: false
+		},
 		include: [{
 			model: User,
 			as: 'sender',
@@ -27,7 +30,10 @@ MessagesHandler.getInbox = (req, res, next) => {
 
 MessagesHandler.getSent = (req, res, next) => {
 	return Message.findAll({ 
-		where: { sender_id: req.decoded.id },
+		where: { 
+			sender_id: req.decoded.id, 
+			senderdeleted: false
+		},
 		include: [{
 			model: User,
 			as: 'receiver',
@@ -71,11 +77,11 @@ MessagesHandler.removeMessage = (req, res, next) => {
 	.then((message) => {
 		if (message.sender_id === req.decoded.id) {
 			return message.update({
-				senderdeleted: false
+				senderdeleted: true
 			})
 		} else if (message.receiver_id === req.decoded.id) {
 			return message.update({
-				receiverdeleted: false
+				receiverdeleted: true
 			})
 		} else {
 			return Promise.reject();
