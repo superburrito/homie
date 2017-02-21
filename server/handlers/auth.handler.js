@@ -11,7 +11,7 @@ const tokenise = require('./tokenise');
 const filter = require('./filter');
 
 // BCRYPT: Password hashing function by Niels Provos and David Mazieres (https://en.wikipedia.org/wiki/Bcrypt) 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const saltRounds = 10;
 
 const AuthHandler = {}
