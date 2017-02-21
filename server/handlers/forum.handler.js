@@ -64,7 +64,8 @@ ForumHandler.postQuestion = (req, res, next) => {
 	return Question.create({
 		title: req.body.title,
 		content: req.body.content,
-		category: req.body.category	
+		category: req.body.category,
+		asker_id: req.decoded.id
 	})
 	.then((question) => {
 		if (question) {

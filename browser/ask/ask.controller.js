@@ -13,8 +13,8 @@ app.controller('AskCtrl', ($scope, $state, $http, ToastFactory, $translate) => {
             if (data.success) {
                 $scope.title = null;
                 $scope.content = null;
-                $scope.messengerForm.$setPristine();
-                $scope.messengerForm.$setUntouched();
+                $scope.askForm.$setPristine();
+                $scope.askForm.$setUntouched();
                 ToastFactory.displayMsg($translate.instant('T_POST_SUCCESS'), 500);
                 // Go to messages state
                 $state.go('forum');

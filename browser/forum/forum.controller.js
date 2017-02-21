@@ -24,4 +24,4 @@ app.controller('ForumCtrl', ($scope, $mdMenu, ForumFactory, $state, GeneralFacto
 
 	$scope.limitStr = GeneralFactory.limitStr;
 	
-})
+});

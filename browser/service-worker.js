@@ -1,6 +1,6 @@
 // Cache for application shell
-var apiCacheName = "HomieAPICache-v3";
-var shellCacheName = "HomieShellCache-v3";
+var apiCacheName = "HomieAPICache-v4";
+var shellCacheName = "HomieShellCache-v4";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
@@ -33,7 +33,7 @@ var filesToCache = [
   '/media/mapIcon.png',
   '/media/thumbnail.png',
 
-  // Messages
+  // Routes
 	'/home/home.template.html',
   '/tasks/tasks.template.html',
   '/settings/settings.template.html',
@@ -47,7 +47,6 @@ var filesToCache = [
   '/messages/messages.template.html',
   '/message/message.template.html',
   '/help/help.template.html'
-
 ];
 
 

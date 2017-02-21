@@ -1,7 +1,8 @@
-<div class="question" layout="column" layout-align="none center">
+<div class="question" layout="column">
 	<md-list-item 
 		class="question__main md-3-line" 
 		layout="row"
+		layout-align="start"
 	>
 		<img 
 			class="md-avatar"
@@ -30,25 +31,26 @@
 		</md-list-item>
 	</md-list>
 	<br>
-
-    <md-button 
-    	class="question__button md-primary md-raised"
-    	ng-click="writeResponse()" 
-    	ng-hide="writingResponse"
-    >
-    	Add A Response
-        <md-icon md-font-set="material-icons">
-        	add_circle
-        </md-icon>
-    </md-button>
-    <md-button 
-    	md-theme="themeTaskC"
-    	class="question__button md-accent md-raised"
-    	ui-sref="forum()" 
-    	ng-hide="writingResponse"
-    >
-    	Return to Forum
-    </md-button>
+	<div layout="column" layout-align="none center">
+	    <md-button 
+	    	class="question__button md-primary md-raised"
+	    	ng-click="writeResponse()" 
+	    	ng-hide="writingResponse"
+	    >
+	    	Add A Response
+	        <md-icon md-font-set="material-icons">
+	        	add_circle
+	        </md-icon>
+	    </md-button>
+	    <md-button 
+	    	md-theme="themeTaskC"
+	    	class="question__button md-accent md-raised"
+	    	ui-sref="forum()" 
+	    	ng-hide="writingResponse"
+	    >
+	    	Return to Forum
+	    </md-button>
+	</div>
 	<form 
 		name="questionForm"
 		ng-show="writingResponse" 
