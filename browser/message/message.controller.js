@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MessageCtrl', ($scope, $rootScope, $state, StoreFactory) => {
+app.controller('MessageCtrl', ($scope, $rootScope, $state, StoreFactory, GeneralFactory) => {
 	$scope.message = $rootScope.currMessage;
 
 	$scope.sentBySelf = false;
@@ -21,12 +21,6 @@ app.controller('MessageCtrl', ($scope, $rootScope, $state, StoreFactory) => {
 		$state.go('messenger');
 	}
 
-	$scope.limitStr = (str, limit) => {
-		if (str.length > limit) {
-			return str.slice(0,limit).concat('...');
-		} else {
-			return str;
-		}
-	} 
+	$scope.limitStr = GeneralFactory.limitStr;
 
 })

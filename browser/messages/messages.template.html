@@ -69,7 +69,7 @@
 					ng-click="viewMessage(sentMessage)"
 					>
 				<div class="messages__listItem--info" flex>
-					<h3>{{ limitStr(receiver.name, 18) }}</h3>
+					<h3>{{ limitStr(sentMessage.receiver.name, 18) }}</h3>
 					<p>{{ limitStr(sentMessage.title, 25) }}</p>
 				</div>
 
