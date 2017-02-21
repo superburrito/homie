@@ -1,9 +1,11 @@
 'use strict';
 
-app.controller('ProfileCtrl', ($mdDialog, $scope, $rootScope, $state) => {
+app.controller('ProfileCtrl', ($mdDialog, $scope, $rootScope, $state, StoreFactory) => {
 	$scope.cancel = () => {
 		$mdDialog.cancel();
 	}
+
+	$scope.viewingUserId = StoreFactory.getProfile().id;
 
 	$scope.user = $rootScope.currCoord.user;
 
