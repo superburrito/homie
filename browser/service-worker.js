@@ -59,7 +59,6 @@ var filesToCache = [
   '/terms/terms.template.html',
   '/toolbar/toolbar.template.html',
   '/translator/translator.template.html',
-  '/translator/phrasebook.template.html',
 ];
 
 
