@@ -26,28 +26,40 @@ var filesToCache = [
 	'/index.html',
 	'/main.js',
 	'/style.css',
-
+  
   // Media items
   '/media/helpDefault.jpg',
   '/media/homeDefault.jpg',
   '/media/landingDefault.jpg',
   '/media/mapIcon.png',
   '/media/thumbnail.png',
+  '/media/defaultProfile.png',
+
+  // Programs-related Media 
+  '/media/programsCare.jpg',
+  '/media/programsComp.jpg',
 
   // Routes
+  '/ask/ask.template.html',
+  '/forum/forum.template.html',
+  '/help/help.template.html',
 	'/home/home.template.html',
-  '/tasks/tasks.template.html',
-  '/settings/settings.template.html',
   '/landing/landing.template.html',
-  '/translator/translator.template.html',
-  '/phrasebook/phrasebook.template.html',
-  '/signup/signup.template.html',
-  '/terms/terms.template.html',
   '/map/map.template.html',
-  '/messenger/messenger.template.html',
-  '/messages/messages.template.html',
+  '/map/profile.template.html',
   '/message/message.template.html',
-  '/help/help.template.html'
+  '/messages/messages.template.html',
+  '/messenger/messenger.template.html',
+  '/programs/programs.template.html',
+  '/question/question.template.html',
+  '/settings/settings.template.html',
+  '/sidenav/sidenav.template.html',
+  '/signup/signup.template.html',
+  '/tasks/tasks.template.html',
+  '/terms/terms.template.html',
+  '/toolbar/toolbar.template.html',
+  '/translator/translator.template.html',
+  '/translator/phrasebook.template.html',
 ];
 
 
