@@ -16,8 +16,9 @@ var filesToCache = [
 	'/bower_components/ng-file-upload/ng-file-upload-shim.min.js',
 	'/bower_components/ng-file-upload/ng-file-upload.min.js',
 	'/bower_components/angular-cloudinary/angular-cloudinary.js',
-  'https://code.responsivevoice.org/responsivevoice.js',
-  'https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI', 
+  
+/*  'https://code.responsivevoice.org/responsivevoice.js',
+  'https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI', */
 
 	// Internal HTML JSS requests
   // Mains
