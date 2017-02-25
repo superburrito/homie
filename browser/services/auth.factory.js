@@ -1,19 +1,20 @@
 'use strict';
 
-app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state, ToastFactory) {
+app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state, ToastFactory, $translate) {
 
 	var AuthFactory = {};
 
 	// Local Auth
 	AuthFactory.signup = function (name, email, password) {
-		$http.post('/auth/local/signup', {
+		return $http.post('/auth/local/signup', {
 			name: name,
 			email: email, 
 			password: password
 		})
 		.then(function (res) {
 			if (res.data && res.data.msg === 'account_exists') {
-				ToastFactory.displayMsg('Account already exists!', 600);
+				ToastFactory.displayMsg(
+					$translate.instant('T_AUTH_ACCT_EXISTS'), 500);
 			} else {
 				AuthFactory.authDataHandler(res.data);
 			}
@@ -22,15 +23,17 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 
 	AuthFactory.login = function (email, password) {
-		$http.post('/auth/local', {
+		return $http.post('/auth/local', {
 			email: email, 
 			password: password
 		})
 		.then(function (res) {
 			if (res.data && res.data.msg === 'auth_failure_wrong_val') {
-				ToastFactory.displayMsg('Wrong email or password!', 600);
+				ToastFactory.displayMsg(
+					$translate.instant('T_AUTH_WRONG_CREDS'), 500);
 			} else if (res.data && res.data.msg === 'auth_failure_not_found') {
-				ToastFactory.displayMsg('No such user.', 500);
+				ToastFactory.displayMsg(
+					$translate.instant('T_AUTH_NO_SUCH'), 500);
 			} else {
 				AuthFactory.authDataHandler(res.data);
 			}
@@ -39,49 +42,39 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 	// Facebook Auth
 	AuthFactory.fbLogin = function () {
-		var fbPromise = $q.defer();
-		FB.getLoginStatus((res) => {
-			if (res.status !== 'connected') {
+		return FB.getLoginStatus((fbGetStatRes) => {
+			if (fbGetStatRes.status !== 'connected') {
 				// Get short-lived token (slToken) from Facebook
-				FB.login((res) => {
-					if (res.authResponse) {
-						var slToken = res.authResponse.accessToken;
-						console.log("[LOGIN] FB login successful. slToken obtained:" + slToken);
-						fbPromise.resolve({ success: true, slToken: slToken })
+				return FB.login((fbLoginRes) => {
+					if (fbLoginRes.authResponse) {
+						var slToken = fbLoginRes.authResponse.accessToken;
+						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 500);
+						return $http.post('/auth/facebook', { slToken: slToken })
+						.then((homieRes) => {
+							if (homieRes.data && homieRes.status === 400) {
+								ToastFactory.displayMsg(
+									$translate.instant('T_AUTH_SERVER_ERR'), 500);
+								console.log("[LOGIN] Failed: " + JSON.stringify(homieRes.data));
+							} else {
+								AuthFactory.authDataHandler(homieRes.data);
+							}
+						}) 
 					} else {
-						console.log("[LOGIN] FB login failed.");
-						fbPromise.resolve({ success: false });
+						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_FAIL'), 500);
+						return ;
 					}
 				})
 			} else {
-				FB.logout(() => {
-					console.log("[LOGIN] HOMIE has logged you out to avoid an error. Log in again.")
-					fbPromise.resolve({ success: false });
+				return FB.logout(() => {
+					ToastFactory.displayMsg($translate.instant('T_AUTH_FB_LOGOUT'), 600);
 				});
 			}
 		});
-
-		// Pass fbUserData to Server to get long-lived token
-		fbPromise.promise.then((slTokenObj) => {
-			if(!slTokenObj.success) {
-				ToastFactory.displayMsg('Facebook has blocked access.', 600);
-				$rootScope.$broadcast('unauthenticated');
-			} else {
-				$http.post('/auth/facebook', slTokenObj)
-				.then(function (res) {
-					if (res.data && res.data.msg === 'fb_auth_failure_no_tokens') {
-						ToastFactory.displayMsg('A server error occurred.', 600);
-					} else {
-						AuthFactory.authDataHandler(res.data);
-					}
-				})
-			}
-		})
 	};
 
 	// Local & FB Reentry
 	AuthFactory.reentry = () => {
-		$http.get('/reentry')
+		return $http.get('/reentry')
 		.then((res) => { 
 			console.log("[RE-ENTRY] HOMIE server reentry res: " + JSON.stringify(res.data));
 			return res.data; 
@@ -92,14 +85,16 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 	};
 
 	AuthFactory.resToDataFilter = (res) => {
-		if(res.status == 403) {
+		if (res.status === 403) {
 			$rootScope.broadcast('unauthenticated');
+			return;
 		}
 		return res.data;
 	}
 
 	// Handles data from local/FB logins AND re-entries
 	AuthFactory.authDataHandler = function (data) {
+		console.log("[LOGIN] Accessing client is: " + JSON.stringify(data.user));
 		if (data && data.success) {
 			if (data.fbToken) {
 				console.log("[LOGIN] Homie-FB Token Exchange successful. (ll) fbToken obtained: " + data.fbToken);

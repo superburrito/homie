@@ -1,0 +1,118 @@
+<div class="forum" layout="column">
+
+	<!-- Toolbar -->
+	<md-toolbar md-theme="altTheme3" class="md-accent forum__toolbar" layout="row">
+		<h3 class="forum__toolbar--text">
+			{{ 'FORUM_HEADER' | translate }}
+		</h3>
+		<span flex>
+		</span>
+		<md-menu 
+			class="forum__toolbar--menu"
+			md-position-mode="target-right target"
+		>
+			<md-button 
+				class="md-icon-button" 
+				ng-click="openMenu($mdOpenMenu, $event)"
+			>
+				<md-icon md-font-set="material-icons">
+					search
+				</md-icon>
+			</md-button>
+			<md-menu-content width="3">
+				<md-menu-item>
+					<md-button ng-click="setSearchText('')">
+						<md-icon md-font-set="material-icons">
+							live_help
+						</md-icon>
+						{{'FORUM_CAT_ALL' | translate }}
+					</md-button>
+				</md-menu-item>				
+				<md-menu-item>
+					<md-button ng-click="setSearchText('salary')">
+						<md-icon md-font-set="material-icons">
+							local_atm	
+						</md-icon>
+						{{'ASK_CAT_SALARY' | translate }}
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="setSearchText('health')">
+						<md-icon md-font-set="material-icons">
+							local_hospital
+						</md-icon>
+						{{'ASK_CAT_HEALTH' | translate }}
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="setSearchText('privacy')">
+						<md-icon md-font-set="material-icons">
+							lock
+						</md-icon>
+						{{'ASK_CAT_PRIVACY' | translate }}
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="setSearchText('work')">
+						<md-icon md-font-set="material-icons">
+							assignment
+						</md-icon>
+						{{'ASK_CAT_WORK' | translate }}
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="setSearchText('leave')">
+						<md-icon md-font-set="material-icons">
+							schedule
+						</md-icon>
+						{{'ASK_CAT_LEAVE' | translate }}
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="setSearchText('others')">
+						<md-icon md-font-set="material-icons">
+							question_answer
+						</md-icon>
+						{{'ASK_CAT_OTHERS' | translate }}
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item>
+					<md-button ui-sref="ask()">
+						<md-icon md-font-set="material-icons">
+							add_circle
+						</md-icon>
+						{{'FORUM_ASK' | translate }}
+					</md-button>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
+	</div>
+	<!-- 	End of Toolbar  -->
+
+	<div layout="column" ng-show="noQuestions">
+		<br>
+		<br>
+		<p class="forum__noQuestions">
+			There are no questions here.
+		</p>
+	</div>
+
+	<md-list class="forum__questionList" layout="column">
+		<md-list-item 
+			class="forum__question md-3-line" 
+			ng-repeat="question in questions | filter:searchText" 
+			layout="row"
+			layout-align="start"
+			ui-sref="question({questionId: question.id})"
+		>
+			<img ng-src="{{question.asker.src}}" class="md-avatar"/>
+			<div class="md-list-item-text" layout="column">
+				<h4> 
+					{{ limitStr(question.title, 30) }}
+				</h4>
+				<p>{{ limitStr(question.content, 95) }}</p>
+			</div>
+		</md-list-item>
+	</md-list>
+</div>

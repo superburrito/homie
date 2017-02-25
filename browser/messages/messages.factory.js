@@ -1,17 +1,43 @@
 'use strict';
 
-app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory) => {
+app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate, $mdDialog) => {
 	
 	var MessagesFactory = {};
 
-	MessagesFactory.getAllMessages = () => {
-		return $http.get('/messages')
+	MessagesFactory.launchTutorial = () => {
+		$mdDialog.show(
+	      $mdDialog.alert()
+	        .parent(angular.element(document.querySelector('.currentNavItem')))
+	        .clickOutsideToClose(true)
+	        .title($translate.instant('MESSAGES_POPUP_HEADER'))
+	        .textContent($translate.instant('MESSAGES_POPUP_MAIN'))
+	        .ariaLabel('Msgs Tutorial Dialog')
+	        .ok($translate.instant('MESSAGES_POPUP_OK'))
+	    );
+	    localStorage.setItem('HOMIE-sMsgsT', 'seen');
+	}
+
+	MessagesFactory.getInbox = () => {
+		return $http.get('/messages/inbox')
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
 				return data.messages;
 			} else {
-				ToastFactory.displayMsg('Failed to load messages from server.', 500);
+				ToastFactory.displayMsg($translate.instant('T_MESSAGES_LOAD_FAIL'), 500);
+				return [];
+			}
+		})
+	}
+
+	MessagesFactory.getSent = () => {
+		return $http.get('/messages/sent')
+		.then((res) => AuthFactory.resToDataFilter(res))
+		.then((data) => {
+			if (data.success) {
+				return data.messages;
+			} else {
+				ToastFactory.displayMsg($translate.instant('T_MESSAGES_LOAD_FAIL'), 500);
 				return [];
 			}
 		})
@@ -25,7 +51,7 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory) => {
 				console.log("Deleted");
 				return;
 			} else {
-				ToastFactory.displayMsg('Delete failed.', 500);
+				ToastFactory.displayMsg($translate.instant('T_MESSAGES_DELETE_FAIL'), 500);
 				return;
 			}
 		})

@@ -10,7 +10,9 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
 		AuthFactory.reentry();
 	}
  	
-	const defaultBg = "http://www.homeanddecor.com.sg/sites/default/files/imagecache/large/prof/2013/11/17323-hdb.jpg"
+ 	// Labelled for non-commercial reuse: 
+ 	// https://c1.staticflickr.com/4/3263/3141370564_e2fef8bb14_b.jpg
+	const defaultBg = "/media/landingDefault.jpg";
 	
 	$scope.bg = defaultBg;
 

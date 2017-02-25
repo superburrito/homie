@@ -1,11 +1,15 @@
 <div class="message" layout="column">
     <div class="message__sendingFrom" layout="row">
-        <h3 class="message__sendingFrom--text">
-            <b> From: {{message.sender.name}} </b>
+        <h3 ng-hide="sentBySelf" class="message__sendingFrom--text">
+            <b> {{ 'MESSAGE_FROM' | translate }} {{ limitStr(message.sender.name, 20) }} </b>
+        </h3>
+        <h3 ng-show="sentBySelf" class="message__sendingFrom--text">
+            <b> {{ 'MESSAGE_TO' | translate }} {{ limitStr(message.receiver.name, 20) }} </b>
         </h3>
         <span flex>
         </span>
-        <img class="message__sendingFrom--src" src="{{message.sender.src}}" alt="No Image">
+        <img ng-hide="sentBySelf" class="message__sendingFrom--src" src="{{message.sender.src}}" alt="No Image">
+        <img ng-show="sentBySelf" class="message__sendingFrom--src" src="{{message.receiver.src}}" alt="No Image">
     </div>
     <br>
     <h2 class="message__title">
@@ -17,11 +21,11 @@
     <br>
     <br>
     <div layout="column" layout-align="none center">
-        <md-button ng-click="reply()" class="message__button md-raised md-accent">
-            Reply To Sender
+        <md-button ng-hide="sentBySelf" ng-click="reply()" class="message__button md-raised md-accent">
+            {{ 'MESSAGE_REPLY' | translate }}
         </md-button>
         <md-button ng-click="goToMessages()" md-theme="themeTaskC" class="message__button md-raised md-accent">
-            Return To Messages
+            {{ 'MESSAGE_RETURN' | translate }}
         </md-button>
     </div>
 </div>

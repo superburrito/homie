@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('ToastFactory', function ($mdToast) {
+app.factory('ToastFactory', function ($mdToast, $translate) {
 	const ToastFactory = {};
 
 	const toastCreator = function (string, delay) {
@@ -17,7 +17,11 @@ app.factory('ToastFactory', function ($mdToast) {
 	} 
 
 	ToastFactory.taskRunning = (taskName) => {
-		$mdToast.show(toastCreator('Timer has started for ' + taskName + '.', 600));
+		$mdToast.show(
+			toastCreator(
+				$translate.instant('T_TASK_TIMER_START') + 
+				taskName + '.', 600)
+		);
 	}
 
 	return ToastFactory;

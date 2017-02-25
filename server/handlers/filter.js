@@ -6,6 +6,7 @@ module.exports = function (user) {
 		fbId: user.fbId || null,
 		name: user.name,
 		email: user.email,
-		bgUrl: user.bgUrl || null
+		src: user.src,
+		description: user.description
 	}
 }

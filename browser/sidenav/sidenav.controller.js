@@ -1,14 +1,13 @@
 'use strict';
 
-app.controller('SidenavCtrl', function ($scope, $mdSidenav, $state, AuthFactory) {
+app.controller('SidenavCtrl', ($scope, $mdSidenav, $state, AuthFactory, StoreFactory) => {
 
 	$scope.stateGoer = (stateStr) => {
 		$mdSidenav('left').toggle();
 		$state.go(stateStr);
 	}
-	$scope.logout = function () {
+	$scope.logout = () => {
 		$mdSidenav('left').toggle();
 		AuthFactory.logout();
 	}
-
 })

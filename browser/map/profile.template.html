@@ -12,22 +12,24 @@
     <md-dialog-content layout="column">
       <div class="md-dialog-content" layout="column" layout-align="none center">
         <img class="profile__pic" alt="{{user.name.split(' ')[0]}}'s Profile Picture" 
-        src="{{user.src}}">
+        src="{{user.src}}" />
         <p class="profile__description">
           {{user.description}}
         </p>
       </div>
     </md-dialog-content>
     <md-dialog-actions class="profile__actions" layout="row" layout-align="center center">
-        <a ng-show="user.fbId" 
+        <a ng-show="user.fbId && (user.id != viewingUserId)" 
           href="http://www.facebook.com/{{currCoord.user.fbId}}"
         >
           <md-button md-theme="altTheme3" class="profile__button md-accent md-raised">
-            Facebook  
+            {{'PROFILE_FACEBOOK' | translate }} 
           </md-button>
         </a>
-        <md-button class="profile__button md-primary md-raised" ng-click="goToMessenger()">
-            Send a Message  
+        <md-button 
+          ng-show="user.id != viewingUserId"
+          class="profile__button md-primary md-raised" ng-click="goToMessenger()">
+            {{'PROFILE_SENDMESSAGE' | translate }}
         </md-button>
     </md-dialog-actions>
   </form>

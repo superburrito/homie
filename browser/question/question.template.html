@@ -1,0 +1,81 @@
+<div class="question" layout="column">
+	<md-list-item 
+		class="question__main md-3-line" 
+		layout="row"
+		layout-align="start"
+	>
+		<img 
+			class="md-avatar"
+			ng-src={{question.asker.src}}
+		>
+		<div>
+			<h3 class="question__main--title">{{ question.title }}</h3>
+			<p class="question__main--name"> {{ question.asker.name }}</p>
+			<p class="question__main--content"> {{ question.content }}</p>
+		</div>
+	</md-list-item>
+
+	<md-list class="question__responselist">
+		<md-list-item 
+			class="question__response md-3-line"
+			ng-repeat="response in question.responses"
+			layout="row"
+			layout-align="start"
+		>
+			<img ng-src="{{response.responder.src}}" class="md-avatar">
+			<div>
+				<p class="question__response--name">{{ response.responder.name}}</p>
+				<p class="question__response--content">{{ response.content }}</p>
+			</div>
+
+		</md-list-item>
+	</md-list>
+	<br>
+	<div layout="column" layout-align="none center">
+	    <md-button 
+	    	class="question__button md-primary md-raised"
+	    	ng-click="writeResponse()" 
+	    	ng-hide="writingResponse"
+	    >
+	    	Add A Response
+	        <md-icon md-font-set="material-icons">
+	        	add_circle
+	        </md-icon>
+	    </md-button>
+	    <md-button 
+	    	md-theme="themeTaskC"
+	    	class="question__button md-accent md-raised"
+	    	ui-sref="forum()" 
+	    	ng-hide="writingResponse"
+	    >
+	    	Return to Forum
+	    </md-button>
+	</div>
+	<form 
+		name="questionForm"
+		ng-show="writingResponse" 
+		class="question__form" 
+		layout="column"
+		layout-align="none center"
+	>
+		<md-input-container class="question__form--response">
+			<label>Your Response</label>
+            <textarea ng-model="respContent" md-maxlength="200" rows="4" md-select-on-focus required>
+            </textarea>
+		</md-input-container>
+        <md-button 
+        	ng-click="postResponse()" 
+        	type="submit" 
+        	class="md-primary md-raised question__form--button" 
+        	ng-disabled="questionForm.$invalid"
+        >
+            Submit Response
+        </md-button>
+		<md-button 
+			ng-click="cancelResponse()"  
+			class="md-warn md-raised question__form--button"
+		>
+            Cancel Response
+        </md-button>
+    </form>
+</div>

@@ -1,6 +1,56 @@
 'use strict';
 
-app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFactory, ToastFactory){
+app.controller('TranslatorCtrl', function($scope, $state, $http, TranslatorFactory, ToastFactory, $translate){
+	
+	// Setview
+	$scope.view = 'translator';
+	$scope.setView = (str) => { $scope.view = str; }
+
+	// Launch tutorial
+	if (localStorage.getItem('HOMIE-sTransT') !== 'seen') {
+		TranslatorFactory.launchTutorial();
+	}
+
+	/* ----- PHRASEBOOK ----- */
+
+	function loadAndCheckPhrases() {
+		$scope.phrases = TranslatorFactory.getPhrasebook();
+		($scope.phrases.length === 0) 
+			? $scope.noSavedPhrases = true
+			: $scope.noSavedPhrases = false;
+	}
+	loadAndCheckPhrases();
+
+	$scope.deletePhrase = function (phraseObj) {
+		TranslatorFactory.deletePhrase(phraseObj);
+		$scope.phrases = TranslatorFactory.getPhrasebook();
+		if ($scope.phrases.length === 0) $scope.noSavedPhrases = true;
+	}
+
+	$scope.goToTranslator = function () {
+		$state.go('translator');
+	}
+
+	$scope.phraseCanBePlayed = function (phrase) {
+		return ['Eng','Ind','Chi'].indexOf(phrase.translation.split(':')[0]) !== -1;
+	}
+
+	$scope.playSavedPhrase = function (phrase) {
+		// Yandex -> ResponsiveVoice.JS 
+		var translationWord = phrase.translation.split(':')[0];
+		var translationText = phrase.translation.split(':').slice(1).join()
+		if (translationWord == 'Ind') {
+			responsiveVoice.speak(translationText, 'Indonesian Female');
+		} else if (translationWord == 'Eng') {
+			responsiveVoice.speak(translationText, 'US English Female');
+		} else if (translationWord == 'Chi') {
+			responsiveVoice.speak(translationText, 'Chinese Female');
+		}
+	}
+
+
+
+	/* ------ TRANSLATOR ------ */ 
 	// Hide any loading animations
 	$scope.notLoading = true;
 
@@ -12,14 +62,8 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 		$scope.playerDisabled = true;
 		if ($scope.textToTranslate) {
 			$scope.notLoading = false;
-			$http.post('/translate', {
-				text: $scope.textToTranslate,
-				lang: type
-			})	
-			.then(function (res) { 
-				console.log("Response is: " + JSON.stringify(res.data));
-				return res.data; 
-			})
+
+			return TranslatorFactory.translate(type, $scope.textToTranslate)
 			.then(function (data) {
 				$scope.notLoading = true;
 				$scope.translatedText = data.translatedText; 
@@ -38,11 +82,13 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 		if ($scope.direction && $scope.translatedText) {
 			var fromLang = convertYandexToWord($scope.direction.split('-')[0]);
 			var toLang = convertYandexToWord($scope.direction.split('-')[1]);
-			PhrasebookFactory.addPhrase({ 
+			TranslatorFactory.addPhrase({ 
 				translated: fromLang + ': ' + $scope.textToTranslate,
 				translation: toLang + ': ' + $scope.translatedText
 			})
-			ToastFactory.displayMsg('Phrase saved.', 500);
+			ToastFactory.displayMsg(
+				$translate.instant('T_TRANSLATOR_SAVED'), 500);
+			loadAndCheckPhrases();
 		}
 	};
 
@@ -75,5 +121,6 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, PhrasebookFacto
 			return 'Chinese Female';
 		}
 	}
+
 
 })

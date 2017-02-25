@@ -1,6 +1,6 @@
 // Cache for application shell
-var apiCacheName = "HomieAPICache-v3";
-var shellCacheName = "HomieShellCache-v3";
+var apiCacheName = "HomieAPICache-v5";
+var shellCacheName = "HomieShellCache-v5";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
@@ -16,30 +16,49 @@ var filesToCache = [
 	'/bower_components/ng-file-upload/ng-file-upload-shim.min.js',
 	'/bower_components/ng-file-upload/ng-file-upload.min.js',
 	'/bower_components/angular-cloudinary/angular-cloudinary.js',
-  'https://code.responsivevoice.org/responsivevoice.js',
-  '/bower_components/ngmap/build/scripts/ng-map.min.js',
-  'https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI', 
+  
+/*  'https://code.responsivevoice.org/responsivevoice.js',
+  'https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI', */
 
 	// Internal HTML JSS requests
+  // Mains
   '/',
 	'/index.html',
 	'/main.js',
 	'/style.css',
-	'/home/home.template.html',
-	'/landing/landing.template.html',
-	'/map/map.template.html',
-	'/navbar/navbar.template.html',
-	'/phrasebook/phrasebook.template.html',
-	'/settings/settings.template.html',
-	'/sidenav/sidenav.template.html',
-	'/signup/signup.template.html',
-	'/tasks/tasks.template.html',
-	'/terms/terms.template.html',
-	'/toolbar/toolbar.template.html',
-	'/translator/translator.template.html',
+  
+  // Media items
+  '/media/helpDefault.jpg',
+  '/media/homeDefault.jpg',
+  '/media/landingDefault.jpg',
+  '/media/mapIcon.png',
+  '/media/thumbnail.png',
+  '/media/defaultProfile.png',
 
-	// Media files
-	'/media/thumbnail.png'
+  // Programs-related Media 
+  '/media/programsCare.jpg',
+  '/media/programsComp.jpg',
+
+  // Routes
+  '/ask/ask.template.html',
+  '/forum/forum.template.html',
+  '/help/help.template.html',
+	'/home/home.template.html',
+  '/landing/landing.template.html',
+  '/map/map.template.html',
+  '/map/profile.template.html',
+  '/message/message.template.html',
+  '/messages/messages.template.html',
+  '/messenger/messenger.template.html',
+  '/programs/programs.template.html',
+  '/question/question.template.html',
+  '/settings/settings.template.html',
+  '/sidenav/sidenav.template.html',
+  '/signup/signup.template.html',
+  '/tasks/tasks.template.html',
+  '/terms/terms.template.html',
+  '/toolbar/toolbar.template.html',
+  '/translator/translator.template.html',
 ];
 
 

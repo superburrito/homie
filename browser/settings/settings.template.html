@@ -11,32 +11,38 @@
 		<form name="form" class="settings__form" layout="column" layout-align="start center" ng-submit="update()">
 
 			<img class="settings__form--thumbnail" ngf-thumbnail="file || '/media/thumbnail.png'">
-
 			<br>
-
 			<div layout="row" layout-align="center">
-	  		<md-button class="settings__button md-primary md-raised" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="5MB" ngf-min-height="100">
-	  		{{ 'SETTINGS_BACKGROUND' | translate }}
+		  		<md-button 
+		  			name="file" 
+		  			class="settings__button md-primary md-raised" 
+		  			ngf-select 
+		  			ng-model="file" 
+		  			ngf-pattern="'image/*'" 
+		  			ngf-accept="'image/*'" 
+		  			ngf-max-size="3MB" 
+		  			ngf-min-height="100"
+		  		>
+		  		{{ 'SETTINGS_SRC' | translate }}
+		  		</md-button>
+	  		</div>
+	  		<br>
+	  		<br>
+	        <md-input-container class="md-block settings__form--description">
+	            <label>{{ 'SETTINGS_DESCRIPTION' | translate }}</label>
+	            <textarea name="description" ng-model="description" md-maxlength="150" rows="3" md-minlength="10" md-select-on-focus>
+	            </textarea>
+	   		</md-input-container>
+	    	<br>
+      		<br>
+	  		<md-button class="settings__button md-raised md-accent" type="submit">
+	  			{{ 'SETTINGS_CONFIRM' | translate }}
 	  		</md-button>
-	  	</div>
-	  		
-			<!-- 	
-			<md-switch layout="row" ng-model="notifSwitch" aria-label="notifSwitch" layout-align="center">
-		    Push Notifications {{notifSwitch ? "On" : "Off" }}
-		  </md-switch> -->
-
-		  <div layout="row" layout-align="center" class="settings__form--footer">
-		  	<md-button class="settings__button md-raised md-accent" type="submit">
-		  	{{ 'SETTINGS_CONFIRM' | translate }}
-		  	</md-button>
+	  		<br>
+	  		<div layout="row" layout-align="center">
+			  	<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
 		  </div>
-		  <br>
-
-		  <div layout="row" layout-align="center">
-		  	<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
-		  </div>
-
-		 </form>
+		</form>
 
 	</div>
 </div>

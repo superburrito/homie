@@ -1,9 +1,24 @@
 {
   "name": "Homie",
   "short_name": "Homie",
-  "icons": [],
+  "icons": [
+  	{
+  		"src": "./media/homieLogo96.png",
+  		"sizes": "96x96",
+  		"type" : "image/png"
+  	},{
+  		"src": "./media/homieLogo144.png",
+  		"sizes": "144x144",
+  		"type" : "image/png"
+  	},{
+  		"src": "./media/homieLogo192.png",
+  		"sizes": "192x192",
+  		"type" : "image/png"
+  	}
+  ],
   "start_url": "./index.html",
-  "display": "standalone",
+  "display": "fullscreen",
+  "orientation": "portrait",
   "background_color": "#009688",
   "theme_color": "#E91E63"
 }

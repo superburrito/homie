@@ -1,26 +1,44 @@
 <div class="signup__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
 	<div class="signup__translucence" layout="column" layout-align="center center">
 		<h1 class="signup__header">{{ 'REGISTER_HEADER' | translate }}</h1>
-		<form class="signup__form" layout="column" layout-align="none center" ng-submit="signup()">
+		<form name="signupForm" class="signup__form" layout="column" layout-align="none center" ng-submit="signup()">
 			<md-input-container class="signup__input1" md-theme="dark">
 		    <label>{{ 'REGISTER_NAME' | translate }}</label>
-		    <input ng-model="name">
+		    <input 
+		    	ng-model="name"
+		    	ng-minlength="6"
+		    	required
+		    >
 		  </md-input-container>
 			<md-input-container class="signup__input2" md-theme="dark">
 		    <label>{{ 'REGISTER_EMAIL' | translate }}</label>
-		    <input ng-model="email">
+		    <input 
+		    	type="email"
+		    	ng-model="email"
+		    	required
+		    >
 		  </md-input-container>
 		  <md-input-container class="signup__input2" md-theme="dark">
 	      <label>{{ 'REGISTER_PASSWORD' | translate }}</label>
-	      <input type="password" ng-model="password">
+	      <input 
+	      	type="password" 
+	      	ng-model="password"
+	      	ng-minlength="6",
+	      	ng-maxlength="26"
+	      	required
+	      	>
 	    </md-input-container>
 	    <div layout="row">
-			<md-button type="submit" class="md-raised md-primary">
+			<md-button 
+				type="submit" 
+				class="signup__submit md-raised md-primary"
+				ng-disabled="signupForm.$invalid"
+			>
 				{{ 'REGISTER_CONFIRM' | translate }}
 			</md-button>
-			<md-button md-theme="themeTaskC" ng-click="goToLanding()" class="md-raised md-accent">
+<!-- 			<md-button md-theme="themeTaskC" ng-click="goToLanding()" class="md-raised md-accent">
 				{{ 'REGISTER_RETURN' | translate }}
-			</md-button>
+			</md-button> -->
 		</div>		
 		</form>
 	</div>

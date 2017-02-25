@@ -7,14 +7,17 @@
 @import "landing/landing.scss";
 @import "signup/signup.scss";
 @import "translator/translator.scss";
-@import "phrasebook/phrasebook.scss";
 @import "terms/terms.scss";
 @import "map/map.scss";
 @import "map/profile.scss";
+@import "forum/forum.scss";
+@import "ask/ask.scss";
 @import "messenger/messenger.scss";
 @import "messages/messages.scss";
 @import "message/message.scss";
 @import "help/help.scss";
+@import "programs/programs.scss";
+@import "question/question.scss";
 
 body {
 	top: 0px !important; 
@@ -24,4 +27,3 @@ body {
 .goog-te-banner-frame.skiptranslate {
     display: none !important;
 } 
-

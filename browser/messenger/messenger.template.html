@@ -1,7 +1,7 @@
 <div class="messenger" layout="column" layout-align="none center">
     <div class="messenger__sendingTo" layout="row">
         <h3 class="messenger__sendingTo--text">
-            <b> To: {{receiver.name}} </b>
+            <b> {{ 'MESSENGER_TO' | translate }} {{receiver.name}} </b>
         </h3>
         <span flex>
         </span>
@@ -11,19 +11,19 @@
     <br>
     <form name="messengerForm" class="messenger__form" layout="column" layout-align="none center">
         <md-input-container class="messenger__form--title">
-            <label>Message Title</label>     
+            <label>{{ 'MESSENGER_TITLE' | translate }}</label>     
             <input class="" type="text" ng-model="title" required>
         </md-input-container>
         <md-input-container class="md-block messenger__form--content">
-            <label>Message Content</label>
+            <label>{{ 'MESSENGER_CONTENT' | translate }}</label>
             <textarea ng-model="content" md-maxlength="150" rows="3" md-select-on-focus required>
             </textarea>
         </md-input-container>
         <md-button ng-click="sendMessage()" type="submit" class="md-primary md-raised messenger__form--button" ng-disabled="messengerForm.$invalid">
-            Send Your Message
+            {{ 'MESSENGER_SEND' | translate }}
         </md-button>
         <md-button ng-click="goToMessages()" md-theme="themeTaskC" class="messenger__form--button md-raised md-accent">
-            Return To Messages
+            {{ 'MESSENGER_RETURN' | translate }}
         </md-button>
     </form>
 </div>

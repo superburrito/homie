@@ -4,14 +4,13 @@ app.controller('HomeCtrl', ($scope, $interval, StoreFactory) => {
 
 	// Set up profile variables
 	var profile = StoreFactory.getProfile();
-	$scope.firstName = profile.firstName;
-	var bgUrl = profile.bgUrl;
-
-	// Set up background	
+	$scope.firstName = profile.name.split(' ')[0];
+	
+ 	// Labelled for non-commercial reuse: 
+	// https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg
 	var defaultBg = "/media/homeDefault.jpg"
-	// Source: https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg
 
-	$scope.bg = bgUrl || defaultBg;
+	$scope.bg = defaultBg;
 	
 	// Start the clock, run interval checks
 	setTimeAndGreeting();

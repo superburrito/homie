@@ -1,35 +1,42 @@
 'use strict';
 
-app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $mdDialog, $http) => { 
+app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, GeneralFactory) => { 
 
-	function launchTutorial () {
-		if (localStorage.getItem('HOMIE-sMsgsT') !== 'seen') {
-		    $mdDialog.show(
-		      $mdDialog.alert()
-		        .parent(angular.element(document.querySelector('.currentNavItem')))
-		        .clickOutsideToClose(true)
-		        .title("Here's your mail!")
-		        .textContent("Click on the profile pictures on the left to view each message.")
-		        .ariaLabel('Msgs Tutorial Dialog')
-		        .ok('Sure!')
-		    );
-		}
-	    localStorage.setItem('HOMIE-sMsgsT', 'seen');
-	}	
-	launchTutorial();
+	$scope.view = 'inbox';
+	$scope.setView = (str) => {
+		$scope.view = str;
+	}
 
-	function loadMessages () {
-		MessagesFactory.getAllMessages()
+	if (localStorage.getItem('HOMIE-sMsgsT') !== 'seen') {
+		MessagesFactory.launchTutorial();
+	}
+
+	// Load inbox
+	function getInbox () {
+		MessagesFactory.getInbox()
 		.then((messages) => {
-			console.table(messages);
-			$scope.messages = messages;
-		
-			($scope.messages.length === 0) 
-				? $scope.noMessages = true
-				: $scope.noMessages = false;
+			console.log("Messages are: " + JSON.stringify(messages));
+			$scope.inboxMessages = messages;
+			($scope.inboxMessages.length === 0) 
+				? $scope.emptyInbox = true
+				: $scope.emptyInbox = false;
 		})
 	}
-	loadMessages();
+	getInbox();
+
+	// Load sent
+	function getSent () {
+		MessagesFactory.getSent()
+		.then((messages) => {
+			console.log("Messages are: " + JSON.stringify(messages));
+			$scope.sentMessages = messages;		
+			($scope.sentMessages.length === 0) 
+				? $scope.emptySent = true
+				: $scope.emptySent = false;
+		})
+	}
+	getSent();
+
 
 	$scope.viewMessage = (message) => {
 		$rootScope.currMessage = message;
@@ -40,7 +47,10 @@ app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, $md
 	$scope.deleteMessage = (message) => {
 		MessagesFactory.deleteMessage(message)
 		.then(() => {
-			loadMessages();
+			getInbox();
+			getSent();
 		})
 	}
+
+	$scope.limitStr = GeneralFactory.limitStr;
 })

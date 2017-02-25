@@ -1,8 +1,20 @@
 <md-toolbar class="toolbar md-whiteframe-z2" layout="row">
 	<div layout="column" layout-align="center">
-		<md-icon class="toolbar__button" md-font-set="material-icons" ng-click="openSidenav()">menu</md-icon>
+		<md-button class="md-icon-button" ng-click="openSidenav()">
+			<md-icon md-font-set="material-icons">menu</md-icon>
+		</md-button>
 	</div>
 	<div layout="column" layout-align="center" flex>
 		<h3 class="toolbar__text" flex>Homie</h3>
+	</div>
+	<div layout="column" layout-align="center">
+		<md-button 
+			class="md-icon-button"
+			ng-click="loadHelper()"
+		>
+			<md-icon md-font-set="material-icons">
+				help
+			</md-icon>
+		</md-button>
 	</div>
 </md-toolbar>

@@ -9,7 +9,7 @@ app.config(function ($mdThemingProvider) {
 
   // Dark Default
   $mdThemingProvider.theme('dark')
-    .primaryPalette('grey')
+    .primaryPalette('teal')
     .dark();
 
   // Alternate Theme 0 -- Passive Task 
@@ -32,5 +32,6 @@ app.config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('altTheme3')
     .primaryPalette('teal')
     .accentPalette('blue', { 'default': '500' });
+
 
 });

@@ -1,34 +1,86 @@
-<div class="translator__container" md-theme="default" flex>
-	<br>
-	<form name="translatorForm" class="translator__form" layout="column" layout-align="none center" flex>
-		<md-input-container class="translator__textarea">
-	    <label>{{ 'TRANSLATE_HEADER' | translate }} </label>
-      <textarea ng-model="textToTranslate" md-maxlength="50" minlength="5"  rows="2"></textarea>
-	  </md-input-container>
-	  <h3 class="translator__convertText">
-	  	{{ 'TRANSLATE_CONVERT_HEADER' | translate }}
-	  </h3>
-	  <md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('tl')">
-	  		{{ 'TRANSLATE_TAGALOG'| translate }}
-			
-		</md-button>
-		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('id')">
-  			{{ 'TRANSLATE_BAHASA' | translate }}	
-		</md-button>
-		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('en')">
- 			{{ 'TRANSLATE_ENGLISH' | translate }}
-		</md-button>
-		<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('zh')">
-			{{ 'TRANSLATE_CHINESE' | translate }}
-		</md-button>
-	</form>
-	<br>
-	<div layout="column" class="translator__translated" layout-align="none center">
-		<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
-		<h4 class="translator__translated--text">{{translatedText}}</p>
-		<h4 class="translator__disclaimer">*Homie's Translations are powered by the Yandex.Translate API.</h4>
-		<md-button class="translator__button md-raised md-warn" ng-click="playPhrase()" ng-disabled="playerDisabled">Play Phrase</md-button>
-		<md-button class="translator__button md-raised md-accent" ng-click="savePhrase()">Save Phrase</md-button>
+<div>
+	
+	<!-- Navbar -->
+	<md-nav-bar md-theme="themeTaskP" class="mnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="transNavbar">
+	  <md-nav-item class="transNavbar" md-nav-click="setView('translator')" layout="column">
+	  	<md-icon md-font-set="material-icons">g_translate</md-icon>
+	  	<span class="transNavbar__buttonText">&nbsp; &nbsp; {{ 'TRANS_NAV_TRANSLATOR' | translate }}</span>
+	  </md-nav-item>
+	  <md-nav-item class="transNavbar" md-nav-click="setView('phrasebook')" layout="column">
+	  	<md-icon md-font-set="material-icons">book</md-icon>
+	  	<span class="transNavbar__buttonText">&nbsp; &nbsp; {{ 'TRANS_NAV_PHRASEBOOK' | translate }}</span>
+	  </md-nav-item>
+	</md-nav-bar>
+	<!-- End of Navbar -->
+
+	<!-- 	TRANSLATOR VIEW -->	
+	<div 
+		class="translator__container" 
+		md-theme="default" 
+		ng-show="view == 'translator'"
+		flex
+	>
+		<form name="translatorForm" class="translator__form" layout="column" layout-align="none center" flex>
+			<md-input-container class="translator__textarea">
+		    <label>{{ 'TRANSLATE_HEADER' | translate }} </label>
+	      <textarea ng-model="textToTranslate" md-maxlength="50" minlength="5"  rows="2"></textarea>
+		  </md-input-container>
+		  <h3 class="translator__convertText">
+		  	{{ 'TRANSLATE_CONVERT_HEADER' | translate }}
+		  </h3>
+		  <md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('tl')">
+		  		{{ 'TRANSLATE_TAGALOG'| translate }}
+				
+			</md-button>
+			<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('id')">
+	  			{{ 'TRANSLATE_BAHASA' | translate }}	
+			</md-button>
+			<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('en')">
+	 			{{ 'TRANSLATE_ENGLISH' | translate }}
+			</md-button>
+			<md-button type="submit" class="translator__button md-raised md-primary" ng-disabled="translatorForm.$invalid" ng-click="translate('zh')">
+				{{ 'TRANSLATE_CHINESE' | translate }}
+			</md-button>
+		</form>
+		<br>
+		<div layout="column" class="translator__translated" layout-align="none center">
+			<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
+			<h4 class="translator__translated--text">{{translatedText}}</h4>
+			<h4 class="translator__disclaimer">*Homie's Translations are powered by the Yandex.Translate API.</h4>
+			<md-button class="translator__button md-raised md-warn" ng-click="playPhrase()" ng-disabled="playerDisabled">Play Phrase</md-button>
+			<md-button class="translator__button md-raised md-accent" ng-click="savePhrase()">Save Phrase</md-button>
+		</div>
 	</div>
 	
+	<div 
+		layout="column" 
+		layout-align="none center" 
+		class="phrasebook__container"
+		ng-show="view == 'phrasebook'"
+	>
+		<h2 class="phrasebook__header">{{ 'PHRASEBOOK_HEADER' | translate }}</h2>
+		<p class="phrasebook__emptyText" ng-show="noSavedPhrases">{{ 'PHRASEBOOK_NOSAVED' | translate }}</p>
+
+<!-- 		<md-button ng-show="noSavedPhrases" class="phrasebook__button md-raised md-primary" ng-click="goToTranslator()">
+			{{ 'PHRASEBOOK_PROMPT' | translate }} 
+		</md-button> -->
+
+		<md-list md-theme="altTheme3" class="phrasebook__list" layout="column" layout-align="center">
+			<md-list-item class="phrasebook__phrase md-whiteframe-2dp" md-colors="{background: 'accent'}" ng-repeat="phrase in phrases" layout="row">
+				<div layout="column" flex>
+					<h4 class="phrasebook__phrase--translated" flex>{{phrase.translated}}</h4>
+					<h4 class="phrasebook__phrase--translation" flex>{{phrase.translation}}</h4>
+				</div>
+				<md-button ng-show="phraseCanBePlayed(phrase)" class="md-icon-button" aria-label="phrase" ng-click="playSavedPhrase(phrase)">
+					<md-icon md-font-set="material-icons">record_voice_over</md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Delete" ng-click="deletePhrase(phrase)">
+					<md-icon md-font-set="material-icons">delete_forever</md-icon>
+				</md-button>
+			</md-list-item>
+		</md-list>
+	</div>
+
+
+
 </div>

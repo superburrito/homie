@@ -1,6 +1,13 @@
 'use strict';
 
-app.controller('TasksCtrl', function($scope, TasksFactory, $interval){
+app.controller('TasksCtrl', ($scope, TasksFactory, $interval) => {
+
+	// Launch tutorial
+	if (localStorage.getItem('HOMIE-sTasksT') !== 'seen' &&
+		TasksFactory.getTasks().length === 0) {
+		TasksFactory.launchTutorial();
+	}
+
 	// Check if date has changed
 	const currDate = new Date();
 	const currMth = currDate.getMonth();
@@ -91,7 +98,8 @@ app.controller('TasksCtrl', function($scope, TasksFactory, $interval){
 		$scope.tasks.forEach(function (task) {
 			console.log(task);
 			if ((task.alarmTimeHr !== null) 
-				&& (task.alarmTimeMin !== null)) {
+				&& (task.alarmTimeMin !== null)
+				&& (task.active !== true)) {
 				if (currHr >= task.alarmTimeHr &&
 					currMin >= task.alarmTimeMin) {	
 					TasksFactory.activateTask(task);

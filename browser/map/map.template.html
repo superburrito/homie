@@ -3,10 +3,12 @@
 	<!-- Map Navbar -->
 	<md-nav-bar md-theme="themeTaskP" class="mnavbar md-whiteframe-5dp" md-selected-nav-item="currentNavItem" nav-bar-aria-label="mnavbar">
 	  <md-nav-item class="mnavbar__button" md-nav-click="setView('display')" layout="column">
-	  	<md-icon md-font-set="material-icons">map</md-icon>
+	  	<md-icon md-font-set="material-icons">public</md-icon>
+	  	<span class="mnavbar__buttonText">&nbsp; &nbsp; {{ 'MAP_NAV_MAPVIEW' | translate }}</span>
 	  </md-nav-item>
 	  <md-nav-item class="mnavbar__button" md-nav-click="setView('settings')" layout="column">
-	  	<md-icon md-font-set="material-icons">live_help</md-icon>
+	  	<md-icon md-font-set="material-icons">person_pin_circle</md-icon>
+	  	<span class="mnavbar__buttonText">&nbsp; &nbsp; {{ 'MAP_NAV_ADDMYPROFILE' | translate }}</span>
 	  </md-nav-item>
 	</md-nav-bar>
 	<!-- End of Navbar -->
@@ -19,16 +21,16 @@
 	<!-- Settings -->
 	<div ng-show="view === 'settings'" class="map__settings" layout="column" layout-align="center center">
 		<p class="map__settingsText">	
-			You can make add your profile to the map by selecting 'Display My Profile' below. This will display your profile at your current location.
+			{{ 'MAP_SETTINGS1' | translate }}			
 			<br>
 			<br>
-			Don't worry -- you can change or hide your profile at any time.
+			{{ 'MAP_SETTINGS2' | translate }}
 		</p>
 		<md-button class="map__button md-raised md-primary" ng-click="markUserLocation()">
-			Display My Profile
+			{{ 'MAP_DISPLAY_BUTTON' | translate }}
 		</md-button> 
 		<md-button class="map__button md-raised md-warn" ng-click="removeUserLocation()">
-			Hide My Profile
+			{{ 'MAP_HIDE_BUTTON' | translate }}
 		</md-button> 
 	</div>
 	<!-- End of Settings -->

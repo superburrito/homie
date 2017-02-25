@@ -1,7 +1,23 @@
 'use strict';
 
-app.factory('TasksFactory', function(ToastFactory){
+app.factory('TasksFactory', function(ToastFactory, $translate, $mdDialog){
 	var TasksFactory = {};
+
+	/* Tutorial (exposed to Toolbar) */
+
+	TasksFactory.launchTutorial = () => {
+	    $mdDialog.show(
+	      $mdDialog.alert()
+	        .parent(angular.element(document.querySelector('.currentNavItem')))
+	        .clickOutsideToClose(true)
+	        .title($translate.instant('TASKS_POPUP_HEADER'))
+	        .textContent($translate.instant('TASKS_POPUP_MAIN'))
+	        .ariaLabel('Tasks Tutorial Dialog')
+	        .ok($translate.instant('TASKS_POPUP_OK'))
+	    );
+	    localStorage.setItem('HOMIE-sTasksT', 'seen');
+	}	
+
 
 	/* Tasks is an array of objects, i.e.
 		[
@@ -11,8 +27,8 @@ app.factory('TasksFactory', function(ToastFactory){
 				time: 1200
 			}
 		]
-
 	*/
+
 	TasksFactory.renderTasks = function () {
 		var tasks = TasksFactory.getTasks();
 		var currTime = new Date()
@@ -48,7 +64,8 @@ app.factory('TasksFactory', function(ToastFactory){
 		var tasks = TasksFactory.getTasks();
 		tasks.push(newTask);
 		localStorage.setItem('HOMIE-tasks', JSON.stringify(tasks));
-		ToastFactory.displayMsg('Task created and saved.', 600);
+		ToastFactory.displayMsg(
+			$translate.instant('T_TASK_CREATED'), 500);
 	}
 
 	TasksFactory.checkTask = function (checkedTask) {
@@ -86,7 +103,7 @@ app.factory('TasksFactory', function(ToastFactory){
 	TasksFactory.activateTask = function (activatedTask) {
 		var tasks = TasksFactory.getTasks();
 		// Vibrate device
-		navigator.vibrate(200);
+		navigator.vibrate([200,200,200,200,200,200]);
 		tasks = tasks.map(function(task){
 			if (task.name === activatedTask.name) {
 				task.active = true;

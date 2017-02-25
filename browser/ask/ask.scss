@@ -1,0 +1,40 @@
+.ask {
+	&__header {
+		width: 100%;
+		background-color: #2196F3;
+		color: white;
+		&--text {
+			margin-left: 10px;		
+		}
+	}
+
+	&__form {
+		margin-top: 10px;
+		width: 100%;
+		&--button {
+			width: 200px;
+			margin-top: 3px;
+			margin-bottom: 10px;
+		}
+
+		&--title, &--content, &--category {
+			width: 100%;
+		}
+
+		&--title {
+			margin-top: 18px;
+			margin-bottom: 8px;
+		}
+
+		&--content {
+			margin-top: 0px;
+			margin-bottom: 8px;
+		}
+
+		&--category {
+			margin-top: 0xp;
+			margin-bottom: 10px;
+		}
+	}
+
+}

@@ -1,0 +1,50 @@
+.question {
+	&__main {
+		align: left;
+		&--title {
+			margin-bottom: 3px;
+		}
+		&--name {
+			margin-top: 3px;
+			color: gray;
+			margin-bottom: 6px;
+		}
+		&--content {
+			margin-top: 6px;
+		}
+	}
+
+	&__responselist {
+		width: 100vw;
+	}
+	&__response {
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc; 
+		&--name {
+			color: gray;
+			margin-bottom: 3px;
+		}
+		&--content {
+			margin-top: 3px;
+			color: black;
+		}
+	}
+
+
+	&__button {
+		width: 220px;
+	}
+
+	&__form {
+		width: 100%;
+
+		&--response {
+			width: 100%;
+		}
+
+		&--button {
+			width: 220px;
+		}
+	}
+
+}
