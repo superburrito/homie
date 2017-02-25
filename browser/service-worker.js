@@ -25,6 +25,10 @@ var filesToCache = [
 	'/style.css',
   
   // Media items
+  '/media/homieLogoFavicon.png',
+  '/media/homieLogo96.png',
+  '/media/homieLogo144.png',
+  '/media/homieLogo192.png',
   '/media/helpDefault.jpg',
   '/media/homeDefault.jpg',
   '/media/landingDefault.jpg',
@@ -36,7 +40,7 @@ var filesToCache = [
   '/media/programsCare.jpg',
   '/media/programsComp.jpg',
 
-  // Routes
+  // HTML Templates
   '/ask/ask.template.html',
   '/forum/forum.template.html',
   '/help/help.template.html',
