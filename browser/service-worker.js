@@ -16,9 +16,6 @@ var filesToCache = [
 	'/bower_components/ng-file-upload/ng-file-upload-shim.min.js',
 	'/bower_components/ng-file-upload/ng-file-upload.min.js',
 	'/bower_components/angular-cloudinary/angular-cloudinary.js',
-  
-/*  'https://code.responsivevoice.org/responsivevoice.js',
-  'https://maps.google.com/maps/api/js?key=AIzaSyDNUChV5viHxGHs_UnQeddcPT7-aidLZTI', */
 
 	// Internal HTML JSS requests
   // Mains
@@ -93,15 +90,11 @@ self.addEventListener('activate', function (event) {
 
 // Fetching: Retrieving data based on connectivity
 self.addEventListener('fetch', function (event) {
-  var apiUrl = '128.199.104.204/'
-  var localUrl = 'localhost:8080';
-
+  var apiUrl = 'gethomie.sg';
   // Make sure we are fetching a GET request
-  if(event.request.method != "GET") return;
-
-  // If an API (data) request was made
-  if (event.request.url.includes(apiUrl) ||
-      event.request.url.includes(localUrl)) {
+  if(event.request.method !== "GET") return;
+  // If a request was made
+  if (event.request.url.includes(apiUrl)) {
     event.respondWith(
       // Fetch the request first
       fetch(event.request)
@@ -125,8 +118,8 @@ self.addEventListener('fetch', function (event) {
         });
       })
     );
-  // If a shell request was made
-  } else {
+  // If we differentiate shell vs 
+  } /*else {
     event.respondWith(
       // Check the cache for response. If the response isn't found, fetch it.
       caches.match(event.request).then(function (response) {
@@ -149,7 +142,7 @@ self.addEventListener('fetch', function (event) {
         }
       })
     );
-  }
+  }*/
 });
 
 
