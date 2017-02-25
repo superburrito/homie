@@ -18,7 +18,7 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
  		StoreFactory.hasFbToken() && 
  		StoreFactory.getProfile().id
  		) {
-		$rootScope.broadcast('authenticated');
+		$state.go('homie');
 	}
 
 
