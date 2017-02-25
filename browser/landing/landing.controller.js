@@ -18,7 +18,8 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
  		StoreFactory.hasFbToken() && 
  		StoreFactory.getProfile().id
  		) {
-		$state.go('homie');
+ 		console.log("Offline mode activated.");
+		$state.go('home');
 	}
 
 
