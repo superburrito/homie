@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TranslatorCtrl', function($scope, $state, $http, TranslatorFactory, ToastFactory, $translate){
+app.controller('TranslatorCtrl', function($scope, $state,  TranslatorFactory, ToastFactory, $translate){
 	
 	// Setview
 	$scope.view = 'translator';
@@ -38,7 +38,7 @@ app.controller('TranslatorCtrl', function($scope, $state, $http, TranslatorFacto
 	$scope.playSavedPhrase = function (phrase) {
 		// Yandex -> ResponsiveVoice.JS 
 		var translationWord = phrase.translation.split(':')[0];
-		var translationText = phrase.translation.split(':').slice(1).join()
+		var translationText = phrase.translation.split(':').slice(1).join();
 		if (translationWord == 'Ind') {
 			responsiveVoice.speak(translationText, 'Indonesian Female');
 		} else if (translationWord == 'Eng') {

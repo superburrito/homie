@@ -3,7 +3,7 @@
 app.controller('QuestionCtrl', ($scope, $rootScope, $http, $stateParams, ToastFactory, $translate) => {
 
 	function loadQuestion() {
-		$http.get('/forum/' + $stateParams.questionId)
+		$http.get('/api/forum/' + $stateParams.questionId)
 		.then((res) => res.data)
 		.then((data) => {
 			if (data.success) {
@@ -27,7 +27,7 @@ app.controller('QuestionCtrl', ($scope, $rootScope, $http, $stateParams, ToastFa
 	}
 
 	$scope.postResponse = () => {
-		$http.post('/forum/' + $stateParams.questionId, {
+		$http.post('/api/forum/' + $stateParams.questionId, {
 			content: $scope.respContent
 		})
 		.then((res) => res.data)

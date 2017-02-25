@@ -4,7 +4,7 @@ app.factory('TranslatorFactory', ($http, $mdDialog, $translate) => {
 	var TranslatorFactory = {};
 
 	TranslatorFactory.translate = (type, text) => {
-		return $http.post('/translate', {
+		return $http.post('/api/translate', {
 			text: text,
 			lang: type
 		})	

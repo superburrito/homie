@@ -3,7 +3,7 @@
 app.controller('AskCtrl', ($scope, $state, $http, ToastFactory, $translate) => {
 
     $scope.postQuestion = () => {
-        return $http.post('/forum', {
+        return $http.post('/api/forum', {
             title: $scope.title,
             content: $scope.content,
             category: $scope.category        

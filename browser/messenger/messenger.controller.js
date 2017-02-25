@@ -4,7 +4,7 @@ app.controller('MessengerCtrl', ($scope, $rootScope, $state, $http, ToastFactory
 	$scope.receiver = $rootScope.receiver;
 
 	$scope.sendMessage = () => {
-		return $http.post('/messages', {
+		return $http.post('/api/messages', {
 			title: $scope.title,
 			content: $scope.content,
 			receiver_id: $scope.receiver.id,

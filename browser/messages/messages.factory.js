@@ -18,7 +18,7 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate, $m
 	}
 
 	MessagesFactory.getInbox = () => {
-		return $http.get('/messages/inbox')
+		return $http.get('/api/messages/inbox')
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
@@ -31,7 +31,7 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate, $m
 	}
 
 	MessagesFactory.getSent = () => {
-		return $http.get('/messages/sent')
+		return $http.get('/api/messages/sent')
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
@@ -44,7 +44,7 @@ app.factory('MessagesFactory', ($http, ToastFactory, AuthFactory, $translate, $m
 	}
 
 	MessagesFactory.deleteMessage = (message) => {
-		return $http.delete('/messages/' + message.id)
+		return $http.delete('/api/messages/' + message.id)
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {

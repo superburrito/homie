@@ -26,7 +26,7 @@ app.factory('SettingsFactory', (cloudinary, StoreFactory, ToastFactory, $http, A
 
 	SettingsFactory.serverUpdate = (updateOptions) => {
 		console.log("updateOptions received as: " + JSON.stringify(updateOptions));
-        return $http.post('/user/update', updateOptions)
+        return $http.post('/api/user/update', updateOptions)
         .then((res) => AuthFactory.resToDataFilter(res))
         .then((data) => {
         	if (data.success) {

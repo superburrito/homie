@@ -74,7 +74,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 	// Local & FB Reentry
 	AuthFactory.reentry = () => {
-		return $http.get('/reentry')
+		return $http.post('/reentry', {})
 		.then((res) => { 
 			console.log("[RE-ENTRY] HOMIE server reentry res: " + JSON.stringify(res.data));
 			return res.data; 

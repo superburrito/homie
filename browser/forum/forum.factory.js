@@ -18,7 +18,7 @@ app.factory('ForumFactory', ($http, ToastFactory, $mdDialog, $translate) => {
 	}	
 
 	ForumFactory.getAllQuestions = () => {
-		return $http.get('/forum')
+		return $http.get('/api/forum')
 		.then((res) => res.data)
 		.then((data) => {
 			if (data.success) { 

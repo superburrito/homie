@@ -90,10 +90,11 @@ self.addEventListener('activate', function (event) {
 
 // Fetching: Retrieving data based on connectivity
 self.addEventListener('fetch', function (event) {
-  var apiUrl = 'gethomie.sg';
+  var apiUrl = "gethomie.sg/api";
   // Make sure we are fetching a GET request
   if(event.request.method !== "GET") return;
-  // If a request was made
+
+  // If an API (data) request was made
   if (event.request.url.includes(apiUrl)) {
     event.respondWith(
       // Fetch the request first
@@ -118,8 +119,8 @@ self.addEventListener('fetch', function (event) {
         });
       })
     );
-  // If we differentiate shell vs 
-  } /*else {
+  // If a shell request was made
+  } else {
     event.respondWith(
       // Check the cache for response. If the response isn't found, fetch it.
       caches.match(event.request).then(function (response) {
@@ -142,7 +143,7 @@ self.addEventListener('fetch', function (event) {
         }
       })
     );
-  }*/
+  }
 });
 
 

@@ -29,7 +29,7 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog,
 	}
 
 	MapFactory.getAllCoords = () => {
-		return $http.get('/map')
+		return $http.get('/api/map')
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
@@ -55,7 +55,7 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog,
 
 	MapFactory.markUserLocation = (currPos) => {
 		if (currPos) {
-			return $http.post('/map', currPos)
+			return $http.post('/api/map', currPos)
 			.then((res) => AuthFactory.resToDataFilter(res))
 			.then((data) => {
 				if (data.success) {
@@ -70,7 +70,7 @@ app.factory('MapFactory', function ($http, ToastFactory, AuthFactory, $mdDialog,
 	}
 
 	MapFactory.removeUserLocation = function () {
-		return $http.delete('/map')
+		return $http.delete('/api/map')
 		.then((res) => AuthFactory.resToDataFilter(res))
 		.then((data) => {
 			if (data.success) {
