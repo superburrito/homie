@@ -1,15 +1,27 @@
 'use strict';
 
-app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFactory) => {
+app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFactory, $rootScope) => {
 	// Bring $state to scope to disable navbar
 	$scope.state = $state;
 
 
-	// Attempt re-entry into Home state if tokens are present
-	if (StoreFactory.hasHToken() && StoreFactory.hasFbToken()) {
+	// Online, attempt re-entry if tokens are present
+	if (window.navigator.onLine && 
+		StoreFactory.hasHToken() && 
+		StoreFactory.hasFbToken()) {
 		AuthFactory.reentry();
 	}
- 	
+
+	// Offline, auto re-entry if tokens and profile exist
+ 	if (!window.navigator.onLine &&
+ 		StoreFactory.hasHToken() && 
+ 		StoreFactory.hasFbToken() && 
+ 		StoreFactory.getProfile().id
+ 		) {
+		$rootScope.broadcast('authenticated');
+	}
+
+
  	// Labelled for non-commercial reuse: 
  	// https://c1.staticflickr.com/4/3263/3141370564_e2fef8bb14_b.jpg
 	const defaultBg = "/media/landingDefault.jpg";
