@@ -184,7 +184,179 @@ app.config(function($translateProvider) {
 	}
 
 	const idTranslations = {
-		"LANDING_CHANGELANG": "Now in Bahasa Indo",
+		// Side navbar
+		"SIDENAV_HOME": "Rumah",
+		"SIDENAV_TASKS": "Tugas",
+		"SIDENAV_TRANSLATOR": "Penterjemah",
+		"SIDENAV_PHRASEBOOK": "Buku Frasa",
+		"SIDENAV_MAP": "Pencari Teman",
+		"SIDENAV_MESSAGES": "Pesan",
+		"SIDENAV_EDUCATION": "Pendidikan",
+		"SIDENAV_RIGHTS": "Hak",
+		"SIDENAV_DISCUSS": "Forum",
+		"SIDENAV_GETHELP": "Bantuan",
+		"SIDENAV_SETTINGS": "Pengaturan",
+		"SIDENAV_LOGOUT": "Keluar",
+
+		// Homepage
+		"HOME_GREETING": "Selamat Datang",
+
+		// Landing page
+		"LANDING_SLOGAN": "Alat berguna untuk semua Pembantu di Singapura",
+
+		"LANDING_EMAIL": "Email", 
+		"LANDING_PASSWORD": "Kata Sandi",
+		"LANDING_SIGNIN": "Masuk", 
+		"LANDING_SIGNUP": "Daftar",
+
+		"LANDING_FACEBOOKLOGIN": "Masuk dengan Facebook",
+		"LANDING_CHANGELANG": "Menggunakan bahasa lain",
+		"LANDING_DIVERT1": "Browser sekarang terlalu besar!",
+		"LANDING_DIVERT2": "Aplikasi ini dimaksudkan untuk platform yang lebih kecil.",
+		"LANDING_TERMS1": "Kalau menggunakan aplikasi ini, Anda setuju dengan ini ",
+		"LANDING_TERMS2": "Syarat dan Ketentuan",
+
+		// Register
+		"REGISTER_HEADER": "Mendaftar",
+		"REGISTER_NAME": "Nama",
+		"REGISTER_EMAIL": "Email",
+		"REGISTER_PASSWORD": "Kata Sandi", 
+		"REGISTER_CONFIRM": "Mengkonfirmasi Rincian",
+		"REGISTER_RETURN": "Kembali",
+
+		// Phrasebook
+		"PHRASEBOOK_HEADER": "Frasa", 
+		"PHRASEBOOK_NOSAVED": "Tidak ada frasa yang disimpan sekarang.", 
+		"PHRASEBOOK_PROMPT": "Mulai Terjemahkan!",
+
+		// My Tasks
+		"TASKS_NAV_TASKS": "Tugas", 
+		"TASKS_NAV_ADDATASK": "Tambahkan Tugas",
+		"TASKS_HEADER": "Tugas", 
+		"TASKS_NOTASKS": "Belum ada tugas",
+		"TASKS_ADD_A_TASK_LABEL": "Tambahkan Tugas", 
+		"TASKS_INCLUDE_TASK_HERE": "Tambah tugas di sini (5-30 karakter)",
+		"TASKS_HIGHLIGHT_TASK": "Mengatur alarm untuk tugas", 
+		"TASKS_HIGHLIGHT_TASK_AT": "Mulai alarm pada...",
+		"TASKS_SET_TIMER": "Mengatur timer untuk tugas",
+		"TASKS_SET_TIMER_DURATION": "Timer lamanya (di menit)",
+		"TASKS_CONFIRM": "Memastikan Tugas",
+		'TASKS_POPUP_HEADER': "Selamat datang di Manajer Tugas.",
+		'TASKS_POPUP_MAIN': "Anda bisa tambah alarm dan/atau timer untuk setiap tugas. Kalau tugas Anda ada alarm, dia akan menyala merah muda dan bergetar pada waktu ditentukan. Kalau tugas Anda ada timer, progress bar akan mulai diisi saat Anda memilihnya.",
+		'TASKS_POPUP_OK': "Baiklah",
+
+		// Settings
+		"SETTINGS_CONFIRM": "Memastikan Penaturan",
+		"SETTINGS_SRC": "Memilih gambar profil",
+		"SETTINGS_DESCRIPTION": "Perbarui deskripsi profil di sini!",
+
+		// Translate
+		"TRANS_NAV_TRANSLATOR": "Penterjemah",
+		"TRANS_NAV_PHRASEBOOK": "Buku frasa", 
+		"TRANSLATE_HEADER": "Teks untuk Menerjemah",
+		"TRANSLATE_CONVERT_HEADER": "Mengubah Teks Menjadi...",
+		"TRANSLATE_TAGALOG": "Tagalog (TL)", 
+		"TRANSLATE_BAHASA": "Bahasa Indo (ID)", 
+		"TRANSLATE_ENGLISH": "Inggris (EN)", 
+		"TRANSLATE_CHINESE": "Mandarin (ZH)",  
+		"TRANSLATE_POPUP_HEADER": "Anda menggunakan penterjemah HOMIE!",
+		"TRANSLATE_POPUP_MAIN": "Ketik teks di kotak yang diberikan dan terjemahkan ke bahasa spesifik dari pilihan-pilihan bahasa. Anda juga bisa menyimpan frasa-frasa yang Anda mau lihat. Frasa yang disimpan ada di tab berikutnya.",
+		"TRANSLATE_POPUP_OK": "Baiklah!",
+
+		// HELP
+		"HELP_HEADER": "Tanya Bantuan", // Ask for help  
+		"HELP_PARAGRAPH1": "Kalau perlu seseorang untuk berbicara, silakan tanya bantuan",  
+		"HELP_PARAGRAPH2": "Organisasi-organisasi, seperti Humanitarian Organisation for Migration Economics (HOME) dan the Centre for Domestic Employees (CDE) bisa membantu Anda.",
+		"HELP_HOME": "Hubungi HOME",
+		"HELP_CDE": "Hubungi CDE",
+
+		// MAP
+		"MAP_NAV_MAPVIEW": "Jelajahi Daerah Saya",
+		"MAP_NAV_ADDMYPROFILE": "Tambah Profil Saya",
+		"MAP_SETTINGS1": "Anda bisa menambahkan profil Anda ke petanya dari memilih ‘Tampilkan Profil Saya' di bawah. Ini akan menampilkan profil Anda di lokasi Anda sekarang.",
+		"MAP_SETTINGS2": "Jangan kuatir, Anda bisa mengubah atau menyembunyikan profil Anda setiap saat.",
+		"MAP_DISPLAY_BUTTON": "Tampilkan Profil Saya",
+		"MAP_HIDE_BUTTON": "Sembunyikan Profil Saya",
+		"MAP_POPUP_HEADER": "Selamat Datang ke Pencari Teman!",
+		"MAP_POPUP_MAIN": "Chrome akan bertanya kepada Anda untuk lokasi Anda. Pilih 'Biar’. Kemudian, lihat siapa di dekat Anda dan berteman dengan pembantu lain di daerahnya. Anda bisa tahu lebih banyak di tab lain.",
+		"MAP_POPUP_OK": "Baiklah!",
+
+		// Profile
+		"PROFILE_FACEBOOK": "Facebook", 
+		"PROFILE_SENDMESSAGE": "Kirim Pesan",
+
+		// Message
+		"MESSAGE_FROM": "Dari: ",
+		"MESSAGE_TO": "Ke: ",  
+		"MESSAGE_REPLY": "Balaskan", 
+		"MESSAGE_RETURN": "Kembali ke Pesan-Pesan",
+
+		// Messages
+		"MESSAGES_INBOX_NAV": "Diterima",
+		"MESSAGES_SENT_NAV": "Dikirim",
+		"MESSAGES_INBOX_HEADER": "Pesan-pesan Diterima",
+		"MESSAGES_SENT_HEADER": "Pesan-pesan Dikirim",
+		"MESSAGES_NONE": "Anda tidak punya pesan baru.",
+		"MESSAGES_POPUP_HEADER": "Selamat Datang ke inbox Anda.", 
+		"MESSAGES_POPUP_MAIN": "Pesan-pesan yang Anda sudah terima atau kirim akan disimpai di sini. Pilih pesan untuk lihatnya.",
+		"MESSAGES_POPUP_OK": "Baiklah!",
+
+		// Messenger
+		"MESSENGER_TO": "Ke: ",  
+		"MESSENGER_TITLE": "Judul Pesan",
+		"MESSENGER_CONTENT": "Isi Pesan",
+		"MESSENGER_SEND": "Kirim Pesan Anda",
+		"MESSENGER_RETURN": "Kembali ke Pesan-Pesan", 
+
+		// Forum
+		"FORUM_HEADER": "Forum",
+		"FORUM_POPUP_HEADER": "Selamat Datang ke Forum!",
+		"FORUM_POPUP_MAIN": "Di sini, Anda bisa bertanya kepada kaum kita dan menanggapi apa yang dipikirkan oleh orang lain. Klik kaca pembesar di kanan untuk opsi berlainan.", 
+		"FORUM_POPUP_OK": "Baiklah!",
+		"FORUM_CAT_ALL": "Semua", 
+		"FORUM_ASK": "Bertanya",
+
+		// Ask
+		"ASK_CAT_SALARY": "Gaji",
+		"ASK_CAT_HEALTH": "Kesehatan", 
+		"ASK_CAT_PRIVACY": "Pribadi",
+		"ASK_CAT_WORK": "Kerja", 
+		"ASK_CAT_LEAVE": "Hari Istirahat", 
+		"ASK_CAT_OTHERS": "Yang Lain",
+		
+		// Toasts
+		"T_PROFILE_ADD_SUCCESS": "Profil Anda sudah ditambahkan ke petanya dengan berhasil.",
+		"T_PROFILE_ADD_FAIL": "Profil Anda gagal untuk ditambahkan ke petanya.",
+		"T_PROFILE_HIDE_SUCCESS": "Profil Anda sudah tersembunyi.",
+		"T_PROFILE_HIDE_FAIL": "Kesalahan terjadi.",
+		"T_GPS_FAIL": "Tidak bisa guna GPS!",
+		"T_MESSAGES_LOAD_FAIL": "Gagal untuk memuat pesan-pesan.", // *gotta ask dee
+		"T_MESSAGES_DELETE_FAIL": "Gagal untuk menghapus pesan.",
+		"T_MESSENGER_SUCCESS": "Pesan dikirim",
+		"T_MESSENGER_FAIL": "Gaga untuk mengirim pesan.",
+
+		'T_AUTH_ACCT_EXISTS': "Akun sudah ada!", 
+		'T_AUTH_WRONG_CREDS': "Email atau Kata Sandi salah.",
+		'T_AUTH_NO_SUCH': "Tidak ada akun ini.",
+		'T_AUTH_SERVER_ERR': "Kesalahan terjadi.",
+		'T_AUTH_FB_LOGOUT': "Anda sudah keluar untuk menghindari kesalahan.", 
+		'T_AUTH_FB_FAIL': "Facebook menolak akses Anda.", 
+		'T_AUTH_FB_SUCCESS': "Facebook sudah memperbolehkan akses Anda.", 
+
+		'T_TASK_TIMER_START': "Mulai Timer untuk: ", // *
+
+		'T_SETTINGS_CACHE_ERR': "Kesalahan: Cache Anda ada data yang hilang.", 
+		'T_SETTINGS_SYNC_SUCC': "Pengaturan disimpan daring.",
+		'T_SETTINGS_SYNC_FAIL': "Gagal untuk menyimpan pengaturan.",
+
+		'T_TASK_CREATED': "Tugas dibuat dan disimpan.",
+
+		'T_TRANSLATOR_SAVED': "Frasa disimpan.",
+		'T_POST_SUCCESS': "Pertanyaan Anda sudah dikirim.",
+		'T_POST_FAIL': "Pertanyaan Anda tidak dikirim.",
+
+		"T_QN_FAIL": "Gagal untuk memuat post ini.",
+		"T_RESP_FAIL": "Gaga untuk mengunggah tanggapan Anda."
 	}
 
 	$translateProvider
