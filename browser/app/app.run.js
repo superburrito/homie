@@ -49,6 +49,5 @@ app.run(function ($window, AuthFactory, $rootScope, $location) {
     }
     checkRootScopeVals('HOMIE-receiver');
     checkRootScopeVals('HOMIE-currMessage');
-    checkRootScopeVals('HOMIE-currQuestionId');
-    checkRootScopeVals('HOMIE-langPref');
+    checkRootScopeVals('HOMIE-currQuestionId');   
 });

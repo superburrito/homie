@@ -1,6 +1,6 @@
 'use strict';
 
-app.config(function($translateProvider, $rootScope) {
+app.config(function($translateProvider) {
 
 	const enTranslations = {
 		// Side navbar
@@ -266,7 +266,7 @@ app.config(function($translateProvider, $rootScope) {
 		"TRANSLATE_YANDEX": "*Homie's Translations are powered by the Yandex.Translate API.",
 
 		// HELP
-		"HELP_HEADER": "Tanya Bantuan", // Ask for help  
+		"HELP_HEADER": "Tanya Bantuan",  
 		"HELP_PARAGRAPH1": "Kalau perlu seseorang untuk berbicara, silakan tanya bantuan",  
 		"HELP_PARAGRAPH2": "Organisasi-organisasi, seperti Humanitarian Organisation for Migration Economics (HOME) dan the Centre for Domestic Employees (CDE) bisa membantu Anda.",
 		"HELP_HOME": "Hubungi HOME",
@@ -345,7 +345,7 @@ app.config(function($translateProvider, $rootScope) {
 		'T_AUTH_FB_FAIL': "Facebook menolak akses Anda.", 
 		'T_AUTH_FB_SUCCESS': "Facebook sudah memperbolehkan akses Anda.", 
 
-		'T_TASK_TIMER_START': "Mulai Timer untuk: ", // *
+		'T_TASK_TIMER_START': "Mulai Timer untuk: ", 
 
 		'T_SETTINGS_CACHE_ERR': "Kesalahan: Cache Anda ada data yang hilang.", 
 		'T_SETTINGS_SYNC_SUCC': "Pengaturan disimpan daring.",
@@ -517,8 +517,14 @@ app.config(function($translateProvider, $rootScope) {
 
 	$translateProvider
 		.translations('en', enTranslations)
-		.translations('tl', tlTranslations)
 		.translations('id', idTranslations)
-		.preferredLanguage($rootScope['HOMIE-langPref'] || 'en');
+		.translations('tl', tlTranslations);
+
+	const langPref = localStorage.getItem('HOMIE-langPref');
+	if (langPref !== null && langPref.length > 0) {
+    	$translateProvider.preferredLanguage(langPref);
+    } else {
+    	$translateProvider.preferredLanguage('en');
+    }
 });
 

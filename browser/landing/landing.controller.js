@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFactory, $rootScope) => {
+app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFactory) => {
 	// Bring $state to scope to disable navbar
 	$scope.state = $state;
 
