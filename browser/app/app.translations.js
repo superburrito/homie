@@ -1,6 +1,6 @@
 'use strict';
 
-app.config(function($translateProvider) {
+app.config(function($translateProvider, $rootScope) {
 
 	const enTranslations = {
 		// Side navbar
@@ -83,6 +83,7 @@ app.config(function($translateProvider) {
 		"TRANSLATE_POPUP_HEADER": "You're using HOMIE's Translator!",
 		"TRANSLATE_POPUP_MAIN": "Type in any text in the given box and then translate your text to a specific language by selecting one of the language buttons. You can also save phrases that you want to refer to. Saved phrases will be stored in the next tab.",
 		"TRANSLATE_POPUP_OK": "Ok!",
+		"TRANSLATE_YANDEX": "*Homie's Translations are powered by the Yandex.Translate API.",
 
 		// HELP
 		"HELP_HEADER": "Reach Out",
@@ -181,10 +182,6 @@ app.config(function($translateProvider) {
 		"T_RESP_FAIL": "Fail to upload your response."
 	}
 
-	const tlTranslations = {
-		"LANDING_CHANGELANG": "Now in Tagalog",
-	}
-
 	const idTranslations = {
 		// Side navbar
 		"SIDENAV_HOME": "Rumah",
@@ -204,7 +201,7 @@ app.config(function($translateProvider) {
 		"HOME_GREETING": "Selamat Datang",
 
 		// Landing page
-		"LANDING_SLOGAN": "Alat berguna untuk semua Pembantu di Singapura",
+		"LANDING_SLOGAN": "Alat berguna untuk semua Pembantu di Singapura.",
 
 		"LANDING_EMAIL": "Email", 
 		"LANDING_PASSWORD": "Kata Sandi",
@@ -266,6 +263,7 @@ app.config(function($translateProvider) {
 		"TRANSLATE_POPUP_HEADER": "Anda menggunakan penterjemah HOMIE!",
 		"TRANSLATE_POPUP_MAIN": "Ketik teks di kotak yang diberikan dan terjemahkan ke bahasa spesifik dari pilihan-pilihan bahasa. Anda juga bisa menyimpan frasa-frasa yang Anda mau lihat. Frasa yang disimpan ada di tab berikutnya.",
 		"TRANSLATE_POPUP_OK": "Baiklah!",
+		"TRANSLATE_YANDEX": "*Homie's Translations are powered by the Yandex.Translate API.",
 
 		// HELP
 		"HELP_HEADER": "Tanya Bantuan", // Ask for help  
@@ -363,11 +361,164 @@ app.config(function($translateProvider) {
 		"T_RESP_FAIL": "Gaga untuk mengunggah tanggapan Anda."
 	}
 
+	const tlTranslations = {
+			// Side navbar
+			"SIDENAV_HOME": "Home",
+			"SIDENAV_TASKS": "Mga Gawain",
+			"SIDENAV_TRANSLATOR": "Tagasaling-wika",
+			"SIDENAV_PHRASEBOOK": "Phrasebook",
+			"SIDENAV_MAP": "Friend Finder",
+			"SIDENAV_MESSAGES": "Mga Mensahe",
+			"SIDENAV_EDUCATION": "Edukasyon",
+			"SIDENAV_RIGHTS": "Mga Karapatan",
+			"SIDENAV_DISCUSS": "Forum",
+			"SIDENAV_GETHELP": "Humingi ng Tulong",
+			"SIDENAV_SETTINGS": "Mga Setting",
+			"SIDENAV_LOGOUT": "Mag-log Out",
+			// Homepage
+			"HOME_GREETING": "Mabuhay",
+			// Landing page
+			"LANDING_SLOGAN": "Para sa lahat ng Domestic Helpers sa Singapore.",
+			"LANDING_EMAIL": "Email",
+			"LANDING_PASSWORD": "Password",
+			"LANDING_SIGNIN": "Mag-sign In",
+			"LANDING_SIGNUP": "Mag-sign Up",
+			"LANDING_FACEBOOKLOGIN": "Mag-log In Gamit ang Facebook",
+			"LANDING_CHANGELANG": "Palitan ang Wika",
+			"LANDING_DIVERT1": "Masyadong malaki ang window kung saan nakabukas ang application!", 
+	 		"LANDING_DIVERT2": "Ang application na ito ay dinisenyo para sa mas maliit na plataporma.", 
+	 		"LANDING_TERMS1": "Sa paggamit ng application na ito, kayo ay sumasang-ayon sa",
+	 		"LANDING_TERMS2": "Mga Tuntunin at Kundisyon", 
+			// Register
+			"REGISTER_HEADER": "Mag-register",
+			"REGISTER_NAME": "Pangalan",
+			"REGISTER_EMAIL": "Email",
+			"REGISTER_PASSWORD": "Password",
+			"REGISTER_CONFIRM": "Kumpirmahin ang mga detalye",
+	 		"REGISTER_RETURN": "Bumalik",
+			// Phrasebook
+			"PHRASEBOOK_HEADER": "Aking mga Teksto",
+			"PHRASEBOOK_NOSAVED": "Wala pa kayong na-save na teksto.", 
+	 		"PHRASEBOOK_PROMPT": "Palitan ang wika!",
+			// My Tasks
+			"TASKS_NAV_TASKS": "Mga Gawain",
+			"TASKS_NAV_ADDATASK": "Magdagdag ng Gawain",
+			"TASKS_HEADER": "Mga Gawain",
+			"TASKS_NOTASKS": "Wala pa kayong naidagdag na mga gawain.", 
+	 		"TASKS_ADD_A_TASK_LABEL": "Magdagdag ng Gawain",
+			"TASKS_INCLUDE_TASK_HERE": "Isulat ang iyong gawain dito (5-30 karakter).", 
+	 		"TASKS_HIGHLIGHT_TASK": "Magtakda ng alarm para sa gawain", 
+	 		"TASKS_HIGHLIGHT_TASK_AT": "Simulan ang alarm sa...",
+			"TASKS_SET_TIMER": "Magpatakbo ng timer para sa gawain", 
+	 		"TASKS_SET_TIMER_DURATION": "Durasyon (mga minuto)...",
+			"TASKS_CONFIRM": "Kumpirmahin ang gawain",
+			'TASKS_POPUP_HEADER': "Maligayang pagdating sa iyong Task Manager.",
+	 		'TASKS_POPUP_MAIN': "Maaaring magtakda ng alarm o magpatakbo ng timer sa bawat gawain. Kung ang iyong gawain ay may naitakdang alarm, liliwanag at magvi-vibrate ang iyong cellphone pagkatapos nito. Kung mayroong timer ang iyong gawain, ito 92y sariling mag-uumpisa.", 
+	 		'TASKS_POPUP_OK': "Ok!",
+			// Settings
+			"SETTINGS_CONFIRM": "Kumpirmahin ang Iyong mga Setting", 
+	 		"SETTINGS_SRC": "Palitan ang iyong profile picture.", 
+	 		"SETTINGS_DESCRIPTION": "Baguhin ang inyong profile dito!", 
+			// Translate
+			"TRANS_NAV_TRANSLATOR": "Tagasaling-wika",
+			"TRANS_NAV_PHRASEBOOK": "Ang Aking Phrasebook",
+			"TRANSLATE_HEADER": "Tekstong Isasalin",
+			"TRANSLATE_CONVERT_HEADER": "Palitan ang wiki sa...",
+			"TRANSLATE_TAGALOG": "Tagalog (TL) ",
+			"TRANSLATE_BAHASA": "Bahasa Indo (ID) ",
+			"TRANSLATE_ENGLISH": "English (EN) ",
+			"TRANSLATE_CHINESE": "Chinese (ZH) ",
+			"TRANSLATE_PLAYPHRASE": "Pakinggan ang Teksto",
+			"TRANSLATE_SAVEPHRASE": "I-save ang Teksto",
+			"TRANSLATE_POPUP_HEADER": "Ginagamit mo ang tagasaling-wika ng HOMIE! ", 
+	 		"TRANSLATE_POPUP_MAIN": "Mag-type ng kahit anumang teksto at piliin ang angkop na wika upang isalin ito. Maaaring i-save ang mga tekstong nais mong balikan. Ang mga na-save na teksto ay nakalista sa susunod na tab. ", 
+	 		"TRANSLATE_POPUP_OK": "Ok!",
+			// HELP
+			"HELP_HEADER": "Humingi ng Tulong",
+			"HELP_PARAGRAPH1": "Huwag mahihiyang humingi magtanong o humingi ng tulong.", 
+	 		"HELP_PARAGRAPH2": "Maaaring tumulong ang iba t-ibang mga organisasyon, tulad ng Humanitarian Organisation for Migration Economics (HOME) at ng Centre for Domestic Employees (CDE).", 
+	 		"HELP_HOME": "I-contact ang HOME",
+			"HELP_CDE": "I-contact ang CDE",
+			// MAP
+			"MAP_NAV_MAPVIEW": "Tanawin ang Aking Lugar",
+			"MAP_NAV_ADDMYPROFILE": "Idagdag ang Aking Profile",
+			"MAP_SETTINGS1": "Upang idagdag ang iyong profile sa mapa, piliin ang 'Ipakita ang Aking Profile'.", 
+	 		"MAP_SETTINGS2": "Huwag mag-alala, maaaring palitan o itago ang iyong profile mamaya kung iyong ninanais.",
+	 		"MAP_DISPLAY_BUTTON": "Ipakita ang Aking Profile",
+			"MAP_HIDE_BUTTON": "Itago ang Aking Profile",
+			"MAP_POPUP_HEADER": "Maligayang pagdating sa Friend Finder!", 
+	 		"MAP_POPUP_MAIN": "Hihingiin ng Chrome ang iyong lugar. Piliin ang 'Allow'. Pagkatapos nito, makikita mo ang iba pang mga domestic worker sa iyong paligid at maaari mo silang kausapin, Para sa karagdagang impormasiyon, tingnan ang susunod na tab.", 
+	 		"MAP_POPUP_OK": "Ok!",
+			// Profile
+			"PROFILE_FACEBOOK": "Facebook",
+			"PROFILE_SENDMESSAGE": "Magpadala ng Mensahe",
+			// Message
+			"MESSAGE_FROM": "From:",
+			"MESSAGE_TO": "To:",
+			"MESSAGE_REPLY": "Sagutin ang Nagpadala",
+			"MESSAGE_RETURN": "Bumalik sa mga Mensahe",
+			// Messages
+			"MESSAGES_INBOX_NAV": "Natanggap",
+			"MESSAGES_SENT_NAV": "Napadala",
+			"MESSAGES_INBOX_HEADER": "Mga Natanggap na Mensahe",
+			"MESSAGES_SENT_HEADER": "Mga Napadalang Mensahe",
+			"MESSAGES_NONE": "Wala pa kayong mga mensahe.", 
+	 		"MESSAGES_POPUP_HEADER": "Maligayang pagdating sa iyong inbox!", 
+	 		"MESSAGES_POPUP_MAIN": "Narito ang mga mensahe na inyong natanggap o napadala. Piliin ang mensahe upang tingnan ito.",
+	 		"MESSAGES_POPUP_OK": "Ok!",
+			// Messenger
+			"MESSENGER_TO": "To:",
+			"MESSENGER_TITLE": "Titulo ng Mensahe",
+			"MESSENGER_CONTENT": "Nilalaman ng Mensahe",
+			"MESSENGER_SEND": "Ipadala ang Mensahe",
+			"MESSENGER_RETURN": "Bumalik sa Mga Mensahe",
+			// Forum
+			"FORUM_HEADER": "Forum",
+			"FORUM_POPUP_HEADER": "Maligayang pagdating sa Forum!", 
+	 		"FORUM_POPUP_MAIN": "Sa forum, ikaw ay maaaring mag-post ng mga tanong para sa ating komunidad. Maaari mo ring tugunan ang mga post ng ibang mga tao. Pindutin ang magnifying glass upang tingnan ang iba pang mga option.", 
+	 		"FORUM_POPUP_OK": "Ok!",
+			"FORUM_CAT_ALL": "All",
+			"FORUM_ASK": "Magtanong",
+			// Ask
+			"ASK_CAT_SALARY": "Suweldo",
+			"ASK_CAT_HEALTH": "Kalusugan",
+			"ASK_CAT_PRIVACY": "Pagkapribado",
+			"ASK_CAT_WORK": "Trabaho",
+			"ASK_CAT_LEAVE": "Pagliban sa Trabaho",
+			"ASK_CAT_OTHERS": "Mga iba pa",
+			// Toasts\
+			"T_PROFILE_ADD_SUCCESS": "Naidagdag ang iyong profile sa mapa .", 
+	 		"T_PROFILE_ADD_FAIL": "Hindi naidagdag ang iyong profile sa mapa. ", 
+	 		"T_PROFILE_HIDE_SUCCESS": "Naitago ang lying profile.",
+			"T_PROFILE_HIDE_FAIL": "May naganap na error.",
+			"T_GPS_FAIL": "Hindi magamit ang GPS!", 
+			"T_MESSAGES_LOAD_FAIL": "Hindi maipakita ang mga mensahe.", 
+	 		"T_MESSAGES_DELETE_FAIL": "Hindi na-delete ang mga mensahe.", 
+			"T_MESSENGER_SUCCESS": "Napadala ang mensahe!",
+			"T_MESSENGER_FAIL": "Hindi napadala ang mensahe.", 
+			'T_AUTH_ACCT_EXISTS': "Nagawa na ang account na ito!", 
+	 		'T_AUTH_WRONG_CREDS': "Maling email o password!",
+			'T_AUTH_NO_SUCH': "Walang ganitong account.", 
+	 		'T_AUTH_SERVER_ERR': "May naganap na error.",
+			'T_AUTH_FB_LOGOUT': "Ikaw ay sadyang linog-out upang maiwasan ang error.", 
+	 		'T_AUTH_FB_FAIL': "Hindi pinayagan ng Facebook ang iyong access.", 
+	 		'T_AUTH_FB_SUCCESS': "Pinahintulutan ng Facebook ang iyong access!", 
+			'T_TASK_TIMER_START': "Nag-umpisa na ang timer para sa: ",
+			'T_SETTINGS_CACHE_ERR': "Error: Ang iyong cache ay may kulang na data.", 
+	 		'T_SETTINGS_SYNC_SUCC': "Nai-save ang iyong mga setting online .", 
+	 		'T_SETTINGS_SYNC_FAIL': "Hindi nai-save ang iyong mga setting.", 
+			'T_TASK_CREATED': "Nagawa at nai-save ang iyong gawain.", 
+			'T_TRANSLATOR_SAVED': "Nai-save ang teksto.",
+			'T_POST_SUCCESS': "Nai-post ang iyong tanong.",
+	 		'T_POST_FAIL': "Hindi nai-post ang iyong tanong.", 
+			"T_QN_FAIL": "Hindi maipakita ang post na ito.", 
+	 		"T_RESP_FAIL": "Hindi mai-upload ang sagot." 
+	}
+
 	$translateProvider
 		.translations('en', enTranslations)
 		.translations('tl', tlTranslations)
 		.translations('id', idTranslations)
-		.preferredLanguage('en');
-
+		.preferredLanguage($rootScope['HOMIE-langPref'] || 'en');
 });
 

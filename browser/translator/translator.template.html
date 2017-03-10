@@ -46,7 +46,9 @@
 		<div layout="column" class="translator__translated" layout-align="none center">
 			<md-progress-circular ng-hide="notLoading" ng-disabled="notLoading"></md-progress-circular>
 			<h4 class="translator__translated--text">{{translatedText}}</h4>
-			<h4 class="translator__disclaimer">*Homie's Translations are powered by the Yandex.Translate API.</h4>
+			<h4 class="translator__disclaimer">
+			{{'TRANSLATE_YANDEX' | translate }}
+			</h4>
 			<md-button class="translator__button md-raised md-warn" ng-click="playPhrase()" ng-disabled="playerDisabled">{{ 'TRANSLATE_PLAYPHRASE' | translate }}</md-button>
 			<md-button class="translator__button md-raised md-accent" ng-click="savePhrase()">{{ 'TRANSLATE_SAVEPHRASE' | translate }}</md-button>
 		</div>

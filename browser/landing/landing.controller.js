@@ -46,13 +46,18 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
 		$state.go('terms');
 	}
 
+	// Switch language options, save to rootScope
 	$scope.switchLang = function () {
 		if($translate.use() === 'en'){
 			$translate.use('tl');
+			localStorage.setItem('HOMIE-langPref', 'tl');
 		} else if($translate.use() === 'tl'){
 			$translate.use('id');
+			localStorage.setItem('HOMIE-langPref', 'id');
 		} else {
 			$translate.use('en');
+			localStorage.setItem('HOMIE-langPref', 'en');
+
 		}
 	}
 });
