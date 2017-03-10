@@ -10,4 +10,6 @@ router.post('/', ForumHandler.postQuestion);
 
 router.post('/:questionId', ForumHandler.postResponse);
 
+router.get('/:questionId/:responseId/vote', ForumHandler.voteResponse);
+
 module.exports = router;

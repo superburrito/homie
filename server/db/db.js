@@ -90,14 +90,10 @@ var Response = db.define('response', {
   content: {
     type: Sequelize.TEXT,
     allowNull: false
-  },
-  likesCtr: {
-    type: Sequelize.INTEGER,
-    allowNull: false
   }
 })
 
-var Like = db.define('like');
+var Vote = db.define('vote');
 
 // Relations
 // Coord has a userId
@@ -106,16 +102,18 @@ Coord.belongsTo(User);
 Message.belongsTo(User, {as: 'sender'});
 Message.belongsTo(User, {as: 'receiver'});
 
-// Every like has a liker and a likedresponse
-Like.belongsTo(User, {as: 'liker'});
-Like.belongsTo(Response, {as: 'likedresponse'})
-
+// Every vote has a voter and an assoc response
+Vote.belongsTo(User, {as: 'voter'});
+Vote.belongsTo(Response);
 
 // Every question has a asker
 Question.belongsTo(User, {as: 'asker'});
-// Every response has a responder
-Response.belongsTo(User, {as: 'responder'});
 // Every question has many responses
 Question.hasMany(Response);
+
+// Every response has a responder
+Response.belongsTo(User, {as: 'responder'});
+// Every response has many votes
+Response.hasMany(Vote);
 
 module.exports = db;

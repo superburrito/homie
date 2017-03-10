@@ -1,6 +1,8 @@
 'use strict'
 
-app.controller('QuestionCtrl', ($scope, $rootScope, $http, $stateParams, ToastFactory, $translate) => {
+app.controller('QuestionCtrl', ($scope, $rootScope, $http, $stateParams, ToastFactory, StoreFactory, GeneralFactory, $translate) => {
+
+	const currUserId = StoreFactory.getProfile().id;
 
 	function loadQuestion() {
 		$http.get('/api/forum/' + $stateParams.questionId)
@@ -40,4 +42,25 @@ app.controller('QuestionCtrl', ($scope, $rootScope, $http, $stateParams, ToastFa
 			}
 		})	
 	}
+
+	$scope.checkVoted = (votes) => {
+		for(let i=0; i < votes.length; i++){
+			if(votes[i].voter_id === currUserId){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	$scope.vote = (responseId) => {
+		$http.get('/api/forum/' + $stateParams.questionId + '/' + responseId + '/vote')
+		.then((res) => res.data)
+		.then((data) => {
+			if (data.success) {
+				loadQuestion();
+			}
+		})
+	}
+
+	$scope.niceNum = GeneralFactory.niceNum;
 })

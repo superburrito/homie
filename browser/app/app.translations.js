@@ -137,6 +137,14 @@ app.config(function($translateProvider) {
 		"FORUM_POPUP_OK": "Cool!",
 		"FORUM_CAT_ALL": "All",
 		"FORUM_ASK": "Ask a Question",
+
+		// Question
+		"QUESTION_ADDRESPONSE": "Add a Response",
+		"QUESTION_RETURNTOFORUM": "Return to Forum",
+		"QUESTION_YOURRESPONSE": "Your Response",
+		"QUESTION_SUBMITRESPONSE": "Submit Response",
+		"QUESTION_CANCELRESPONSE": "Cancel Response",
+
 		// Ask
 		"ASK_CAT_SALARY": "Salary",
 		"ASK_CAT_HEALTH": "Health",
@@ -318,6 +326,13 @@ app.config(function($translateProvider) {
 		"FORUM_CAT_ALL": "Semua", 
 		"FORUM_ASK": "Bertanya",
 
+		// Question
+		"QUESTION_ADDRESPONSE": "Menanggapi",
+		"QUESTION_RETURNTOFORUM": "Kembali",
+		"QUESTION_YOURRESPONSE": "Tanggapan",
+		"QUESTION_SUBMITRESPONSE": "Menyerahkan",
+		"QUESTION_CANCELRESPONSE": "Membatalkan",
+
 		// Ask
 		"ASK_CAT_SALARY": "Gaji",
 		"ASK_CAT_HEALTH": "Kesehatan", 
@@ -477,8 +492,16 @@ app.config(function($translateProvider) {
 			"FORUM_POPUP_HEADER": "Maligayang pagdating sa Forum!", 
 	 		"FORUM_POPUP_MAIN": "Sa forum, ikaw ay maaaring mag-post ng mga tanong para sa ating komunidad. Maaari mo ring tugunan ang mga post ng ibang mga tao. Pindutin ang magnifying glass upang tingnan ang iba pang mga option.", 
 	 		"FORUM_POPUP_OK": "Ok!",
-			"FORUM_CAT_ALL": "All",
+			"FORUM_CAT_ALL": "Lahat",
 			"FORUM_ASK": "Magtanong",
+
+			// Question
+			"QUESTION_ADDRESPONSE": "Tumugon",
+			"QUESTION_RETURNTOFORUM": "Bumalik",
+			"QUESTION_YOURRESPONSE": "Tugon",
+			"QUESTION_SUBMITRESPONSE": "Ipasa",
+			"QUESTION_CANCELRESPONSE": "Kanselahin",
+			
 			// Ask
 			"ASK_CAT_SALARY": "Suweldo",
 			"ASK_CAT_HEALTH": "Kalusugan",
@@ -486,7 +509,7 @@ app.config(function($translateProvider) {
 			"ASK_CAT_WORK": "Trabaho",
 			"ASK_CAT_LEAVE": "Pagliban sa Trabaho",
 			"ASK_CAT_OTHERS": "Mga iba pa",
-			// Toasts\
+			// Toasts
 			"T_PROFILE_ADD_SUCCESS": "Naidagdag ang iyong profile sa mapa .", 
 	 		"T_PROFILE_ADD_FAIL": "Hindi naidagdag ang iyong profile sa mapa. ", 
 	 		"T_PROFILE_HIDE_SUCCESS": "Naitago ang lying profile.",

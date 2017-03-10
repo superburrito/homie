@@ -4,6 +4,7 @@ const db = require('./../db/db.js');
 const User = db.model('user');
 const Question = db.model('question');
 const Response = db.model('response');
+const Vote = db.model('vote');
 const Promise = require('bluebird');
 
 const ForumHandler = {}
@@ -47,6 +48,8 @@ ForumHandler.getQuestion = (req, res, next) => {
 			include: [{
 				model: User,
 				as: 'responder'
+			}, {
+				model: Vote,
 			}]
 		}]
 	})
@@ -98,6 +101,26 @@ ForumHandler.postResponse = (req, res, next) => {
 	.catch(next);
 }
 
+
+ForumHandler.voteResponse = (req, res, next) => {
+	return Vote.findOrCreate({
+		where: {
+			voter_id: req.decoded.id,
+			response_id: req.params.responseId
+		}
+	})
+	.then((vote) => {
+		if (vote) {
+			return res.status(200).send({
+				success: true,
+				vote: vote
+			})
+		} else {
+			return res.status(400).send({ success: false })
+		}
+	})
+	.catch(next);
+}
 
 
 

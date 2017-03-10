@@ -11,5 +11,13 @@ app.factory('GeneralFactory', () => {
 		}
 	} 
 
+	GeneralFactory.niceNum = (num) => {
+		if (num < 10) {
+			return "0" + parseInt(num); 
+		} else {
+			return parseInt(num);
+		}
+	} 
+
 	return GeneralFactory;
 })

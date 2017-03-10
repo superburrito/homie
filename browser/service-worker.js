@@ -1,6 +1,6 @@
 // Cache for application shell
-var apiCacheName = "HomieAPICache-v1";
-var shellCacheName = "HomieShellCache-v1";
+var apiCacheName = "HomieAPICache-v2";
+var shellCacheName = "HomieShellCache-v2";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
