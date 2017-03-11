@@ -46,7 +46,7 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
 		$state.go('terms');
 	}
 
-	// Switch language options, save to rootScope
+	// Switch language options
 	$scope.switchLang = function () {
 		if($translate.use() === 'en'){
 			$translate.use('tl');

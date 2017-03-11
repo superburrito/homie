@@ -90,6 +90,7 @@ app.config(function($translateProvider) {
 		"HELP_HEADER": "Reach Out",
 		"HELP_PARAGRAPH1": "If you need someone to talk to, please do not hesitate to reach out.",
 		"HELP_PARAGRAPH2": "Organisations, such as the Humanitarian Organisation for Migration Economics (HOME) and the Centre for Domestic Employees (CDE) can assist you.",
+		"HELP_MOM": "Contact MOM", 
 		"HELP_HOME": "Contact HOME",
 		"HELP_CDE": "Contact CDE",
 
@@ -154,6 +155,9 @@ app.config(function($translateProvider) {
 		"ASK_CAT_LEAVE": "Leave", // as in, off days
 		"ASK_CAT_OTHERS": "Others",
 		
+		// Rights
+		"RIGHTS_HEADER": "My Rights",
+
 		// Toasts
 		"T_PROFILE_ADD_SUCCESS": "Successfully added your profile to the map.",
 		"T_PROFILE_ADD_FAIL": "Failed to add your profile to the map.",
@@ -279,6 +283,7 @@ app.config(function($translateProvider) {
 		"HELP_HEADER": "Tanya Bantuan",  
 		"HELP_PARAGRAPH1": "Kalau perlu seseorang untuk berbicara, silakan tanya bantuan",  
 		"HELP_PARAGRAPH2": "Organisasi-organisasi, seperti Humanitarian Organisation for Migration Economics (HOME) dan the Centre for Domestic Employees (CDE) bisa membantu Anda.",
+		"HELP_MOM": "Hubungi MOM", 
 		"HELP_HOME": "Hubungi HOME",
 		"HELP_CDE": "Hubungi CDE",
 
@@ -343,6 +348,9 @@ app.config(function($translateProvider) {
 		"ASK_CAT_LEAVE": "Hari Istirahat", 
 		"ASK_CAT_OTHERS": "Yang Lain",
 		
+		// Rights
+		"RIGHTS_HEADER": "Hak",
+
 		// Toasts
 		"T_PROFILE_ADD_SUCCESS": "Profil Anda sudah ditambahkan ke petanya dengan berhasil.",
 		"T_PROFILE_ADD_FAIL": "Profil Anda gagal untuk ditambahkan ke petanya.",
@@ -455,7 +463,8 @@ app.config(function($translateProvider) {
 			// HELP
 			"HELP_HEADER": "Humingi ng Tulong",
 			"HELP_PARAGRAPH1": "Huwag mahihiyang humingi magtanong o humingi ng tulong.", 
-	 		"HELP_PARAGRAPH2": "Maaaring tumulong ang iba t-ibang mga organisasyon, tulad ng Humanitarian Organisation for Migration Economics (HOME) at ng Centre for Domestic Employees (CDE).", 
+	 		"HELP_PARAGRAPH2": "Maaaring tumulong ang iba t-ibang mga organisasyon, tulad ng Humanitarian Organisation for Migration Economics (HOME) at ng Centre for Domestic Employees (CDE).",
+	 		"HELP_MOM": "I-contact ang MOM",  
 	 		"HELP_HOME": "I-contact ang HOME",
 			"HELP_CDE": "I-contact ang CDE",
 			// MAP
@@ -513,6 +522,11 @@ app.config(function($translateProvider) {
 			"ASK_CAT_WORK": "Trabaho",
 			"ASK_CAT_LEAVE": "Pagliban sa Trabaho",
 			"ASK_CAT_OTHERS": "Mga iba pa",
+
+
+			// Rights
+			"RIGHTS_HEADER": "Mga Karapatan",
+
 			// Toasts
 			"T_PROFILE_ADD_SUCCESS": "Naidagdag ang iyong profile sa mapa .", 
 	 		"T_PROFILE_ADD_FAIL": "Hindi naidagdag ang iyong profile sa mapa. ", 
@@ -547,6 +561,7 @@ app.config(function($translateProvider) {
 		.translations('id', idTranslations)
 		.translations('tl', tlTranslations);
 
+	// Check if previous preference was already indicated
 	const langPref = localStorage.getItem('HOMIE-langPref');
 	if (langPref !== null && langPref.length > 0) {
     	$translateProvider.preferredLanguage(langPref);

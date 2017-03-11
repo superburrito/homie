@@ -1,0 +1,35 @@
+.resource {
+	max-width: 92%;
+	margin-top: 20px;
+
+	&__top {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+
+		&--title {
+			margin-left: 10px;
+		}	
+
+	}
+
+	&__main {
+		&--image {
+			position: relative;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			height: 200px;
+			max-height: 320px;
+			width: 100%;
+		}
+
+		&--text {
+			margin: auto;
+			width: 95%;
+
+		}
+
+		border: 1px solid #D3D3D3;
+	}
+
+}

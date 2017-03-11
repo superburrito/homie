@@ -1,0 +1,30 @@
+<div class="rights" layout="column" layout-align="none center">
+
+	<div class="resource" layout="column" ng-repeat="resource in resources">
+		<md-toolbar class="resource__top" layout="row" layout-align="none center">
+			<span class="resource__top--title"> 
+				{{resource.title}}
+			</span>
+			<span flex></span>
+			<div layout="column" layout-align="center">
+				<md-button class="md-icon-button" ng-click="goToLink(resource)">
+					<md-icon md-font-set="material-icons">
+						get_app
+					</md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-content class="resource__main" layout="column">
+			<div 
+				class="resource__main--image" 
+				ng-style="{'background-image': 'url({{resource.bgUrl}})'}"
+			>
+			</div>
+			<br>
+			<p class="resource__main--text">
+				{{resource.description}}
+			</p> 
+			<br>
+		</md-content>
+	</div>
+</div>

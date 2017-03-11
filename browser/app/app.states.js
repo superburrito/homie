@@ -99,4 +99,10 @@ app.config(function($stateProvider){
 		templateUrl: '/programs/programs.template.html',
 		controller: 'ProgramsCtrl'
 	})
+
+	$stateProvider.state('rights', {
+		url: '/rights',
+		templateUrl: '/rights/rights.template.html',
+		controller: 'RightsCtrl'
+	})
 });

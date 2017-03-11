@@ -2,6 +2,13 @@
 
 app.controller('ProgramsCtrl', ($scope, $location, $window) => { 
 
+	$scope.goToLink = (event) => {
+		$window.ga('set', event.gaLink);
+		$window.ga('send', 'pageview', event.gaLink);
+		$window.location.href = event.actualLink;
+	}
+
+	// Events 
 	$scope.events = [
 		{
 			title: "Computer and English Language Courses",
@@ -22,9 +29,4 @@ app.controller('ProgramsCtrl', ($scope, $location, $window) => {
 		}
 	]
 
-	$scope.goToLink = (event) => {
-		$window.ga('set', event.gaLink);
-		$window.ga('send', 'pageview', event.gaLink);
-		$window.location.href = event.actualLink;
-	}
 });

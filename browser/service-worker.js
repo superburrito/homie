@@ -1,6 +1,6 @@
 // Cache for application shell
-var apiCacheName = "HomieAPICache-v2";
-var shellCacheName = "HomieShellCache-v2";
+const apiCacheName = "HomieAPICache-0.2.9";
+const shellCacheName = "HomieShellCache-0.2.9";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
@@ -19,7 +19,6 @@ var filesToCache = [
 
 	// Internal HTML JSS requests
   // Mains
-  '/',
 	'/index.html',
 	'/main.js',
 	'/style.css',
@@ -36,6 +35,10 @@ var filesToCache = [
   '/media/thumbnail.png',
   '/media/defaultProfile.png',
 
+  // Rights-related Media
+  '/media/guideCover.png',
+  '/media/safetyGuideCover.png',
+
   // Programs-related Media 
   '/media/programsCare.jpg',
   '/media/programsComp.jpg',
@@ -46,11 +49,12 @@ var filesToCache = [
   '/help/help.template.html',
 	'/home/home.template.html',
   '/landing/landing.template.html',
-  '/map/map.template.html',
+/*'/map/map.template.html', */
   '/map/profile.template.html',
   '/message/message.template.html',
   '/messages/messages.template.html',
   '/messenger/messenger.template.html',
+
   '/programs/programs.template.html',
   '/question/question.template.html',
   '/settings/settings.template.html',
@@ -65,10 +69,9 @@ var filesToCache = [
 
 // Installation: Caching the app shell
 self.addEventListener('install', function (event) {
-  console.log('[SW] Install');
   event.waitUntil(
     caches.open(shellCacheName).then(function (cache) {
-      console.log('[SW] Caching Homie App Shell...');
+      console.log('[SW] Installing to shellCache...');
       return cache.addAll(filesToCache);
     })
   );
@@ -82,10 +85,13 @@ self.addEventListener('activate', function (event) {
     caches.keys().then(function (cacheNames) {
       return Promise.all(cacheNames.map(function (cacheName) {
         if (cacheName !== shellCacheName) {
-          console.log('[SW] Removing old cache', cacheName);
-          return caches.delete(cacheName);
+          console.log('[SW] Removing outdated cache: ', cacheName);
+          return caches.delete(cacheName).then(function () {
+            console.log('[SW] Cache has been deleted.');
+          });
+        } else {
+          console.log("[SW] Preserving cache: ", cacheName);
         }
-        console.log("[SW] Not removing cache ", cacheName);
       }));
     })
   );
