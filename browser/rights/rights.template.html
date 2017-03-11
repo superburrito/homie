@@ -7,11 +7,13 @@
 			</span>
 			<span flex></span>
 			<div layout="column" layout-align="center">
-				<md-button class="md-icon-button" ng-click="goToLink(resource)">
+				<a ng-href="{{resource.actualLink}}" download>
+				<md-button class="md-icon-button" ng-click="markLink(resource)">
 					<md-icon md-font-set="material-icons">
 						get_app
 					</md-icon>
 				</md-button>
+				</a>
 			</div>
 		</md-toolbar>
 		<md-content class="resource__main" layout="column">

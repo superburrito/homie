@@ -2,10 +2,9 @@
 
 app.controller('RightsCtrl', ($scope, $translate, $window) => {
 	
-	$scope.goToLink = (event) => {
+	$scope.markLink = (event) => {
 		$window.ga('set', event.gaLink);
 		$window.ga('send', 'pageview', event.gaLink);
-		$window.location.href = event.actualLink;
 	}
 
 	// Resources 
