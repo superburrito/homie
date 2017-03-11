@@ -34,6 +34,7 @@ app.config(function($translateProvider) {
 		"LANDING_DIVERT2": "This application is meant for smaller platforms.",
 		"LANDING_TERMS1": "By using this application, you agree to these ",
 		"LANDING_TERMS2": "Terms and Conditions",
+		"LANDING_TERMS3": "",
 
 		// Register
 		"REGISTER_HEADER": "Register",
@@ -220,8 +221,9 @@ app.config(function($translateProvider) {
 		"LANDING_CHANGELANG": "Menggunakan bahasa lain",
 		"LANDING_DIVERT1": "Browser sekarang terlalu besar!",
 		"LANDING_DIVERT2": "Aplikasi ini dimaksudkan untuk platform yang lebih kecil.",
-		"LANDING_TERMS1": "Kalau menggunakan aplikasi ini, Anda setuju dengan ini ",
+		"LANDING_TERMS1": "Kalau menggunakan aplikasi ini, Anda setuju dengan ",
 		"LANDING_TERMS2": "Syarat dan Ketentuan",
+		"LANDING_TERMS3": " ini",
 
 		// Register
 		"REGISTER_HEADER": "Mendaftar",
@@ -404,6 +406,8 @@ app.config(function($translateProvider) {
 	 		"LANDING_DIVERT2": "Ang application na ito ay dinisenyo para sa mas maliit na plataporma.", 
 	 		"LANDING_TERMS1": "Sa paggamit ng application na ito, kayo ay sumasang-ayon sa",
 	 		"LANDING_TERMS2": "Mga Tuntunin at Kundisyon", 
+	 		"LANDING_TERMS3": "",
+
 			// Register
 			"REGISTER_HEADER": "Mag-register",
 			"REGISTER_NAME": "Pangalan",
