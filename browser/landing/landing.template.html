@@ -1,43 +1,44 @@
-<div class="landing__container" ng-style="{'background-image': 'url({{bg}}'}" md-theme="altTheme3" flex>
+<div class="landing__container" ng-style="{'background-image': 'url({{bg}}'}" flex>
+	<div class="landing__translucence">
+		<div layout="column" layout-align="center center">
+			<h1 class="landing__text--header">Homie</h1>
+			<p class="landing__text--slogan">{{ 'LANDING_SLOGAN' | translate }}</p>
 
-	<div class="landing__translucence" layout="column" layout-align="center center">
-		<h1 class="landing__text--header">Homie</h1>
-		<p class="landing__text--slogan">{{ 'LANDING_SLOGAN' | translate }}</p>
-
-		<form class="landing__form" layout="column" layout-align="none center" ng-submit="login()">
-			<md-input-container class="landing__input1" md-theme="dark">
-	      		<label>{{ 'LANDING_EMAIL' | translate }}</label>
-	      		<input ng-model="email">
-	    	</md-input-container>
-		    <md-input-container class="landing__input2" md-theme="dark">
-		      	<label>{{ 'LANDING_PASSWORD' | translate }}</label>
-		      	<input type="password" ng-model="password">
-		    </md-input-container>
-			<div layout="row" layout-align="center">
-				<md-button type="submit" class="md-raised md-primary">
-					{{ 'LANDING_SIGNIN' | translate }}
-				</md-button>
-				<md-button class="md-raised md-primary" ng-click="goToSignup()">
-					{{ 'LANDING_SIGNUP' | translate }}
-				</md-button>
-			</div>
-		</form>
-		<md-button md-theme="altTheme3" class="landing__fbButton md-raised md-accent" ng-click="fbLogin()">
-			&nbsp {{ 'LANDING_FACEBOOKLOGIN' | translate }} &nbsp
-		</md-button>
-		<md-button md-theme="default" class="landing__switchButton md-raised md-primary" ng-click="switchLang()">
-			{{ 'LANDING_CHANGELANG' | translate }}
-		</md-button>
-		<p class="landing__text--divert">
-			{{ 'LANDING_DIVERT1' | translate }}<br>
-			{{ 'LANDING_DIVERT2' | translate }}
-		</p>
-		<p class="landing__text--terms">
-			{{ 'LANDING_TERMS1' | translate }} 
-			<u ng-click="goToTerms()">
-				{{ 'LANDING_TERMS2' | translate }}
-			</u>
-			{{ 'LANDING_TERMS3' | translate }}.
-		</p>
+			<form class="landing__form" layout="column" layout-align="none center" ng-submit="login()">
+				<md-input-container class="landing__input1" md-theme="dark">
+		      		<label>{{ 'LANDING_EMAIL' | translate }}</label>
+		      		<input ng-model="email">
+		    	</md-input-container>
+			    <md-input-container class="landing__input2" md-theme="dark">
+			      	<label>{{ 'LANDING_PASSWORD' | translate }}</label>
+			      	<input type="password" ng-model="password">
+			    </md-input-container>
+				<div layout="row" layout-align="center">
+					<md-button type="submit" class="md-raised md-primary">
+						{{ 'LANDING_SIGNIN' | translate }}
+					</md-button>
+					<md-button class="md-raised md-primary" ng-click="goToSignup()">
+						{{ 'LANDING_SIGNUP' | translate }}
+					</md-button>
+				</div>
+			</form>
+			<md-button md-theme="altTheme3" class="landing__fbButton md-raised md-accent" ng-click="fbLogin()">
+				&nbsp {{ 'LANDING_FACEBOOKLOGIN' | translate }} &nbsp
+			</md-button>
+			<md-button md-theme="default" class="landing__switchButton md-raised md-primary" ng-click="switchLang()">
+				{{ 'LANDING_CHANGELANG' | translate }}
+			</md-button>
+			<p class="landing__text--divert">
+				{{ 'LANDING_DIVERT1' | translate }}<br>
+				{{ 'LANDING_DIVERT2' | translate }}
+			</p>
+			<p class="landing__text--terms">
+				{{ 'LANDING_TERMS1' | translate }} 
+				<u ng-click="goToTerms()">
+					{{ 'LANDING_TERMS2' | translate }}
+				</u>
+				{{ 'LANDING_TERMS3' | translate }}.
+			</p>
+		</div>
 	</div>
 </div>
