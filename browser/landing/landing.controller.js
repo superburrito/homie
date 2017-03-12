@@ -25,7 +25,7 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
 
  	// Labelled for non-commercial reuse: 
  	// https://c1.staticflickr.com/4/3263/3141370564_e2fef8bb14_b.jpg
-	const defaultBg = "/media/landingDefault.jpg";
+	const defaultBg = "/media/homeDefault.jpg";
 	
 	$scope.bg = defaultBg;
 
