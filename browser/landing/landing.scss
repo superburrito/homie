@@ -3,6 +3,9 @@
 		position: relative;
 		background-repeat: no-repeat;
 		background-size: cover;
+		-o-background-size: cover;
+		-moz-background-size: cover;
+		-webkit-backgroud-size: cover;
 		height: 100vh;
 		color: white;
 	}
