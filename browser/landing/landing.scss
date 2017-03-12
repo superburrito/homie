@@ -1,10 +1,11 @@
 .landing {
 	&__container {
 		position: relative;
+		background-image: url("/media/landingDefault.jpg");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		height: 100vh;
+		height: 100vh;	
 	}
 
 	&__translucence {
@@ -13,7 +14,7 @@
 		z-index: -1;
 		width: 100%;
 		height: 100vh;
-		background-color: rgba(0, 0, 0, 0.60);
+		background-color: rgba(0, 0, 0, 0.65);
 	}
 
 	&__content {
