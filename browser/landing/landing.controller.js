@@ -1,9 +1,12 @@
 'use strict';
 
 app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFactory) => {
+ 	// Labelled for non-commercial reuse: 
+ 	// https://c1.staticflickr.com/4/3263/3141370564_e2fef8bb14_b.jpg
+	$scope.bg = "/media/landingDefault.jpg";
+
 	// Bring $state to scope to disable navbar
 	$scope.state = $state;
-
 
 	// Online, attempt re-entry if tokens are present
 	if (window.navigator.onLine && 
@@ -20,14 +23,7 @@ app.controller('LandingCtrl', ($scope, AuthFactory, $state, $translate, StoreFac
  		) {
  		console.log("Offline mode activated.");
 		$state.go('home');
-	}
-
-
- 	// Labelled for non-commercial reuse: 
- 	// https://c1.staticflickr.com/4/3263/3141370564_e2fef8bb14_b.jpg
-	const defaultBg = "/media/homeDefault.jpg";
-	
-	$scope.bg = defaultBg;
+	}	
 
 	$scope.login = function () {
 		AuthFactory.login($scope.email, $scope.password);
