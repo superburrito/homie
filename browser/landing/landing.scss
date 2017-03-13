@@ -71,11 +71,18 @@
 		margin-bottom: 3px;
 	}
 
+	&__flagIcon {
+		width: 56px;
+		height: 32px;
+		margin: 6px 7px 3px 7px;
+		border-radius: 3px;
+	}
+
 	@media #{$view-small} {
 		&__fbButton {
 			display: none !important;
 		}
-		&__switchButton {
+		&__flagIcon {
 			display: none !important;
 		}
 	}

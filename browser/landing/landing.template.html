@@ -26,9 +26,11 @@
 			<md-button md-theme="altTheme3" class="landing__fbButton md-raised md-accent" ng-click="fbLogin()">
 				&nbsp {{ 'LANDING_FACEBOOKLOGIN' | translate }} &nbsp
 			</md-button>
-			<md-button md-theme="default" class="landing__switchButton md-raised md-primary" ng-click="switchLang()">
-				{{ 'LANDING_CHANGELANG' | translate }}
-			</md-button>
+			<div layout="row" layout-align="center">
+				<img class="png-icon landing__flagIcon" src="/media/singaporeFlag.png" ng-click="switchLang('en')">
+				<img class="png-icon landing__flagIcon" src="/media/indonesiaFlag.png" ng-click="switchLang('id')">
+				<img class="png-icon landing__flagIcon" src="/media/philippinesFlag.png" ng-click="switchLang('tl')">
+			</div>
 			<p class="landing__text--divert">
 				{{ 'LANDING_DIVERT1' | translate }}<br>
 				{{ 'LANDING_DIVERT2' | translate }}
