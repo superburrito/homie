@@ -35,6 +35,10 @@ app.config(function($translateProvider) {
 		"LANDING_TERMS1": "By using this application, you agree to these ",
 		"LANDING_TERMS2": "Terms and Conditions",
 		"LANDING_TERMS3": "",
+		
+		"LANDING_EN": "English",
+		"LANDING_ID": "Indo",
+		"LANDING_PH": "Tagalog",
 
 		// Register
 		"REGISTER_HEADER": "Register",
@@ -229,6 +233,10 @@ app.config(function($translateProvider) {
 		"LANDING_TERMS2": "Syarat dan Ketentuan",
 		"LANDING_TERMS3": " ini",
 
+		"LANDING_EN": "Inggris",
+		"LANDING_ID": "Indo",
+		"LANDING_PH": "Tagalog",
+
 		// Register
 		"REGISTER_HEADER": "Mendaftar",
 		"REGISTER_NAME": "Nama",
@@ -415,6 +423,11 @@ app.config(function($translateProvider) {
 	 		"LANDING_TERMS1": "Sa paggamit ng application na ito, kayo ay sumasang-ayon sa",
 	 		"LANDING_TERMS2": "Mga Tuntunin at Kundisyon", 
 	 		"LANDING_TERMS3": "",
+
+			"LANDING_EN": "Ingles",
+			"LANDING_ID": "Indo",
+			"LANDING_PH": "Tagalog",
+
 
 			// Register
 			"REGISTER_HEADER": "Mag-register",

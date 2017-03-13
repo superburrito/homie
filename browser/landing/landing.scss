@@ -71,11 +71,21 @@
 		margin-bottom: 3px;
 	}
 
-	&__flagIcon {
-		width: 56px;
-		height: 32px;
-		margin: 6px 7px 3px 7px;
-		border-radius: 3px;
+	&__langSwitch {
+		margin: 2px 2px 2px 2px;
+		width: 76px; !important
+		padding-left: 0px;
+		padding-right: 0px;
+		&--flagIcon {
+			width: 58px;
+			height: 42px;
+			margin: 2px 5px 2px 5px;
+		}
+
+		&--flagText {
+			text-align: center;
+			margin: 0;
+		}
 	}
 
 	@media #{$view-small} {
