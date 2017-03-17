@@ -1,6 +1,8 @@
-// Cache for application shell
-const apiCacheName = "HomieAPICache-0.3.31";
-const shellCacheName = "HomieShellCache-0.3.31";
+// const apiCacheName = "HomieAPICache-0.3.36";
+// const shellCacheName = "HomieShellCache-0.3.36";
+
+// Currently using a singleCache as a caching strategy
+const singleCache = "HomieSingleCache-0.0.1";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
@@ -70,7 +72,7 @@ var filesToCache = [
 // Installation: Caching the app shell
 self.addEventListener('install', function (event) {
   event.waitUntil(
-    caches.open(shellCacheName).then(function (cache) {
+    caches.open(singleCache).then(function (cache) {
       console.log('[SW] Installing to shellCache...');
       return cache.addAll(filesToCache);
     })
@@ -84,7 +86,7 @@ self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
       return Promise.all(cacheNames.map(function (cacheName) {
-        if (cacheName !== shellCacheName) {
+        if (cacheName !== singleCache) {
           console.log('[SW] Removing outdated cache: ', cacheName);
           return caches.delete(cacheName).then(function () {
             console.log('[SW] Cache has been deleted.');
@@ -100,36 +102,39 @@ self.addEventListener('activate', function (event) {
 
 // Fetching: Retrieving data based on connectivity
 self.addEventListener('fetch', function (event) {
-  var apiUrl = "gethomie.sg/api";
+  // var apiUrl = "gethomie.sg/api";
   // Make sure we are fetching a GET request
   if(event.request.method !== "GET") return;
 
   // If an API (data) request was made
-  if (event.request.url.includes(apiUrl)) {
+  // if (event.request.url.includes(apiUrl)) {
+  
+  // Attempt to go network-first, cache later (temporary for this version)
     event.respondWith(
       // Fetch the request first
       fetch(event.request)
       .then(function (response) {        
-        return caches.open(apiCacheName).then(function (cache) {
+        return caches.open(singleCache).then(function (cache) {
           cache.put(event.request, response.clone());
-          console.log("[SW] Fetched and cached API data for: ", event.request);
+          console.log("[SW] Fetched and cached data for: ", event.request);
           return response;
         })
       })
       // Request could not be fetched, so check cache.
       .catch(function (err) {
-        console.log("[SW] API data fetch failed. Checking cache for: ", err);
+        console.log("[SW] Fetch failed. Checking cache for: ", err);
         return caches.match(event.request).then(function (response) {
           if (response) { 
-            console.log('[SW] API data found in cache for: ', event.request); 
+            console.log('[SW] Data found in cache for: ', event.request); 
             return response;
           } else {
-            console.log("[SW] API data not found in cache for: ", event.request); 
+            console.log("[SW] Data not found in cache for: ", event.request); 
           }
         });
       })
     );
-  // If a shell request was made
+
+/*  // If a shell request was made
   } else {
     event.respondWith(
       // Check the cache for response. If the response isn't found, fetch it.
@@ -153,7 +158,7 @@ self.addEventListener('fetch', function (event) {
         }
       })
     );
-  }
+  }*/
 });
 
 
