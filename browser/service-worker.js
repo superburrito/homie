@@ -2,7 +2,7 @@
 // const shellCacheName = "HomieShellCache-0.3.36";
 
 // Currently using a singleCache as a caching strategy
-const singleCache = "HomieSingleCache-0.0.1";
+const singleCache = "HomieSingleCache-0.0.3";
 
 var filesToCache = [
 	// External dependencies (npm and bower)

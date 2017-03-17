@@ -405,7 +405,7 @@ app.config(function($translateProvider) {
 			"SIDENAV_MAP": "Friend Finder",
 			"SIDENAV_MESSAGES": "Mga Mensahe",
 			"SIDENAV_EDUCATION": "Edukasyon",
-			"SIDENAV_PROGRAMMES": "Gawain",
+			"SIDENAV_PROGRAMMES": "Mga Programa",
 			"SIDENAV_RIGHTS": "Mga Karapatan",
 			"SIDENAV_DISCUSS": "Forum",
 			"SIDENAV_GETHELP": "Humingi ng Tulong",
