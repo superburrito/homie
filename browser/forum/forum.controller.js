@@ -11,7 +11,7 @@ app.controller('ForumCtrl', ($scope, $mdMenu, ForumFactory, $state, GeneralFacto
 		ForumFactory.getAllQuestions()
 		.then((questions) => {
 			$scope.questions = questions;	
-			($scope.questions.length === 0) 
+			(!$scope.questions || $scope.questions.length === 0) 
 				? $scope.noQuestions = true
 				: $scope.noQuestions = false;
 		})

@@ -17,7 +17,7 @@ app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, Gen
 		.then((messages) => {
 			console.log("Messages are: " + JSON.stringify(messages));
 			$scope.inboxMessages = messages;
-			($scope.inboxMessages.length === 0) 
+			(!$scope.inboxMessages || $scope.inboxMessages.length === 0) 
 				? $scope.emptyInbox = true
 				: $scope.emptyInbox = false;
 		})
@@ -30,7 +30,7 @@ app.controller('MessagesCtrl', ($scope, $state, MessagesFactory, $rootScope, Gen
 		.then((messages) => {
 			console.log("Messages are: " + JSON.stringify(messages));
 			$scope.sentMessages = messages;		
-			($scope.sentMessages.length === 0) 
+			(!$scope.sentMessages || $scope.sentMessages.length === 0) 
 				? $scope.emptySent = true
 				: $scope.emptySent = false;
 		})
