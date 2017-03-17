@@ -572,6 +572,9 @@ app.config(function($translateProvider) {
 	 		"T_RESP_FAIL": "Hindi mai-upload ang sagot." 
 	}
 
+
+	$translateProvider.useSanitizeValueStrategy('escape');
+
 	$translateProvider
 		.translations('en', enTranslations)
 		.translations('id', idTranslations)
