@@ -2,7 +2,7 @@
 // const shellCacheName = "HomieShellCache-0.3.36";
 
 // Currently using a singleCache as a caching strategy
-const singleCache = "HomieSingleCache-0.0.3";
+const singleCache = "HomieSingleCache-0.0.5";
 
 var filesToCache = [
 	// External dependencies (npm and bower)
@@ -45,18 +45,24 @@ var filesToCache = [
   '/media/programsCare.jpg',
   '/media/programsComp.jpg',
 
-  // HTML Templates
+  // HTML Templates + API Requests
   '/ask/ask.template.html',
   '/forum/forum.template.html',
+  '/api/forum',
+
   '/help/help.template.html',
-	'/home/home.template.html',
+  '/home/home.template.html',
   '/landing/landing.template.html',
-/*'/map/map.template.html', */
+  '/map/map.template.html', 
+  '/api/map',
+
   '/map/profile.template.html',
   '/message/message.template.html',
   '/messages/messages.template.html',
-  '/messenger/messenger.template.html',
+  '/api/messages/inbox',
+  '/api/messages/sent',
 
+  '/messenger/messenger.template.html',
   '/programs/programs.template.html',
   '/question/question.template.html',
   '/settings/settings.template.html',
