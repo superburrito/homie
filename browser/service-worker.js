@@ -1,5 +1,5 @@
-const apiCacheName = "HomieAPICache-0.3.39";
-const shellCacheName = "HomieShellCache-0.3.39";
+const apiCacheName = "HomieAPICache-0.3.40";
+const shellCacheName = "HomieShellCache-0.3.40";
 
 
 var filesToCache = [
