@@ -1,3 +1,4 @@
+![Welcome to Homie](/browser/media/homieLogo144.png?raw=true)
 # Homie
 ### Yale-NUS Capstone Project 
 
