@@ -3,15 +3,16 @@
 ### Yale-NUS Capstone Project 
 
 #### Summary
-HOMIE is a project aimed at empowering foreign domestic workers in Singapore. The application will provide users with work management tools, inform them of their legal rights and help them reach out to local NGOs.
+HOMIE is a progressive web application that exists to empower migrant domestic workers in Singapore. Its features aim to promote community engagement, information dissemination (e.g. legal rights, ministry guidelines, social events) and work effectiveness.
 
 Features include: 
 - A forum service
-- Content feeds
+- Two content feeds
+- A messenger service
 - A map-based friend locator
 - A one-touch helpline system
 - A translator (especially relevant for workers involved in eldercare)
-- To-do lists with alarms and timers
+- A task manager with alarms and timers
 
 
 #### Setup
