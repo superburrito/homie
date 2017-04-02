@@ -48,6 +48,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 				return FB.login((fbLoginRes) => {
 					if (fbLoginRes.authResponse) {
 						var slToken = fbLoginRes.authResponse.accessToken;
+						console.log("slToken from FBLogin (disconnected): " + slToken);
 						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 500);
 						return $http.post('/auth/facebook', { slToken: slToken })
 						.then((homieRes) => {
@@ -65,9 +66,19 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 					}
 				})
 			} else {
-				return FB.logout(() => {
-					ToastFactory.displayMsg($translate.instant('T_AUTH_FB_LOGOUT'), 600);
-				});
+				// Connected, token attached (i.e. Re-entry while connected to FB)
+				var slToken = fbLoginRes.authResponse.accessToken;
+				console.log("slToken with connected Status: " + slToken);
+				return $http.post('/auth/facebook', { slToken: slToken })
+				.then((homieRes) => {
+					if (homieRes.data && homieRes.status === 400) {
+						ToastFactory.displayMsg(
+							$translate.instant('T_AUTH_SERVER_ERR'), 500);
+						console.log("[LOGIN] Failed: " + JSON.stringify(homieRes.data));
+					} else {
+						AuthFactory.authDataHandler(homieRes.data);
+					}					
+				})
 			}
 		});
 	};

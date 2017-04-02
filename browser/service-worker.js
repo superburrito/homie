@@ -1,8 +1,6 @@
-const apiCacheName = "HomieAPICache-0.3.40";
-const shellCacheName = "HomieShellCache-0.3.40";
+const homieCacheName = "HomieCache-0.3.41";
 
-
-var filesToCache = [
+const cacheFirstPaths = [
 	// External dependencies (npm and bower)
 	'https://fonts.googleapis.com/css?family=Lato',
 	'https://fonts.googleapis.com/icon?family=Material+Icons',
@@ -49,12 +47,10 @@ var filesToCache = [
   '/help/help.template.html',
   '/home/home.template.html',
   '/landing/landing.template.html',
-  '/map/map.template.html', 
   '/map/profile.template.html',
   '/message/message.template.html',
   '/messages/messages.template.html',
   '/messenger/messenger.template.html',
-  '/programs/programs.template.html',
   '/question/question.template.html',
   '/settings/settings.template.html',
   '/sidenav/sidenav.template.html',
@@ -65,27 +61,42 @@ var filesToCache = [
   '/translator/translator.template.html',
 ];
 
+const serverFirstPaths = [
+  '/map/map.template.html', 
+  '/programs/programs.template.html',
+  '/rights/rights.template.html',
+  '/api/'
+]
+
+// Helper: Policy Checker
+const checkServerFirstPolicy = (requestUrlStr) => {
+  for(let i=0; i<serverFirstPaths.length; i++){
+    if(requestUrlStr.includes(serverFirstPaths[i])){
+      return true;
+    }
+  }
+  return false;
+}
 
 // Installation: Caching the app shell
-self.addEventListener('install', function (event) {
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(shellCacheName).then(function (cache) {
-      console.log('[SW] Fetching and Installing shellCache...');
-      return cache.addAll(filesToCache);
+    caches.open(homieCacheName).then((cache) => {
+      console.log('[SW] Fetching and Installing cache-first files...');
+      return cache.addAll(cacheFirstPaths);
     })
   );
 });
 
-
 // Activation: Clearing old caches
-self.addEventListener('activate', function (event) {
+self.addEventListener('activate', (event) => {
   console.log('[SW] Activate');
   event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(cacheNames.map(function (cacheName) {
-        if (cacheName !== shellCacheName) {
+    caches.keys().then((cacheNames) => {
+      return Promise.all(cacheNames.map((cacheName) => {
+        if (cacheName !== homieCacheName) {
           console.log('[SW] Removing outdated cache: ', cacheName);
-          return caches.delete(cacheName).then(function () {
+          return caches.delete(cacheName).then(() => {
             console.log('[SW] Cache has been deleted.');
           });
         } else {
@@ -96,19 +107,17 @@ self.addEventListener('activate', function (event) {
   );
 });
 
-
 // Fetching: Retrieving data based on connectivity
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', (event) => {
   // Make sure we are fetching a GET request
   if(event.request.method !== "GET") return;
-  // If an API (data) request was made
-  var apiUrl = "gethomie.sg/api";
-  if (event.request.url.includes(apiUrl)) {  
+  // Determine policy for request url
+  if (checkServerFirstPolicy(event.request.url)) {  
     event.respondWith(
       // Fetch the request first
       fetch(event.request)
-      .then(function (response) {        
-        return caches.open(apiCacheName).then(function (cache) {
+      .then((response) => {        
+        return caches.open(homieCacheName).then((cache) => {
           cache.put(event.request, response.clone());
           console.log("[SW] Fetched and cached data for: ", event.request);
           return response;
@@ -116,13 +125,13 @@ self.addEventListener('fetch', function (event) {
       })
       // Request could not be fetched, so check cache.
       .catch(function (err) {
-        console.log("[SW] API data fetch failed. Checking cache for: ", err);
-        return caches.match(event.request).then(function (response) {
+        console.log("[SW] Server-first data fetch failed. Checking cache for: ", err);
+        return caches.match(event.request).then((response) => {
           if (response) { 
-            console.log('[SW] API Data found in cache for: ', event.request); 
+            console.log('[SW] Server-first data found in cache for: ', event.request); 
             return response;
           } else {
-            console.log("[SW] API Data not found in cache for: ", event.request); 
+            console.log("[SW] Server-first data not found in cache for: ", event.request); 
           }
         });
       })
@@ -131,22 +140,22 @@ self.addEventListener('fetch', function (event) {
   } else {
     event.respondWith(
       // Check the cache for response. If the response isn't found, fetch it.
-      caches.match(event.request).then(function (response) {
+      caches.match(event.request).then((response) => {
         if (response) { 
-          console.log('[SW] App Shell data found in cache for: ', event.request); 
+          console.log('[SW] Cache-first data found in cache for: ', event.request); 
           return response;
         // Response could not be found in the cache, so fetch it.
         } else {
-          console.log("[SW] App Shell data not found in cache. Fetching: ", event.request);
-          return fetch(event.request).then(function (response) {
-            return caches.open(shellCacheName).then(function (cache) {
+          console.log("[SW] Cache-first data not found in cache. Fetching: ", event.request);
+          return fetch(event.request).then((response) => {
+            return caches.open(homieCacheName).then((cache) => {
               cache.put(event.request, response.clone());
-              console.log("[SW] Fetched and cached App Shell data for: ", event.request);
+              console.log("[SW] Fetched and cached cache-first data for: ", event.request);
               return response;
             });
           })
           .catch(function (err) {
-            console.log("[SW] App Shell data fetched failed for: ", event.request);
+            console.log("[SW] Cache-first data fetched failed for: ", event.request);
           });
         }
       })
