@@ -98,6 +98,8 @@ app.config(function($translateProvider) {
 		"HELP_MOM": "Contact MOM", 
 		"HELP_HOME": "Contact HOME",
 		"HELP_CDE": "Contact CDE",
+		"HELP_FAST": "Contact FAST",
+
 
 		// MAP
 		"MAP_NAV_MAPVIEW": "Explore My Area",
@@ -296,6 +298,8 @@ app.config(function($translateProvider) {
 		"HELP_MOM": "Hubungi MOM", 
 		"HELP_HOME": "Hubungi HOME",
 		"HELP_CDE": "Hubungi CDE",
+		"HELP_FAST": "Hubungi FAST",
+
 
 		// MAP
 		"MAP_NAV_MAPVIEW": "Jelajahi Daerah Saya",
@@ -483,6 +487,8 @@ app.config(function($translateProvider) {
 	 		"HELP_MOM": "I-contact ang MOM",  
 	 		"HELP_HOME": "I-contact ang HOME",
 			"HELP_CDE": "I-contact ang CDE",
+			"HELP_FAST": "I-contact ang FAST",
+			
 			// MAP
 			"MAP_NAV_MAPVIEW": "Tanawin ang Aking Lugar",
 			"MAP_NAV_ADDMYPROFILE": "Idagdag ang Aking Profile",
