@@ -104,7 +104,8 @@ AuthHandler.facebookAuth = (req, res) => {
 			'&fb_exchange_token=' + SHORT_LIVED_TOKEN)
 	.then((fbResBody) => {
 		console.log("fbResBody: " + fbResBody);
-		const llToken = fbResBody["access_token"];
+		const llToken = JSON.parse(fbResBody).access_token;
+		console.log("llToken: " + llToken);
 		return llToken;
 	})
 	.then((llToken) => {
