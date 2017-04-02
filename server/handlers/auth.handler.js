@@ -102,9 +102,9 @@ AuthHandler.facebookAuth = (req, res) => {
 			'&client_secret=' + APP_SECRET + 
 			'&grant_type=fb_exchange_token' + 
 			'&fb_exchange_token=' + SHORT_LIVED_TOKEN)
-	.then((llTokenStr) => {
-		console.log("fbResBody: " + llTokenStr);
-		const llToken = llTokenStr.slice(13,-16);
+	.then((fbResBody) => {
+		console.log("fbResBody: " + fbResBody);
+		const llToken = fbResBody["access_token"];
 		return llToken;
 	})
 	.then((llToken) => {
