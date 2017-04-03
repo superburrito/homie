@@ -6,7 +6,10 @@
 				{{event.title}}
 			</span>
 			<span flex></span>
-			<div layout="column" layout-align="center">
+			<div 
+				layout="column" 
+				ng-show="isOnline" 
+				layout-align="center">
 				<md-button class="md-icon-button" ng-click="goToLink(event)">
 					<md-icon md-font-set="material-icons">
 						open_in_new

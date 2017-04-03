@@ -40,7 +40,7 @@ app.run(function ($window, AuthFactory, $rootScope, $location) {
     AuthFactory.successfulAuthListener();
 
 
-    // Check for rootScope vals in localStorage
+    // Check and set rootScope vals
     function checkRootScopeVals (key) {
         if (localStorage.getItem(key) !== null &&
             localStorage.getItem(key).length > 10) {
@@ -50,4 +50,5 @@ app.run(function ($window, AuthFactory, $rootScope, $location) {
     checkRootScopeVals('HOMIE-receiver');
     checkRootScopeVals('HOMIE-currMessage');
     checkRootScopeVals('HOMIE-currQuestionId');   
+    $rootScope.isOnline = true;
 });

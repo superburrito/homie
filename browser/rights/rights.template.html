@@ -6,7 +6,10 @@
 				{{resource.title}}
 			</span>
 			<span flex></span>
-			<div layout="column" layout-align="center">
+			<div 
+				layout="column" 
+				ng-show="isOnline" 
+				layout-align="center">
 				<a ng-href="{{resource.actualLink}}" download>
 				<md-button class="md-icon-button" ng-click="markLink(resource)">
 					<md-icon md-font-set="material-icons">

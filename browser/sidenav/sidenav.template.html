@@ -5,6 +5,12 @@
 				<md-icon md-font-set="material-icons">home</md-icon>
 				<p>{{ 'SIDENAV_HOME' | translate }}</p>
 			</md-list-item> -->
+			<md-list-item 
+				class="sidenav__profile" 
+				ng-click="(isOnline) ? stateGoer('settings') : null">
+				<img class="sidenav__profile--src" ng-src="{{profileSrc}}"/>
+				<p>{{ firstName }}</p>
+			</md-list-item>
 			<md-list-item ng-click="stateGoer('forum')">
 				<md-icon md-font-set="material-icons">question_answer</md-icon>
 				<p>{{ 'SIDENAV_DISCUSS' | translate }}</p>
@@ -20,7 +26,7 @@
 				<p>{{ 'SIDENAV_PROGRAMMES' | translate }}</p>
 			</md-list-item> 
 
-			<md-list-item ng-click="stateGoer('map')">
+			<md-list-item ng-click="stateGoer('map')" ng-show="isOnline">
 				<md-icon md-font-set="material-icons">public</md-icon>
 				<p>{{ 'SIDENAV_MAP' | translate }}</p>
 			</md-list-item>
@@ -47,11 +53,6 @@
 			<md-list-item ng-click="stateGoer('help')">
 				<md-icon md-font-set="material-icons">ring_volume</md-icon>
 				<p>{{ 'SIDENAV_GETHELP' | translate }}</p>
-			</md-list-item>
-
-			<md-list-item ng-click="stateGoer('settings')">
-				<md-icon md-font-set="material-icons">settings</md-icon>
-				<p>{{ 'SIDENAV_SETTINGS' | translate }}</p>
 			</md-list-item>
 
 			<md-list-item ng-click="logout()">

@@ -21,7 +21,7 @@
     <br>
     <br>
     <div layout="column" layout-align="none center">
-        <md-button ng-hide="sentBySelf" ng-click="reply()" class="message__button md-raised md-accent">
+        <md-button ng-hide="sentBySelf || !isOnline" ng-click="reply()" class="message__button md-raised md-accent">
             {{ 'MESSAGE_REPLY' | translate }}
         </md-button>
         <md-button ng-click="goToMessages()" md-theme="themeTaskC" class="message__button md-raised md-accent">

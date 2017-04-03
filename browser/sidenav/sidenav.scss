@@ -2,6 +2,19 @@
 	min-width: 210px;
 	max-width: 210px;
 
+	&__profile {
+		color: white;
+		background-color: #9E9E9E;
+		&--src {
+			height: 32px;
+			width: 32px;
+			margin-top: 16px;
+			margin-bottom: 12px;
+			margin-right: 24px;	
+			border-radius: 50%;
+		}
+	}
+
 	&__src {
 		height: 24px;
 		width: 24px;

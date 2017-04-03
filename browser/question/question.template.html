@@ -47,7 +47,7 @@
 	    <md-button 
 	    	class="question__button md-primary md-raised"
 	    	ng-click="writeResponse()" 
-	    	ng-hide="writingResponse"
+	    	ng-hide="writingResponse || !isOnline"
 	    >
 	    	{{ 'QUESTION_ADDRESPONSE' | translate }}
 	        <md-icon md-font-set="material-icons">
