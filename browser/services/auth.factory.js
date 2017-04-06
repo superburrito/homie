@@ -46,7 +46,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 			if (fbGetStatRes.status !== 'connected') {
 				// Get short-lived token (slToken) from Facebook
 				return FB.login((fbLoginRes) => {
-					if (fbLoginRes.authResponse) {
+					if (fbLoginRes && fbLoginRes.authResponse) {
 						var slToken = fbLoginRes.authResponse.accessToken;
 						console.log("slToken from FBLogin (disconnected): " + slToken);
 						ToastFactory.displayMsg($translate.instant('T_AUTH_FB_SUCCESS'), 500);
@@ -67,7 +67,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 				})
 			} else {
 				// Connected, token attached (i.e. Re-entry while connected to FB)
-				var slToken = fbLoginRes.authResponse.accessToken;
+				var slToken = fbGetStatRes.authResponse.accessToken;
 				console.log("slToken with connected Status: " + slToken);
 				return $http.post('/auth/facebook', { slToken: slToken })
 				.then((homieRes) => {
