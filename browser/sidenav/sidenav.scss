@@ -2,6 +2,10 @@
 	min-width: 210px;
 	max-width: 210px;
 
+	&__list {
+		padding-top: 0;
+	}
+
 	&__profile {
 		color: white;
 		background-color: #9E9E9E;
