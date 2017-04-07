@@ -40,46 +40,73 @@ app.listen(port, function (err) {
 			const Question = db.model('question');
 			const Response = db.model('response');
 
-			var userProm = User.create({
+			var user1Prom = User.create({
 		  	  name: 'Rakesh Pk',
 		  	  fbId: 549225760,
 			  email: 'rakesh@hotmail.com',
-			  password: 12345,
-			  src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/1503502_10153081589165761_3424469626701072341_n.jpg?oh=4a6174cb65a9e5ecfbd7cd2000b617cf&oe=590C225B'
+			  password: null,
+			  src: 'https://scontent.xx.fbcdn.net/v/t31.0-1/p960x960/11004659_10153081589165761_3424469626701072341_o.jpg?oh=efbc53289568f6a5ac27045d0039d598&oe=5959E630'
 			})
 
-			var coordProm = Coord.create({
+			var user2Prom = User.create({
+				name: 'Samuel Lum',
+				fbId: 609773352,
+				email: 'samlum@hotmail.com',
+				password: null,
+				src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/11140076_10153425855378353_4338146854147431988_n.jpg?oh=a50c1a2e07ffafdb7b0030ddd371e165&oe=59539382'
+			})
+
+			var coord1Prom = Coord.create({
 				lat: 1.29,
 				lng: 103.80
 			})
 
-			var questionProm = Question.create({
+			var coord2Prom = Coord.create({
+				lat: 1.30,
+				lng: 103.81
+			})
+
+			var question1Prom = Question.create({
 				title: 'Negotiating Pay',
 				content: `How to negotiate pay? My employer is very problematic. She does not understand that I have to support my family back at home. I need some help. Can somebody help me talk to my employer? I will appreciate it...`,
 				category: 'Salary',
 			})
 
-			var respProm = Response.create({
-				title: 'This is how you do it',
-				content: 'You talk to her.',
+
+			var question2Prom = Question.create({
+				title: 'Knee Injury',
+				content: `I injured my knee yesterday while cleaning the fan. I saw the doctor already, but it is still quite painful. Does anyone have advice on how I can feel better?`,
+				category: 'Health',
+			})
+
+			var resp1Prom = Response.create({
+				content: 'Ask HOME or FAST for help. You can call them with this app.',
+				likesCtr: 1
+			})
+
+			var resp2Prom = Response.create({
+				content: 'Thank you... you are nice.',
 				likesCtr: 0
 			})
 
 
-			return Promise.all([coordProm, userProm, questionProm, respProm])
-			.spread((coord, user, question, response) => {
-				return coord.setUser(user)
-				.then(() => {
-					return question.setAsker(user);
-				})
-				.then(() => {
-					return response.setResponder(user);
-				})
-				.then(() => {
-					return question.addResponse(response);
-				});
+			return Promise.all([
+					user1Prom, user2Prom,
+					coord1Prom, coord2Prom,
+					question1Prom, question2Prom,
+					resp1Prom, resp2Prom
+			])
+			.spread((user1, user2, coord1, coord2, question1, question2, resp1, resp2) => {
+				return coord1.setUser(user1)
+				.then(() => coord2.setUser(user2))
+				.then(() => question1.setAsker(user1))
+				.then(() => question2.setAsker(user2))
+				.then(() => resp1.setResponder(user2))
+				.then(() => resp2.setResponder(user1))
+				.then(() => question1.addResponse(resp1))
+				.then(() => question1.addResponse(resp2))
+				.then(() => console.log("Test data added"));
 			})
-
 			// =====================
 
 			console.log("Database reset and models synced.");

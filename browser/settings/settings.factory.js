@@ -34,7 +34,7 @@ app.factory('SettingsFactory', (cloudinary, StoreFactory, ToastFactory, $http, A
         		ToastFactory.displayMsg(
         			$translate.instant('T_SETTINGS_SYNC_SUCC'), 500);
         		StoreFactory.saveProfile(data.user);
-        		$rootScope.broadcast("sourceUpdate");
+        		$rootScope.broadcast("profileUpdate");
         		$state.go('home');
         	} else {
         		ToastFactory.displayMsg(

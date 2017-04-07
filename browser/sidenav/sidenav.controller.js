@@ -2,18 +2,27 @@
 
 app.controller('SidenavCtrl', ($scope, $mdSidenav, $state, AuthFactory, StoreFactory, $interval, $rootScope) => {
 
-	// Init profile pic and update according to changes
-	$scope.profileSrc = StoreFactory.getProfile().src || "/media/defaultProfile.png";
-	AuthFactory.sourceUpdateListener = () => {
-		$rootScope.$on('sourceUpdate', () => {
-			$scope.profileSrc = StoreFactory.getProfile().src || "/media/defaultProfile.png";
+	// Init profile pic and name; update according to changes
+	const profile = StoreFactory.getProfile();
+	if (profile) {
+		if (profile.src) { $scope.profileSrc = profile.src; }
+		if (profile.name) { $scope.firstName = profile.name.split(' ')[0]; }
+	} else {
+		$scope.profileSrc = "/media/defaultProfile.png";
+		$scope.firstName = "My Profile";
+	}
+	AuthFactory.profileUpdateListener = () => {
+		$rootScope.$on('profileUpdate', () => {
+			const profile = StoreFactory.getProfile();
+			if (profile) {
+				$scope.profileSrc = profile.src;
+				$scope.firstName = profile.name.split(' ')[0];
+			}
 		})
 	}
-	AuthFactory.sourceUpdateListener();
+	AuthFactory.profileUpdateListener();
 
-	$scope.firstName = StoreFactory.getProfile().name.split(' ')[0];
-
-	// Init online status and update according to changes
+	// Check online status and update according to changes
 	function checkOnline(){
 		if(navigator.onLine == true){
 			console.log("isOnline == true");

@@ -1,7 +1,7 @@
 'use strict';
 
 // Store factory manages cached tokens and cached profile info
-app.factory('StoreFactory', function(){
+app.factory('StoreFactory', ($rootScope) => {
 	var StoreFactory = {};
 
 	// Homie token management
@@ -44,6 +44,7 @@ app.factory('StoreFactory', function(){
 
 	StoreFactory.saveAuthData = function (data) {
 		StoreFactory.saveProfile(data.user);
+		$rootScope.$broadcast("profileUpdate"); // Important! 
 		if (data.hToken) {
 			console.log("Saving HToken...");
 			StoreFactory.saveHToken(data.hToken);
