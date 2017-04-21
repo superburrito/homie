@@ -1,6 +1,6 @@
 'use strict';
 
-app.run(function ($window, AuthFactory, $rootScope, $location) {
+app.run(function ($window, AuthFactory, $rootScope, $location, $state) {
 
     // Initialise FB JS SDK
     $window.fbAsyncInit = function() {
@@ -40,7 +40,6 @@ app.run(function ($window, AuthFactory, $rootScope, $location) {
     $rootScope.$on('authenticated', function () {   
       $state.go('home');      
     })
-
 
     // Check and set rootScope vals
     function checkRootScopeVals (key) {

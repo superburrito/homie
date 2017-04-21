@@ -1,4 +1,4 @@
-const homieCacheName = "HomieCache-0.3.69";
+const homieCacheName = "HomieCache-0.3.71";
 
 const cacheFirstPaths = [
 	// External dependencies (npm and bower)
