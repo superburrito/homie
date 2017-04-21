@@ -133,7 +133,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 
 
 	// Listeners
-	AuthFactory.failedAuthListener = function () {
+/*	AuthFactory.failedAuthListener = function () {
 		$rootScope.$on('unauthenticated', function () {	
 			$state.go('landing');			
 		})
@@ -143,7 +143,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		$rootScope.$on('authenticated', function () {		
 			$state.go('home');			
 		})
-	};
+	};*/
 
 
 	return AuthFactory;

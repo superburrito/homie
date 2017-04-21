@@ -5,30 +5,30 @@ app.factory('StoreFactory', ($rootScope) => {
 	var StoreFactory = {};
 
 	// Homie token management
-	StoreFactory.saveHToken = function (token) {
+	StoreFactory.saveHToken = (token) => {
 		localStorage.setItem('HOMIE-hToken', JSON.stringify(token));
 	}
 
-	StoreFactory.getHToken = function () {
+	StoreFactory.getHToken = () => {
 		if (!localStorage.getItem('HOMIE-hToken')) return null;
 		return JSON.parse(localStorage.getItem('HOMIE-hToken'));
 	}
 
-	StoreFactory.hasHToken = function () {
+	StoreFactory.hasHToken = () => {
 		return StoreFactory.getHToken() !== null;
 	}
 
 	// FB Token management
-	StoreFactory.saveFbToken = function (token) {
+	StoreFactory.saveFbToken = (token) => {
 		localStorage.setItem('HOMIE-fbToken', JSON.stringify(token));
 	} 
 
-	StoreFactory.getFbToken = function () {
+	StoreFactory.getFbToken = () => {
 		if (!localStorage.getItem('HOMIE-fbToken')) return null;
 		return JSON.parse(localStorage.getItem('HOMIE-fbToken'));
 	}
 
-	StoreFactory.hasFbToken = function () {
+	StoreFactory.hasFbToken = () => {
 		return StoreFactory.getFbToken() !== null;
 	}
 
@@ -42,7 +42,7 @@ app.factory('StoreFactory', ($rootScope) => {
 		}
 	*/
 
-	StoreFactory.saveAuthData = function (data) {
+	StoreFactory.saveAuthData = (data) => {
 		StoreFactory.saveProfile(data.user);
 		$rootScope.$broadcast("profileUpdate"); // Important! 
 		if (data.hToken) {
@@ -55,25 +55,24 @@ app.factory('StoreFactory', ($rootScope) => {
 		}
 	}
 
-	StoreFactory.saveProfile = function (profile) {
+	StoreFactory.saveProfile = (profile) => {
 		console.log("Saving profile...");
 		console.table(profile);
 		localStorage.setItem('HOMIE-profile', JSON.stringify(profile));
 	}
 
-	StoreFactory.getProfile = function () {
+	StoreFactory.getProfile = () => {
 		if (!localStorage.getItem('HOMIE-profile')) return null;
 		return JSON.parse(localStorage.getItem('HOMIE-profile'));
 	}
 
 	// Clearing store when logging out
-	StoreFactory.clear = function () {
+	StoreFactory.clear = () => {
 		localStorage.removeItem('HOMIE-profile');
 		localStorage.removeItem('HOMIE-hToken');
 		localStorage.removeItem('HOMIE-fbToken');
 		console.log('User info in localStorage cleared (including tokens).');
 	}
-
 
 	return StoreFactory;
 

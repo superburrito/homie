@@ -26,18 +26,20 @@ app.run(function ($window, AuthFactory, $rootScope, $location) {
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    $window.ga('create', 'UA-83429327-3', 'auto');
-
-
     // Register listener for $stateChange events (for GA)
+    $window.ga('create', 'UA-83429327-3', 'auto');
     $rootScope.$on('$stateChangeSuccess', (e) => {
         $window.ga('send', 'pageview', $location.path());
     })
 
 
     // Registers listeners for Authenticated/Unauthenticated events
-    AuthFactory.failedAuthListener();
-    AuthFactory.successfulAuthListener();
+    $rootScope.$on('unauthenticated', function () { 
+      $state.go('landing');     
+    })
+    $rootScope.$on('authenticated', function () {   
+      $state.go('home');      
+    })
 
 
     // Check and set rootScope vals
