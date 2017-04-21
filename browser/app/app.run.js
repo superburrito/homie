@@ -1,9 +1,8 @@
 'use strict';
 
-app.run(function ($window, AuthFactory, $rootScope, $location, $state) {
-
+app.run(($window, AuthFactory, $rootScope, $location, $state) => {
     // Initialise FB JS SDK
-    $window.fbAsyncInit = function() {
+    $window.fbAsyncInit = () => {
         FB.init({
           appId: '925425917589411',
           status: true, 
@@ -28,19 +27,16 @@ app.run(function ($window, AuthFactory, $rootScope, $location, $state) {
 
     // Register listener for $stateChange events (for GA)
     $window.ga('create', 'UA-83429327-3', 'auto');
-    $rootScope.$on('$stateChangeSuccess', (e) => {
+    $rootScope.$on('$stateChangeSuccess', (ev) => {
         $window.ga('send', 'pageview', $location.path());
     })
-
-
-    // Registers listeners for Authenticated/Unauthenticated events
-    $rootScope.$on('unauthenticated', function () { 
+    // Register listeners for Authenticated/Unauthenticated events
+    $rootScope.$on('unauthenticated', (ev) => { 
       $state.go('landing');     
     })
-    $rootScope.$on('authenticated', function () {   
+    $rootScope.$on('authenticated', (ev) => {   
       $state.go('home');      
     })
-
     // Check and set rootScope vals
     function checkRootScopeVals (key) {
         if (localStorage.getItem(key) !== null &&
