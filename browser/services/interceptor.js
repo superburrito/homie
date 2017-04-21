@@ -17,16 +17,20 @@ app.factory('APIInterceptor', function (StoreFactory, $rootScope) {
 	}
 
 	APIInterceptor.response = function (response) {
-		return response;
+		// If client receives status 401 || 403, broadcast it
+		if (response.status === 401 || response.status === 403) { 
+			$rootScope.$broadcast('unauthenticated');
+		}
+		return response;	
 	}
 
 	APIInterceptor.responseError = function (response) {
-
-		// If client receives status 401, broadcast it
-		if (response.status === 401) { 
+		// If client receives status 401 || 403, broadcast it
+		if (response.status === 401 || response.status === 403) { 
 			$rootScope.$broadcast('unauthenticated');
 		}
 		return response;
 	}
+	
 	return APIInterceptor;
 })

@@ -95,13 +95,7 @@ app.factory('AuthFactory', function ($http, $q, $rootScope, StoreFactory, $state
 		});
 	};
 
-	AuthFactory.resToDataFilter = (res) => {
-		if (res.status === 403) {
-			$rootScope.$broadcast('unauthenticated');
-			return;
-		}
-		return res.data;
-	}
+	AuthFactory.resToDataFilter = (res) => res.data;
 
 	// Handles data from local/FB logins AND re-entries
 	AuthFactory.authDataHandler = function (data) {
