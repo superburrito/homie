@@ -5,6 +5,8 @@
 #### Summary
 HOMIE is a progressive web application that exists to empower migrant domestic workers in Singapore. Its features aim to promote community engagement, information dissemination (e.g. legal rights, ministry guidelines, social events) and work effectiveness.
 
+This project is a college capstone submission.
+
 Features include: 
 - A forum service
 - Two content feeds
